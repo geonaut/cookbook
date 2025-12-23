@@ -61,3 +61,4 @@ node_modules/
 *.partial
 
 # End of file
+src/main.aux
