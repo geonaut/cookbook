@@ -1,6 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1766525375.8862 "/Users/oliverbazely/Coding/cookbook/src/main.tex" "main.pdf" "main" 1766525377.3151 0
-  "../images/cover.pdf" 1766525335.19201 22213 4223dd8aa40ea0116740ea74f3ce7603 ""
+["pdflatex"] 1766525774.85125 "/Users/oliverbazely/Coding/cookbook/src/main.tex" "main.pdf" "main" 1766525776.29572 0
   "../styles/cookbook.sty" 1766524762.7028 2526 589f820e71549f2d335a8091580b4ada ""
   "/Users/oliverbazely/Coding/cookbook/src/main.tex" 1766525140.08888 256 40eab0d0da1c07692da01ce2f42adc3e ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc" 1529098226 2457 aaabbccba4df2a7f7371410ee4e075a3 ""
@@ -21,8 +20,6 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/tex-gyre/ec-qhvb.tfm" 1204998285 11796 b7bc3db132e822d2872ea50ba8fa7cc0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/tex-gyre/ec-qhvr.tfm" 1204998285 12084 374c5b7e91efcc10472ab8e61f66d36b ""
   "/usr/local/texlive/2025/texmf-dist/fonts/tfm/public/tex-gyre/ts1-qhvr.tfm" 1254269485 1560 753cb451b29683799c3de4bf174f308f ""
-  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
-  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb" 1257299502 112164 176018dd42fcc60204173fa10e357da5 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb" 1257299502 110045 c159829aa6d7d99f1777bb40c90b8157 ""
   "/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -136,11 +133,11 @@
   "chapters/02-sauces.tex" 1766523349.63796 1249 3db9a6769ce092c4fdc337e0f7df2eb3 ""
   "chapters/03-mains.tex" 1766523355.61882 299 054328defc3b6cb11bf478368463ae26 ""
   "chapters/04-desserts.tex" 1766523510.98816 1050 5f093c232aa23f26f493492e72432b7b ""
-  "chapters/_auto_inputs.tex" 1766525336.04875 378 c5f74298135fee361e9b4c31e9c4da74 ""
+  "chapters/_auto_inputs.tex" 1766525661.09418 378 9edae5ecb596cbc58af754a4959c5977 ""
   "cover.tex" 1766521386.19444 664 db3f2601b33be2f2b32889726ef6115c ""
-  "main.aux" 1766525377.17736 1028 f8580390762212e1f3e846f8c1e5ff1a "pdflatex"
+  "main.aux" 1766525776.14079 1026 c9991c6eecd1efd97a0d246d7e468a92 "pdflatex"
   "main.tex" 1766525140.08888 256 40eab0d0da1c07692da01ce2f42adc3e ""
-  "main.toc" 1766525377.17888 404 65767a68b37f360e1f494b7c1ef280f2 "pdflatex"
+  "main.toc" 1766525776.1421 402 5eb105a32fb9b218c7b1fab476aee29d "pdflatex"
   "styles/cookbook.sty" 1766523675.55039 1259 1cca0922250e171ac87bb75ff57f56cb ""
   (generated)
   "main.aux"

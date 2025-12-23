@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.23)  23 DEC 2025 21:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.23)  23 DEC 2025 21:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -521,30 +521,11 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (./cover.tex
-<../images/cover.pdf, id=4, 426.79147pt x 597.50731pt>
-File: ../images/cover.pdf Graphic file (type pdf)
-<use ../images/cover.pdf>
-Package pdftex.def Info: ../images/cover.pdf  used on input line 21.
-(pdftex.def)             Requested size: 597.5626pt x 836.58658pt.
-
-Overfull \hbox (142.3185pt too wide) in paragraph at lines 21--21
- [] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [1
 
 
-]
-Overfull \vbox (133.8035pt too high) has occurred while \output is active []
-
-
-
-[2{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc} <../images/cover.pdf>]) (./main.toc
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}]) (./main.toc
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -575,11 +556,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
  (./chapters/_auto_inputs.tex (./chapters/01-starters.tex
 
-[3
-
-]
-
-[4
+[2
 
 ]
 Chapter 1.
@@ -593,51 +570,53 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 
 
-[5{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]) (./chapters/02-sauces.tex
+[3
 
-[6]
+{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]) (./chapters/02-sauces.tex
+
+[4]
 Chapter 2.
 
 
-[7
+[5
 
 ]) (./chapters/03-mains.tex
 
-[8]
+[6]
 Chapter 3.
 ) (./chapters/04-desserts.tex
 
-[9
+[7
 
 ]
 
-[10
+[8
 
 ]
 Chapter 4.
 
 
-[11]))
+[9]))
 
-[12] (./main.aux)
+[10] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 17808 strings out of 473190
- 350354 string characters out of 5715799
+ 17803 strings out of 473190
+ 350199 string characters out of 5715799
  753376 words of memory out of 5000000
- 40704 multiletter control sequences out of 15000+600000
+ 40699 multiletter control sequences out of 15000+600000
  597632 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  104i,11n,104p,1041b,454s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb>
-Output written on main.pdf (12 pages, 78725 bytes).
+</usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qhvb.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qhvr.pfb>
+Output written on main.pdf (10 pages, 56805 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 55 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 24594 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 24589 words of extra memory for PDF output out of 24883 (max. 10000000)
 
