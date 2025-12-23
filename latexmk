@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Lightweight proxy for latexmk — tries PATH, then common install locations.
+# Place this in the project root and make it executable (chmod +x latexmk).
+set -euo pipefail
+
+# Try command -v first
+if command -v latexmk >/dev/null 2>&1; then
+	exec latexmk "$@"
+fi
+
+# Fallback common locations (macOS Homebrew / MacTeX / usual locations)
+candidates=(
+  "/opt/homebrew/bin/latexmk"
+  "/usr/local/bin/latexmk"
+  "/Library/TeX/texbin/latexmk"
+  "/usr/texbin/latexmk"
+)
+
+for p in "${candidates[@]}"; do
+	if [ -x "$p" ]; then
+		exec "$p" "$@"
+	fi
+done
+
+# Not found — print actionable hint
+cat >&2 <<'EOF'
+Error: latexmk executable not found.
+Tools (editor/CI) attempted to spawn "latexmk" but it isn't available in the process $PATH.
+
+Common fixes:
+ - Ensure a TeX distribution and latexmk are installed.
+   macOS (MacTeX):  brew install --cask mactex
+   latexmk via Homebrew: brew install latexmk
+ - Add TeX/Homebrew bin dirs to your environment PATH so GUI apps / editors see them:
+     export PATH="/Library/TeX/texbin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+ - Configure your editor/IDE build task to call "make" instead of invoking latexmk directly.
+
+This wrapper is in the repo root and will proxy to a discovered latexmk binary if available.
+EOF
+exit 127

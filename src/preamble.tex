@@ -1,0 +1,47 @@
+\documentclass[a4paper,11pt]{book}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{lipsum} % For dummy text
+\usepackage{tocloft}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{titlesec}
+
+% Page layout
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+
+% Chapter formatting
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}{\chaptername\ \thechapter}{20pt}{\Huge}
+
+% Recipe formatting
+\newcommand{\recipe}[4]{
+    \chapter{#1}
+    \section*{Ingredients}
+    #2
+    \section*{Instructions}
+    #3
+    \section*{Recipe Hints}
+    #4
+}
+
+% Custom commands for the cookbook
+\newcommand{\fullbleedimage}[1]{
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=\paperwidth,height=\paperheight]{#1}
+        \thispagestyle{empty}
+    \end{figure}
+}

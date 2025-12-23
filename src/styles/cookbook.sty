@@ -1,0 +1,39 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{styles/cookbook}[2025/12/23 Wrapper that loads ../styles/cookbook.sty]
+
+% Prefer the canonical style at top-level styles/cookbook.sty.
+% If that file exists, load it and return; otherwise define a minimal fallback.
+\InputIfFileExists{../styles/cookbook.sty}{}{%
+  % --- minimal fallback (keeps builds working if canonical file is missing) ---
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage{lmodern}
+  \RequirePackage{graphicx}
+  \RequirePackage{fancyhdr}
+  \RequirePackage{titlesec}
+  \RequirePackage{tocloft}
+  \RequirePackage{geometry}
+  \RequirePackage{setspace}
+  \geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+  \setstretch{1.2}
+
+  % minimal recipe macro (compatible with previous usage)
+  \newcommand{\recipe}[4]{%
+    \section*{#1}%
+    \subsection*{Ingredients}#2\par
+    \subsection*{Instructions}#3\par
+    \subsection*{Recipe Hints}#4\par
+  }
+
+  % simple chapter/section formats (safe defaults)
+  \titleformat{\section}{\huge\bfseries}{\thesection}{1em}{}
+  \titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+
+  % header/footer
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyhead[L]{\leftmark}
+  \fancyfoot[C]{\thepage}
+  % --- end fallback ---
+}
+\endinput
