@@ -1,11 +1,5 @@
-% filepath: /Users/oliverbazely/Coding/cookbook/src/cover.tex
-% Minimal cover fragment to be included by 
-% (no preamble here; main.tex should provide packages like graphicx)
-
-\clearpage
 \thispagestyle{empty}
 
-% Prefer the generated PDF placeholder; fall back to a textual placeholder.
 \IfFileExists{../images/cover.pdf}{%
   \begin{center}
     \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{../images/cover.pdf}
@@ -13,11 +7,9 @@
 }{%
   \vspace*{\fill}
   \begin{center}
-    {\bfseries\Huge Cover placeholder\par}
+    {Cover placeholder\par}
     \vspace{1em}
-    {\large Place  (or images/your-image.jpg) and re-run make\par}
+    {Place  (or images/your-image.jpg) and re-run make\par}
   \end{center}
   \vspace*{\fill}
 }
-
-\clearpage

@@ -1,15 +1,19 @@
-\documentclass[a4paper,12pt]{book}
+\documentclass[a4paper,12pt,openany]{book}
 \usepackage{graphicx}
 \usepackage{tocloft}
 \usepackage{styles/cookbook}
 
 \begin{document}
+\setcounter{secnumdepth}{-1}
 
 % Cover Page
 \input{cover.tex}
+\clearpage
+% \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{../images/cover.pdf}
 
 % Table of Contents
 \tableofcontents
+\clearpage
 
 % Chapters
 \input{chapters/_auto_inputs.tex}

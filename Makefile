@@ -36,7 +36,6 @@ images:
 	@echo "Generating placeholder images..."
 	@mkdir -p images
 	$(CC) -interaction=nonstopmode -halt-on-error -output-directory=images images/cover.tex
-	$(CC) -interaction=nonstopmode -halt-on-error -output-directory=images images/chicken.tex
 
 $(OUT): $(SRC)
 	@echo "Generating auto-inputs..."
