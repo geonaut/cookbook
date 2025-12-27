@@ -9,9 +9,12 @@
 \RequirePackage{titlesec}
 \RequirePackage{geometry}
 \RequirePackage{setspace}
+\RequirePackage{fontspec}
   
 \geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
 \setstretch{1.2}
+
+\setmainfont{Kannada MN}
 
 % simple chapter/section formats (safe defaults)
 \titleformat{\section}{\huge\bfseries}{\thesection}{1em}{}
@@ -20,8 +23,11 @@
 % header/footer
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\leftmark}
+% \fancyhead[L]{\leftmark}
 \fancyfoot[C]{\thepage}
+
+\setlength{\headheight}{15pt}       % Sets the header height to satisfy fancyhdr
+\addtolength{\topmargin}{-3pt}      % Moves the header up slightly to compensate
 
 % --- 1. MINI RECIPE (2 per page, no photos) ---
 % Use this for short items like sauces or dips.
