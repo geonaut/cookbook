@@ -7,19 +7,15 @@ This repository contains a LaTeX cookbook template:
 - chapter title pages
 - sauces as compact mini-recipes (2–3 per page)
 - one recipe per page for other sections
-- optional left-hand photo pages (photo on verso / recipe on recto)
+- optional left-hand photo pages
 
 ## Requirements
 
-- A working TeX distribution (MacTeX / TeX Live)
+- A working TeX distribution (MacTeX / TeX Live) e.g. `brew install --cask mactex`
 - pdflatex
 - latexmk
 - kpsewhich (provided by TeX distribution)
-
-Recommended (macOS):
-- Install MacTeX:
-  brew install --cask mactex
-
+  
 ## Quick setup & build
 
 1. Run the build (Makefile will run the dependency check first):
@@ -37,25 +33,3 @@ Notes:
 - To install on macOS:
   - MacTeX (full): brew install --cask mactex
   - latexmk: brew install latexmk
-
-## Notes on editor/IDE builds
-- If an editor or CI job prints an error like:
-  "Error: spawn latexmk ENOENT" or "latexmk: Command not found"
-  it usually means the editor's runtime environment does not include the TeX/bin locations (Homebrew / MacTeX) in $PATH.
-- Permanent fixes:
-  - Add TeX bin dirs to your shell and GUI environment (example for macOS):
-      export PATH="/Library/TeX/texbin:/opt/homebrew/bin:/usr/local/bin:$PATH"
-    Put that in ~/.zshrc or the environment configuration your editor uses.
-  - Or configure your editor's LaTeX build task to call `make` instead of invoking `latexmk` directly.
-- This repository includes a small proxy script at `./latexmk` that will try to forward to a system latexmk if available; it's a convenience but not a substitute for fixing the editor/CI PATH.
-
-## Project layout
-
-- main.tex
-- preamble.tex
-- cover.tex
-- toc.tex
-- chapters/
-- images/
-- build/check_deps.sh
-- Makefile
