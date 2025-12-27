@@ -16,10 +16,6 @@ check:
 	chmod +x build/check_deps.sh
 	./build/check_deps.sh
 
-images:
-	@mkdir -p images
-	$(CC) -interaction=nonstopmode -output-directory=images images/cover.tex
-
 $(OUT): $(SRC)
 	@bash build/generate_inputs.sh
 	@mkdir -p $(BUILDDIR)
