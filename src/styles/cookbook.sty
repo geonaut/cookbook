@@ -1,94 +1,60 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{styles/cookbook}[2025/12/23 Wrapper that loads ../styles/cookbook.sty]
+\ProvidesPackage{styles/cookbook}
 
-% Prefer the canonical style at top-level styles/cookbook.sty.
-% If that file exists, load it and return; otherwise define a minimal fallback.
-\InputIfFileExists{../styles/cookbook.sty}{}{%
-  % --- minimal fallback (keeps builds working if canonical file is missing) ---
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage{lmodern}
-  \RequirePackage{graphicx}
-  \RequirePackage{fancyhdr}
-  \RequirePackage{titlesec}
-  \RequirePackage{geometry}
-  \RequirePackage{setspace}
-  \geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
-  \setstretch{1.2}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{graphicx}
+% \RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{geometry}
+\RequirePackage{setspace}
+  
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+\setstretch{1.2}
 
-  % minimal recipe macro (compatible with previous usage)
-  \newcommand{\recipe}[4]{%
-    \section{#1}%
-    \subsection*{Ingredients}#2\par
-    \subsection*{Instructions}#3\par
-    \subsection*{Recipe Hints}#4\par
-  }
+% simple chapter/section formats (safe defaults)
+\titleformat{\section}{\huge\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
 
-  % simple chapter/section formats (safe defaults)
-  \titleformat{\section}{\huge\bfseries}{\thesection}{1em}{}
-  \titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+% header/footer
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[L]{\leftmark}
+% \fancyfoot[C]{\thepage}
 
-  % header/footer
-  \pagestyle{fancy}
-  \fancyhf{}
-  \fancyhead[L]{\leftmark}
-  \fancyfoot[C]{\thepage}
-  % --- end fallback ---
+% --- 1. MINI RECIPE (2 per page, no photos) ---
+% Use this for short items like sauces or dips.
+\newcommand{\minirecipe}[2]{% #1=Title, #2=Content
+    \subsection*{#1}
+    #2
+    \vspace{1em}
+    \hrule
+    \vspace{1em}
 }
 
-% --- Recipe templates & page-break control ----------------------------------
-% Toggle whether recipes force page breaks between them.
-\newif\ifcbk@pagebreaks
-\cbk@pagebreakstrue % default: enable page breaks between recipes
-
-% User commands to switch behaviour
-\newcommand{\NoRecipePageBreaks}{\cbk@pagebreaksfalse}
-\newcommand{\RecipePageBreaks}{\cbk@pagebreakstrue}
-
-% MiniRecipe: compact inline template (does not force a page break)
-% Usage: \MiniRecipe{Title}{Ingredients text}{Instructions text}{Hints text (optional)}
-\newcommand{\MiniRecipe}[4]{%
-  \par\medskip
-  \noindent\textbf{#1}\par
-  \vspace{0.5ex}\noindent\textbf{Ingredients:} #2\par
-  \vspace{0.5ex}\noindent\textbf{Instructions:} #3\par
-  \if\relax\detokenize{#4}\relax\else
-    \vspace{0.5ex}\noindent\textbf{Hints:} #4\par
-  \fi
-  \medskip
+% --- 2. SIMPLE RECIPE (1 per page, no photo) ---
+\newcommand{\simplerecipe}[2]{% #1=Title, #2=Content
+    \clearpage
+    \section*{#1}
+    #2
+    \vfill
+    \clearpage
 }
 
-% BasicRecipe: one-page recipe; forces a page break after (unless page breaks disabled)
-% Usage: \BasicRecipe{Title}{Ingredients text}{Instructions text}{Hints text (optional)}
-\newcommand{\BasicRecipe}[4]{%
-  \clearpage
-  \thispagestyle{plain}%
-  \begin{center}\bfseries\Large #1\end{center}\vspace{1em}%
-  \noindent\textbf{Ingredients:}\par #2\par\vspace{1em}%
-  \noindent\textbf{Instructions:}\par #3\par\vspace{1em}%
-  \if\relax\detokenize{#4}\relax\else
-    \noindent\textbf{Hints:}\par #4\par\vspace{1em}%
-  \fi
-  \ifcbk@pagebreaks\clearpage\fi
+% --- 3. ILLUSTRATED RECIPE (Full photo + Recipe page) ---
+\newcommand{\illustratedrecipe}[3]{% #1=Image, #2=Title, #3=Content
+    \clearpage
+    % The Photo Page
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[inner sep=0pt] at (current page.center) {%
+            \includegraphics[width=\paperwidth, height=\paperheight]{#1}%
+        };
+    \end{tikzpicture}
+    \newpage
+    % The Text Page
+    \section*{#2}
+    #3
+    \clearpage
 }
-
-% IllustratedRecipe: recipe page followed by an image page.
-% Usage: \IllustratedRecipe[<img options>]{<image path>}{<title>}{<ingredients>}{<instructions>}
-\newcommand{\IllustratedRecipe}[5][]{%
-  % recipe page
-  \clearpage
-  \thispagestyle{plain}%
-  \begin{center}\bfseries\Large #3\end{center}\vspace{1em}%
-  \noindent\textbf{Ingredients:}\par #4\par\vspace{1em}%
-  \noindent\textbf{Instructions:}\par #5\par\vspace{1em}%
-  \ifcbk@pagebreaks\clearpage\fi
-  % image page
-  \thispagestyle{plain}%
-  \begin{center}
-    \includegraphics[#1,width=0.95\textwidth,height=0.85\textheight,keepaspectratio]{#2}
-  \end{center}
-  \ifcbk@pagebreaks\clearpage\fi
-}
-% --- end recipe templates ---------------------------------------------------
-
-\endinput

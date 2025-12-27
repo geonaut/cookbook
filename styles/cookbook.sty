@@ -1,17 +1,8 @@
-% Canonical cookbook style (preferred).
-% Place this file at styles/cookbook.sty and the project will load it via
-% src/styles/cookbook.sty (which acts as a wrapper). You can remove
-% src/styles/cookbook.sty once you confirm builds use this canonical file.
-
-\ProvidesPackage{styles/cookbook}[2025/12/23 Minimal cookbook styles with chapter covers]
-
-% Font/encoding (pdflatex-friendly)
+\ProvidesPackage{styles/cookbook}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{lmodern}
 \RequirePackage{microtype}
-
-% Modern sans-serif base font (TeX Gyre Heros — widely available in TeX Live)
 \RequirePackage{tgheros}
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -76,6 +67,20 @@
   \else
     \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}%
   \fi
+}
+
+\newcommand{\illustratedrecipe}[3]{%
+    \clearpage
+    \thispagestyle{empty}
+    \begin{tikzpicture}[remember picture, overlay]
+        \node[inner sep=0pt] at (current page.center) {%
+            \includegraphics[width=\paperwidth, height=\paperheight]{#1}%
+        };
+    \end{tikzpicture}
+    \newpage
+    \section*{#2}
+    #3
+    \clearpage
 }
 
 % Minimal color palette example (override in real style if desired)
