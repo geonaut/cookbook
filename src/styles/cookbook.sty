@@ -1,17 +1,25 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{styles/cookbook}
 
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
 \RequirePackage{titlesec}
-\RequirePackage{geometry}
 \RequirePackage{setspace}
 \RequirePackage{fontspec}
+\RequirePackage{enumitem}
+\RequirePackage{geometry}
+% \RequirePackage[
+%     paperwidth=210mm,
+%     paperheight=297mm,
+%     margin=20mm,
+%     heightrounded
+% ]{geometry}
+
+% % 2. Use the crop package to "mount" that A4 on an A3 sheet
+% % 'cam' provides the crosshair marks, 'info' adds the filename/date
+% \RequirePackage[a3, center, cam, info]{crop}
   
-\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
 \setstretch{1.2}
 
 \setmainfont{Charter}
@@ -26,8 +34,10 @@
 % \fancyhead[L]{\leftmark}
 \fancyfoot[C]{\thepage}
 
-\setlength{\headheight}{15pt}       % Sets the header height to satisfy fancyhdr
-\addtolength{\topmargin}{-3pt}      % Moves the header up slightly to compensate
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}  
+
+\setlist{noitemsep, topsep=2pt, parsep=0pt, partopsep=0pt}
 
 % --- 1. MINI RECIPE (2 per page, no photos) ---
 % Use this for short items like sauces or dips.

@@ -1,3 +1,4 @@
-$pdf_mode = 1;
-$pdflatex = 'pdflatex -interaction=nonstopmode -file-line-error %O %S';
-$clean_ext = "nav snm toc out fls fdb_latexmk";
+$pdf_mode = 5; 
+$xelatex = 'xelatex -interaction=nonstopmode -file-line-error -halt-on-error %O %S';
+$out_dir = 'build';
+$clean_ext = "nav snm toc out fls fdb_latexmk synctex.gz";
