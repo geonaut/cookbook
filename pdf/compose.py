@@ -19,7 +19,7 @@ def build_outputs():
     LATEX_OUT = os.path.join(SCRIPT_DIR, "src", "full_cookbook.tex")
     
     # Hugo Output Path: root/website/content/recipes/
-    HUGO_CONTENT_DIR = os.path.join(ROOT_DIR, "website", "content", "recipes")
+    HUGO_CONTENT_DIR = os.path.join(ROOT_DIR, "website", "content.en", "recipes")
 
     # Ensure directories exist
     os.makedirs(os.path.dirname(LATEX_OUT), exist_ok=True)
