@@ -48,25 +48,9 @@ enableGitInfo = true
 
 [menu]
 [[menu.home]]
-  name = 'Documentation'
-  pageRef = '/docs/example/'
-  weight = 1
-
-[[menu.home]]
-  pageRef = '/docs/example/'
-  weight = 10
-  parent = 'Documentation'
-
-[[menu.home]]
-  name = 'Shortcodes'
-  pageRef = '/docs/shortcodes/buttons/'
+  name = 'Recipes'
+  pageRef = '/recipes/'
   weight = 20
-  parent = 'Documentation'
-
-[[menu.home]]
-  name = 'Showcases'
-  pageRef = '/showcases/'
-  weight = 2
 
 [[menu.home]]
   name = 'Github'
@@ -105,7 +89,7 @@ enableGitInfo = true
   # (Optional, default docs) Specify root page to render child pages as menu.
   # Page is resoled by .GetPage function: https://gohugo.io/functions/getpage/
   # For backward compatibility you can set '*' to render all sections to menu. Acts same as '/'
-  BookSection = 'docs'
+  BookSection = 'recipes'
 
   # Here for backward compatibility, not required.
   # It's here as an example how to use it with BookLastChangeLink or BookEditLink
@@ -129,8 +113,7 @@ enableGitInfo = true
 
   # (Optional, default true) Enables search function with fuse.js.,
   # Index is built on fly, therefore it might slowdown your website.
-  # Configuration for indexing can be adjusted in i18n folder per language.
-  BookSearch = true
+  # Configuration for indexing can be adjusted in i18n folder per language.  BookSearch = false
 
   # (Optional, default true) Enables comments template on pages
   # By default partials/docs/comments.html includes Disqus template
