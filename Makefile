@@ -1,35 +1,61 @@
-# --- Settings ---
-CC       = xelatex
-LATEXMK  = latexmk
-SRC      = src/main.tex
-OUT      = cookbook.pdf
-BUILDDIR = build
+# --- Configuration ---
+SRC        = pdf/src/main.tex
+OUT        = cookbook.pdf
+BUILDDIR   = build
+HUGO_DIR   = website
+BOOTSTRAP  = $(HUGO_DIR)/bootstrap/bootstrap.sh
 
-export PATH := /Library/TeX/texbin:/opt/homebrew/bin:/usr/local/bin:$(PATH)
-# This allows LaTeX to find your .sty and .tex files inside src/
-export TEXINPUTS := .:src:styles:$(TEXINPUTS)
+# --- Commands ---
+LATEXMK    = latexmk
+PYTHON     = python3
 
-.PHONY: all check images clean rebuild
+.PHONY: all pdf hugo website-init compose clean serve watch
 
-all: check $(OUT)
+# Default: Build both PDF and Website
+all: pdf hugo
 
-check:
-	chmod +x scripts/check_deps.sh
-	./scripts/check_deps.sh
-
-$(OUT): $(SRC)
-	@bash scripts/generate_inputs.sh
+# --- PDF Build ---
+pdf: compose
+	@echo "🖨️  Building LaTeX PDF..."
 	@mkdir -p $(BUILDDIR)
-	# -xelatex: Forces the engine
-	# -jobname: Ensures the output is named 'cookbook'
-	# -outdir:  Keeps the root clean
-	$(LATEXMK) -xelatex -interaction=nonstopmode -halt-on-error -file-line-error \
-		-jobname=cookbook -outdir=$(BUILDDIR) $(SRC)
-	cp $(BUILDDIR)/$(OUT) .
+	$(LATEXMK) -pdf -xelatex -outdir=$(BUILDDIR) -jobname=cookbook $(SRC)
+	@cp $(BUILDDIR)/$(OUT) .
+	@echo "✅ PDF Ready: $(OUT)"
 
+# --- Hugo Build ---
+hugo: website-init compose
+	@echo "🌐 Syncing data and building Hugo site..."
+	cd $(HUGO_DIR) && hugo --minify
+	@echo "✅ Website Ready in $(HUGO_DIR)/public"
+
+# --- NEW: Serve Development Site ---
+serve: website-init compose
+	@echo "🚀 Starting Hugo development server at http://localhost:1313"
+	cd $(HUGO_DIR) && hugo server -D
+
+# --- NEW: Watch PDF (Live Recompile) ---
+watch:
+	@echo "👀 Watching for changes to recompile PDF..."
+	$(LATEXMK) -pvc -pdf -xelatex -outdir=$(BUILDDIR) -jobname=cookbook $(SRC)
+
+# --- Data Composition ---
+compose:
+	@echo "🐍 Running Python composition script..."
+	$(PYTHON) pdf/compose.py
+
+# --- Website Environment Setup ---
+website-init:
+	@echo "⚙️  Ensuring website dependencies are met..."
+	@chmod +x $(BOOTSTRAP)
+	@zsh $(BOOTSTRAP)
+
+# --- Cleanup ---
 clean:
+	@echo "🧹 Cleaning all build artifacts..."
+	-$(LATEXMK) -C -outdir=$(BUILDDIR) $(SRC)
 	rm -rf $(BUILDDIR)
-	rm -f $(OUT)
-	rm -f images/*.aux images/*.log images/*.pdf
-
-rebuild: clean all
+	rm -f $(OUT) 
+	rm -f pdf/src/full_cookbook.tex
+	rm -rf $(HUGO_DIR)/public
+	# Delete all .md files EXCEPT _index.md
+	find $(HUGO_DIR)/content/recipes -name "*.md" ! -name "_index.md" -delete

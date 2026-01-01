@@ -1,0 +1,21 @@
++++
+title = "Test Garlic Mushrooms"
+
+ingredients = [
+    "500g Mushrooms",
+    "4 cloves Garlic",
+    "50g Butter",
+    "Fresh Parsley",
+    "Salt and Pepper",
+    "Splash of White Wine"
+]
+
+instructions = [
+    "Clean the mushrooms and slice them thinly.",
+    "Melt butter in a pan and add crushed garlic.",
+    "Sauté mushrooms until golden brown.",
+    "Deglaze with wine and garnish with parsley."
+]
+chapter = "Starters"
+type = "recipes"
++++

@@ -1,0 +1,11 @@
+baseURL = 'http://localhost:1313/'
+languageCode = 'en-us'
+title = 'My Digital Cookbook'
+theme = 'hugo-book'
+
+[params]
+  BookMenuBundle = "/menu"
+  BookSection = "*" 
+  BookCollapseSection = true
+  BookComments = false
+

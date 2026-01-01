@@ -23,7 +23,7 @@
 \geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
 \setstretch{1.2}
 
-\setmainfont{Charter}
+\setmainfont{XCharter}
 
 % simple chapter/section formats (safe defaults)
 \titleformat{\section}{\huge\bfseries}{\thesection}{1em}{}
@@ -40,6 +40,12 @@
 
 \setlist{noitemsep, topsep=2pt, parsep=0pt, partopsep=0pt}
 
+\titleformat{\section}
+  {\normalfont\Large\scshape} % \scshape triggers Small Caps
+  {\thesection}
+  {1em}
+  {} % Leave this empty so it respects your Title Case input
+
 % Optional: Set the gap between columns
 \setlength{\columnsep}{1cm} 
 
@@ -47,13 +53,11 @@
 \newlist{ingredients}{itemize}{1}
 \setlist[ingredients]{
     label=\textbullet,
-    nosep,              % Removes space between items
-    leftmargin=1.5em,   % Adjusts indentation
-    font=\small         % Makes ingredient text slightly smaller
+    nosep,
+    leftmargin=1.5em,
+    font=\small
 }
 
-% --- 1. MINI RECIPE (2 per page, no photos) ---
-% Use this for short items like sauces or dips.
 \newcommand{\minirecipe}[2]{% #1=Title, #2=Content
     \subsection*{#1}
     #2
@@ -62,7 +66,6 @@
     \vspace{1em}
 }
 
-% --- 2. SIMPLE RECIPE (1 per page, no photo) ---
 \newcommand{\simplerecipe}[2]{% #1=Title, #2=Content
     \clearpage
     \section*{#1}
@@ -71,10 +74,8 @@
     \clearpage
 }
 
-% --- 3. ILLUSTRATED RECIPE (Full photo + Recipe page) ---
 \newcommand{\illustratedrecipe}[3]{% #1=Image, #2=Title, #3=Content
     \clearpage
-    % The Photo Page
     \thispagestyle{empty}
     \begin{tikzpicture}[remember picture, overlay]
         \node[inner sep=0pt] at (current page.center) {%
@@ -86,4 +87,13 @@
     \section*{#2}
     #3
     \clearpage
+}
+
+\newenvironment{recipeIngredients}[1]{%
+    \subsection*{Ingredients}
+    \begin{multicols}{#1}
+    \begin{itemize}
+}{%
+    \end{itemize}
+    \end{multicols}
 }

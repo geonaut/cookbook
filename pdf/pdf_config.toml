@@ -1,0 +1,13 @@
+[[chapters]]
+name = "Starters"
+
+
+[[chapters.recipes]]
+id = "test"      # This must match the filename (without .toml)
+columns = 1           # Test the single column default
+
+[[chapters]]
+name = "Mains"
+
+[[chapters]]
+name = "Special Occaisions"
