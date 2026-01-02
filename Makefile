@@ -16,6 +16,7 @@ all: pdf hugo
 
 # --- PDF Build ---
 pdf: compose
+	@bash pdf/scripts/generate_inputs.sh
 	@echo "🖨️  Building LaTeX PDF..."
 	@mkdir -p $(BUILDDIR)
 	$(LATEXMK) -pdf -xelatex -outdir=$(BUILDDIR) -jobname=cookbook $(SRC)
@@ -40,8 +41,9 @@ watch:
 
 # --- Data Composition ---
 compose:
-	@echo "🐍 Running Python composition script..."
-	$(PYTHON) pdf/compose.py
+	@echo "🐍 Compiling recipes from TOML to LaTeX and Markdown..."
+	$(PYTHON) pdf/generate_tex.py
+	$(PYTHON) $(HUGO_DIR)/generate_md.py
 
 # --- Website Environment Setup ---
 website-init:
@@ -58,4 +60,4 @@ clean:
 	rm -f pdf/src/full_cookbook.tex
 	rm -rf $(HUGO_DIR)/public
 	# Delete all .md files EXCEPT _index.md
-	find $(HUGO_DIR)/content/recipes -name "*.md" ! -name "_index.md" -delete
+	# find $(HUGO_DIR)/content.en/recipes -name "*.md" ! -name "_index.md" -delete

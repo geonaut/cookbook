@@ -1,0 +1,13 @@
+title = "Cod with Morcilla"
+category = "Mains"
+ingredients = [
+    "500g Cod",
+]
+instructions = [
+    "Scald: Bring milk, water, oil, and salt to a rolling boil. Pour immediately over the starch in a large bowl. Stir until a lumpy, sticky paste forms.",
+]
+
+# Optional: hints and tips for the recipe
+hints = [
+    "Texture Science: Scalding causes starch gelatinization (), creating the elastic matrix that traps steam for the rise.",
+]

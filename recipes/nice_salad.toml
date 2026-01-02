@@ -1,0 +1,13 @@
+title = "Salad du Nice"
+category = "Mains"
+ingredients = [
+    "Beans",
+]
+instructions = [
+    "Make",
+]
+
+# Optional: hints and tips for the recipe
+hints = [
+    "Hint 1",
+]

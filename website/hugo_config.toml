@@ -1,0 +1,40 @@
+# Hugo Recipe Configuration
+# This file controls which recipes appear in the Hugo website and their ordering
+
+# Chapter definitions for Hugo site
+# Each chapter corresponds to a folder under content.en/recipes/
+# The chapter name should match the folder name (case-insensitive, normalized)
+
+[[chapters]]
+name = "Starters"
+
+# Markdown manifest: ordered list of recipe IDs to include in Hugo site
+# Recipes appear in the order listed here
+# Only recipes listed here will be included in the Hugo site
+# The order determines the weight (first = 1, second = 2, etc.)
+[chapters.md]
+recipes = ["test", "caldo_verde", "feijao"]
+
+# Recipe-specific Hugo configuration (formatting options only)
+[[chapters.recipes]]
+id = "test"      # This must match the filename (without .toml)
+
+# Hugo-specific formatting (images only - recipe content comes from recipe TOML)
+[chapters.recipes.md]
+# Optional: image path (relative to website/static/images/)
+image = "test.jpg"
+
+[[chapters]]
+name = "Mains"
+
+# Markdown manifest for Mains chapter
+[chapters.md]
+recipes = []
+
+[[chapters]]
+name = "Special Occaisions"
+
+# Markdown manifest for Special Occaisions chapter
+[chapters.md]
+recipes = []
+

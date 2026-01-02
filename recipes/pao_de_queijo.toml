@@ -1,0 +1,25 @@
+title = "Pão de Queijo"
+category = "Starters"
+ingredients = [
+    "500g Tapioca Starch (250g Doce / 250g Azedo)",
+    "250g Whole Milk (oat is fine)",
+    "100ml Water",
+    "100ml Vegetable Oil",
+    "10g Fine Salt",
+    "3 Eggs",
+    "150g Parmesan, finely grated",
+    "100g Mozzarella or mild cheddar, grated",
+]
+instructions = [
+    "Scald: Bring milk, water, oil, and salt to a rolling boil and pour over the starch. Stir until a lumpy, sticky paste forms.",
+    "Cool: Allow the dough to cool for 15 minutes. It must be warm to the touch, not hot, to avoid scrambling the eggs.",
+    "Mix: Incorporate eggs one at a time. Add the cheeses and knead until the dough is smooth, glossy, and uniform (massa lisa).",
+    "Form: Preheat oven to 190°C. Grease hands with oil and roll 30g balls. Space 5cm apart on a lined baking sheet.",
+    "Bake: Bake for 20--25 minutes.",
+]
+
+# Optional: hints and tips for the recipe
+hints = [
+    "Texture Science: Scalding causes starch gelatinization (), creating the elastic matrix that traps steam for the rise.",
+    "Starch Ratio: 100\\% Doce (Sweet) yields a dense, chewy roll; 100\\% Azedo (Sour) creates a hollow, tangy, and very airy puff.",
+]

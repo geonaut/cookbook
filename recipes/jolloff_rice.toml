@@ -1,0 +1,31 @@
+title = "Jollof Rice"
+category = "Starters"
+ingredients = [
+    "200g Guanciale",
+    "2 cups Rice",
+    "Red pepper",
+    "Tomato",
+    "Tomato paste",
+    "2 onions",
+    "Scotch bonnet pepper",
+    "Garlic",
+    "Chicken stock",
+    "Neutral oil (vegetable/sunflower)",
+    "Herbs: thyme, bay leaf",
+    "Spices: fennel, clove, ginger, paprika, tumeric",
+    "Salt \\& peper",
+]
+instructions = [
+    "Sauce base: blend the red pepper, 1 onion, tomato with some ckicken stock. Fry off and put aside.",
+    "Spice blend: In the same pan, fry the remaining onion, garlic, tomato paste, scotch bonnet and spices until fragrant.",
+    "Combine: Add the rice to the spice mix \\& coat the grains. Add half of the sauce base, stock and water. Add the bay leaves.",
+    "Cook: Bring to the boil, then simmer on low heat, covered, until rice is cooked (15-20 mins).",
+    "Finish: Stir through the remaining sauce base, thyme, adjust seasoning and serve.",
+]
+
+# Optional: hints and tips for the recipe
+hints = [
+    "Not too much spice or tumeric - Jollof is meant to be red, not orange!",
+    "Excess sauce base can be served on the side.",
+    "Add oil or butter towards the end of cooking, to prevent the rice becoming dry",
+]

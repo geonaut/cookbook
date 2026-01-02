@@ -1,5 +1,6 @@
 title = "Test Garlic Mushrooms"
-
+category = "Starters"
+blurb = "lorem ispum"
 ingredients = [
     "500g Mushrooms",
     "4 cloves Garlic",
@@ -8,7 +9,6 @@ ingredients = [
     "Salt and Pepper",
     "Splash of White Wine"
 ]
-
 instructions = [
     "Clean the mushrooms and slice them thinly.",
     "Melt butter in a pan and add crushed garlic.",
