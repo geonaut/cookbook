@@ -4,7 +4,7 @@
 # hugo server --printPathWarnings --disableFastRender --cleanDestinationDir=true --logLevel=debug \
 # --gc -M -s exampleSite --themesDir ../.. -b http://127.0.0.1/
 
-baseURL = 'https://geonaut.co.uk/cookbook/'
+baseURL = 'https://cookbook-89460.web.app/'
 title = "Geonaut's Cookbook"
 theme = 'hugo-book'
 

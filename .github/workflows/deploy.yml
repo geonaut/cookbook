@@ -37,7 +37,7 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GEONAUT }}
-          projectId: cookbook
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GEONAUT_COOKBOOK }}
+          projectId: cookbook-89460
           channelId: live
           entryPoint: website

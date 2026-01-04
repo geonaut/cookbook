@@ -81,6 +81,10 @@ website/content.en/recipes/**/*.md
 # Static images (copied from recipe folders during generation)
 website/static/images/
 
+# Firebase local cache
+website/.firebase/
+.firebaserc
+
 # End of file
 pdf/src/main.aux
 
