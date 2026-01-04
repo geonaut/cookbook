@@ -92,7 +92,7 @@ enableGitInfo = true
   # (Optional, default none) Set template for commit link for the page. Requires enableGitInfo.
   # When set enabled 'Last Modified' and a link to the commit in the footer of the page.
   # Param is executed as template using .Site, .Page and .GitInfo as context.
-  BookLastChangeLink = '{{ .Site.Params.BookRepo }}/commit/{{ .GitInfo.Hash }}'
+  # BookLastChangeLink = '{{ .Site.Params.BookRepo }}/commit/{{ .GitInfo.Hash }}'
 
   # (Optional, default none) Set template for edit page link.
   # When set enabled 'Edit this page' link in the footer of the page.
@@ -103,7 +103,7 @@ enableGitInfo = true
   # - In git information
   # - In blog posts
   # https://gohugo.io/functions/time/format/
-  BookDateFormat = 'January 2, 2006'
+  # BookDateFormat = 'January 2, 2006'
 
   # (Optional, default true) Enables search function with fuse.js.
   # Index is built on fly, therefore it might slowdown your website.
