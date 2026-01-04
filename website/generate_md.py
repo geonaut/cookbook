@@ -4,10 +4,12 @@ Markdown Generation Script
 
 Reads raw recipe TOML files and Hugo config to generate:
 - Markdown (.md) files for Hugo website inclusion
+- Copies recipe images to static folder
 """
 
 import tomllib
 import os
+import shutil
 from typing import Dict, Any, Optional
 
 
@@ -19,55 +21,61 @@ ROOT_DIR = os.path.dirname(SCRIPT_DIR)
 RECIPE_DIR = os.path.join(ROOT_DIR, "recipes")
 HUGO_CONFIG_PATH = os.path.join(SCRIPT_DIR, "hugo_config.toml")
 HUGO_CONTENT_DIR = os.path.join(SCRIPT_DIR, "content.en", "recipes")
+HUGO_STATIC_IMAGES_DIR = os.path.join(SCRIPT_DIR, "static", "images")
 
 
 def generate_markdown(recipe: Dict[str, Any], config: Dict[str, Any], chapter_name: str, order: Optional[int] = None) -> str:
     """Generate Markdown content for Hugo."""
     lines = []
     
-    # Frontmatter (TOML format)
-    # lines.append("+++")
-    lines.append(f'title = "{recipe["title"]}"')
-    
-    # Category/blurb if present
-    if 'category' in recipe:
-        lines.append(f'category = "{recipe["category"]}"')
-    if 'blurb' in recipe:
-        lines.append(f'blurb = "{recipe["blurb"]}"')
-    
-    # Ingredients
-    lines.append("ingredients = [")
-    for ing in recipe.get('ingredients', []):
-        lines.append(f'    "{ing}",')
-    lines.append("]")
-    
-    # Instructions
-    lines.append("instructions = [")
-    for step in recipe.get('instructions', []):
-        lines.append(f'    "{step}",')
-    lines.append("]")
-    
-    # Chapter and type
-    lines.append(f'chapter = "{chapter_name}"')
-    lines.append('type = "recipes"')
-    
-    # Image (if provided in config - format-specific path)
-    md_config = config.get('md', {})
-    image = md_config.get('image')
-    if image:
-        lines.append(f'image = "{image}"')
+    # Frontmatter (YAML format)
+    lines.append("---")
     
     # Weight: use explicit order from manifest
     if order is not None:
-        lines.append(f"weight = {order}")
+        lines.append(f"weight: {order}")
     
-    # lines.append("+++")
+    # Always include bookToc: false
+    lines.append("bookToc: false")
+    
+    lines.append("---")
     lines.append("")  # Empty line after frontmatter
     
-    # Notes from recipe TOML
+    # Title heading
+    lines.append(f"# {recipe['title']}")
+    lines.append("")
+    
+    # Body content - Ingredients section
+    lines.append("# Ingredients")
+    lines.append("")
+    for ing in recipe.get('ingredients', []):
+        lines.append(f"* {ing}")
+    
+    lines.append("")
+    
+    # Instructions section
+    lines.append("# Instructions")
+    lines.append("")
+    for idx, step in enumerate(recipe.get('instructions', []), 1):
+        lines.append(f"{idx}. {step}")
+    
+    lines.append("")
+    
+    # Notes/Hints section
     notes = recipe.get('notes', '').strip()
     if notes:
-        lines.append(notes)
+        lines.append("# Hints and Tips")
+        lines.append("")
+        lines.append(f"* {notes}")
+        lines.append("")
+    
+    # Image (if provided) - placed at the end, centered and smaller
+    image_filename = recipe.get('image')
+    if image_filename:
+        lines.append("<div style='text-align: center; margin-top: 2rem;'>")
+        lines.append(f"<img src='/images/{image_filename}' alt='{recipe['title']}' style='width: 50%; max-width: 400px; height: auto;'>")
+        lines.append("</div>")
+        lines.append("")
     
     return "\n".join(lines)
 
@@ -117,6 +125,7 @@ def generate_md():
     """Main Markdown generation function."""
     # Ensure directories exist
     os.makedirs(HUGO_CONTENT_DIR, exist_ok=True)
+    os.makedirs(HUGO_STATIC_IMAGES_DIR, exist_ok=True)
     
     # Load Hugo config
     try:
@@ -131,25 +140,37 @@ def generate_md():
     for chapter in hugo_config_data.get("chapters", []):
         chapter_name = chapter['name']
         hugo_recipe_configs[chapter_name] = {}
-        for recipe_config in chapter.get("recipes", []):
+        for recipe_config in chapter.get("recipe_config", []):
             recipe_id = recipe_config['id']
             hugo_recipe_configs[chapter_name][recipe_id] = recipe_config
     
+    # Sort chapters by weight (if specified, otherwise maintain order)
+    chapters = hugo_config_data.get("chapters", [])
+    chapters_sorted = sorted(chapters, key=lambda c: c.get("weight", 999))
+    
     # Process Hugo chapters
-    for chapter in hugo_config_data.get("chapters", []):
+    for chapter in chapters_sorted:
         chapter_name = chapter['name']
         
         # Validate Hugo folder exists
         validate_hugo_folder_exists(chapter_name)
         
-        # Get MD manifest
-        md_manifest = chapter.get("md", {}).get("recipes", [])
+        # Get recipe list
+        recipe_list = chapter.get("recipes", [])
         
-        # Process MD recipes in manifest order
-        for idx, recipe_id in enumerate(md_manifest):
+        # Process recipes in manifest order
+        for idx, recipe_id in enumerate(recipe_list):
             # Get recipe config for this recipe
             recipe_config = hugo_recipe_configs.get(chapter_name, {}).get(recipe_id, {})
-            recipe_file = os.path.join(RECIPE_DIR, f"{recipe_id}.toml")
+            
+            # Search for recipe file in category subdirectory
+            # Normalize chapter name to folder name (e.g., "Starters" -> "starters")
+            category_folder = get_hugo_folder_name(chapter_name)
+            recipe_file = os.path.join(RECIPE_DIR, category_folder, f"{recipe_id}.toml")
+            
+            # If not found in category folder, try root recipes folder (backward compatibility)
+            if not os.path.exists(recipe_file):
+                recipe_file = os.path.join(RECIPE_DIR, f"{recipe_id}.toml")
             
             # Load recipe
             try:
@@ -177,8 +198,22 @@ def generate_md():
             with open(md_path, "w", encoding="utf-8") as f:
                 f.write(md_content)
             print(f"✅ Markdown: {md_path}")
+            
+            # Copy recipe image to static folder if it exists
+            image_filename = recipe_data.get('image')
+            if image_filename:
+                # Image source: recipes/{category}/images/{filename}
+                image_src = os.path.join(RECIPE_DIR, category_folder, "images", image_filename)
+                image_dst = os.path.join(HUGO_STATIC_IMAGES_DIR, image_filename)
+                
+                if os.path.exists(image_src):
+                    shutil.copy2(image_src, image_dst)
+                    print(f"  📷 Copied image: {image_filename}")
+                else:
+                    print(f"  ⚠️  Image not found: {image_src}")
 
 
 if __name__ == "__main__":
     generate_md()
+
 

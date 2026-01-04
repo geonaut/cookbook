@@ -106,18 +106,22 @@ def generate_latex(recipe: Dict[str, Any], config: Dict[str, Any], chapter_name:
         lines.append("\\end{itemize}")
         lines.append("")
     
-    # Image (if provided in config - format-specific path)
-    pdf_config = config.get('pdf', {})
-    image = pdf_config.get('image')
+    # Image (if provided in recipe TOML)
+    image_filename = recipe.get('image')
     show_image = config.get('show_image', True)
-    if image and show_image:
+    if image_filename and show_image:
+        # Image is stored in recipes/{category}/images/{filename}
+        # Construct path relative to pdf/src/chapters/
+        category_folder = normalize_name(chapter_name)
+        image_path = f"../../recipes/{category_folder}/images/{image_filename}"
+        
         lines.append("\\vfill % Push to bottom")
         lines.append("\\begin{center}")
         lines.append("    \\includegraphics[")
         lines.append("        width=\\textwidth,")
         lines.append("        height=\\dimexpr\\pagegoal-\\pagetotal-2\\baselineskip\\relax,")
         lines.append("        keepaspectratio")
-        lines.append(f"    ]{{chapters/{image}}}")
+        lines.append(f"    ]{{{image_path}}}")
         lines.append("\\end{center}")
     
     lines.append("\\newpage")
@@ -207,7 +211,15 @@ def generate_tex():
             for recipe_id in pdf_manifest:
                 # Get recipe config for this recipe
                 recipe_config = pdf_recipe_configs.get(chapter_name, {}).get(recipe_id, {})
-                recipe_file = os.path.join(RECIPE_DIR, f"{recipe_id}.toml")
+                
+                # Search for recipe file in category subdirectory
+                # Normalize chapter name to folder name (e.g., "Mains" -> "mains")
+                category_folder = normalize_name(chapter_name)
+                recipe_file = os.path.join(RECIPE_DIR, category_folder, f"{recipe_id}.toml")
+                
+                # If not found in category folder, try root recipes folder (backward compatibility)
+                if not os.path.exists(recipe_file):
+                    recipe_file = os.path.join(RECIPE_DIR, f"{recipe_id}.toml")
                 
                 # Load recipe
                 try:

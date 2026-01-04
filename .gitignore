@@ -73,6 +73,14 @@ node_modules/
 *.tmp
 *.partial
 
+# Generated Markdown files (generated from TOML via generate_md.py)
+website/content.en/recipes/**/*.md
+!website/content.en/recipes/**/_index.md
+!website/content.en/recipes/00_intro.md
+
+# Static images (copied from recipe folders during generation)
+website/static/images/
+
 # End of file
 pdf/src/main.aux
 

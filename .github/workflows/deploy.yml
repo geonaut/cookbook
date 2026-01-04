@@ -1,0 +1,43 @@
+name: Deploy Cookbook to Firebase
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Generate Recipes (TOML to Markdown & LaTeX)
+        run: |
+          python3 pdf/generate_tex.py
+          python3 website/generate_md.py
+
+      - name: Build Hugo Site
+        run: cd website && hugo --gc --minify
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GEONAUT }}
+          projectId: geonaut-blog
+          channelId: live
+          entryPoint: website

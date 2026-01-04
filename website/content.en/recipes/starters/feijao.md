@@ -1,11 +1,14 @@
-title = "Feijão"
-category = "Starters"
-ingredients = [
-    "Beans",
-]
-instructions = [
-    "Make",
-]
-chapter = "Starters"
-type = "recipes"
-weight = 3
+---
+weight: 3
+bookToc: false
+---
+
+# Feijão
+
+# Ingredients
+
+* Beans
+
+# Instructions
+
+1. Make

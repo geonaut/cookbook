@@ -1,33 +1,16 @@
-# PDF Recipe Configuration
-# This file controls which recipes appear in the PDF and their ordering
-
-# Default settings for all recipes
 [defaults]
 columns = 1
 show_image = true
 
-# Chapter definitions
-# Each chapter has an ordered manifest for PDF format.
-# Recipes only appear in PDF if they are listed in the manifest.
-# The order in the manifest determines the order recipes appear in the PDF.
-#
-# Example:
-#   [chapters.pdf]
-#   recipes = ["recipe1", "recipe2"]  # Only these appear in PDF, in this order
-
 [[chapters]]
 name = "Starters"
 
-# PDF manifest: ordered list of recipe IDs to include in PDF
-# Recipes appear in the order listed here
-# Only recipes listed here will be included in the PDF
 [chapters.pdf]
 recipes = ["pao_de_queijo", "jolloff_rice", "caldo_verde", "feijao"]
 
-# Recipe configuration for PDF (formatting options only)
 [[chapters.recipes]]
 id = "pao_de_queijo"
-columns = 2      # PDF: Number of columns for ingredients (1 or 2)
+columns = 2     
 show_image = true
 [chapters.recipes.pdf]
 image = "02_starters_and_sides/pao_de_queijo.jpg"
@@ -50,11 +33,9 @@ show_image = false
 [[chapters]]
 name = "Mains"
 
-# PDF manifest for Mains chapter
 [chapters.pdf]
 recipes = ["cod_with_morcilla", "lamb_shank_curry", "midweek_grilled_chicken copy", "spiced_short_ribs", "puttanesca", "nice_salad", "shakshuka_with_feta"]
 
-# Recipe configuration for PDF
 [[chapters.recipes]]
 id = "cod_with_morcilla"
 columns = 1
@@ -93,11 +74,9 @@ show_image = false
 [[chapters]]
 name = "Special Occaisions"
 
-# PDF manifest for Special Occaisions chapter
 [chapters.pdf]
 recipes = ["christmas_gammon"]
 
-# Recipe configuration for PDF
 [[chapters.recipes]]
 id = "christmas_gammon"
 columns = 1
