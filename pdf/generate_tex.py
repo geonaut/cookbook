@@ -110,12 +110,14 @@ def generate_latex(recipe: Dict[str, Any], config: Dict[str, Any], chapter_name:
     image_filename = recipe.get('image')
     show_image = config.get('show_image', True)
     if image_filename and show_image:
-        # Image is stored in recipes/{category}/images/{filename}
-        # Construct path relative to pdf/src/chapters/
+        # Normalize category to match folder structure
         category_folder = normalize_name(chapter_name)
-        image_path = f"../../recipes/{category_folder}/images/{image_filename}"
         
-        lines.append("\\vfill % Push to bottom")
+        # WE CHANGE THIS: Use a path relative to the PROJECT ROOT
+        # LaTeX will use graphicspath to find this
+        image_path = f"recipes/{category_folder}/images/{image_filename}"
+        
+        lines.append("\\vfill")
         lines.append("\\begin{center}")
         lines.append("    \\includegraphics[")
         lines.append("        width=\\textwidth,")
@@ -138,6 +140,7 @@ def get_chapter_directory(chapter_name: str) -> str:
     """Map chapter name to directory name."""
     # Simple mapping - can be extended
     chapter_map = {
+        "Sauces": "01_sauces",
         "Starters": "02_starters_and_sides",
         "Mains": "03_mains",
         "Special Occaisions": "04_special_occaisions",

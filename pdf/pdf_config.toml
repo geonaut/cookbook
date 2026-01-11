@@ -4,9 +4,9 @@ show_image = true
 
 [[chapters]]
 name = "Sauces"
-
+template = "mini"
 [chapters.pdf]
-recipes = ["chimmichurri"]
+recipes = ["chimmichurri", "spicy_vinagrette"]
 
 [[chapters]]
 name = "Starters"
@@ -36,8 +36,3 @@ name = "Special Occaisions"
 
 [chapters.pdf]
 recipes = ["christmas_gammon"]
-
-[[chapters.recipes]]
-id = "christmas_gammon"
-columns = 1
-show_image = false
