@@ -37,6 +37,8 @@ pdf/src/chapters/_auto_inputs.tex
 
 # Generated recipe .tex files (generated from TOML via generate_tex.py)
 # Ignore recipe .tex files in chapter subdirectories, but keep chapter breaks and intro
+pdf/src/chapters/01_sauces/01_*.tex
+!pdf/src/chapters/01_sauces/01_00_chapter_break.tex
 pdf/src/chapters/02_starters_and_sides/02_*.tex
 !pdf/src/chapters/02_starters_and_sides/02_00_chapter_break.tex
 pdf/src/chapters/03_mains/03_*.tex

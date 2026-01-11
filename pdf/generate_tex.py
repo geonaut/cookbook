@@ -76,7 +76,7 @@ def format_standard_recipe(recipe: Dict[str, Any], config: Dict[str, Any], chapt
 def format_mini_recipe(recipe: Dict[str, Any], config: Dict[str, Any], chapter_name: str) -> str:
     """Compact template for stacking. Forced 2-col, All-Caps, and no horizontal line."""
     lines = [
-        r"\begin{minipage}{\textwidth}",
+        r"\begin{minipage}{0.98\textwidth}",
         f"\\subsection*{{{escape_latex(recipe['title']).upper()}}}",
         get_ingredients_block(recipe, 2),
         get_method_block(recipe),

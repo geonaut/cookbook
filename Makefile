@@ -21,20 +21,24 @@ pdf: compose
 	@mkdir -p $(BUILDDIR)
 	$(LATEXMK) -pdf -xelatex -outdir=$(BUILDDIR) -jobname=cookbook $(SRC)
 	@cp $(BUILDDIR)/$(OUT) .
+	# Ensure the PDF is available to Hugo's static folder for linking
+	@mkdir -p $(HUGO_DIR)/static
+	@cp $(BUILDDIR)/$(OUT) $(HUGO_DIR)/static/cookbook.pdf
 	@echo "✅ PDF Ready: $(OUT)"
 
 # --- Hugo Build ---
 hugo: website-init compose
 	@echo "🌐 Syncing data and building Hugo site..."
-	cd $(HUGO_DIR) && hugo --minify
+	# Using --gc (Garbage Collect) to clean up old processed assets
+	cd $(HUGO_DIR) && hugo --minify --gc
 	@echo "✅ Website Ready in $(HUGO_DIR)/public"
 
-# --- NEW: Serve Development Site ---
+# --- Serve Development Site ---
 serve: website-init compose
 	@echo "🚀 Starting Hugo development server at http://localhost:1313"
 	cd $(HUGO_DIR) && hugo server -D
 
-# --- NEW: Watch PDF (Live Recompile) ---
+# --- Watch PDF (Live Recompile) ---
 watch:
 	@echo "👀 Watching for changes to recompile PDF..."
 	$(LATEXMK) -pvc -pdf -xelatex -outdir=$(BUILDDIR) -jobname=cookbook $(SRC)
@@ -59,5 +63,7 @@ clean:
 	rm -f $(OUT) 
 	rm -f pdf/src/full_cookbook.tex
 	rm -rf $(HUGO_DIR)/public
-	# Delete all .md files EXCEPT _index.md
-	# find $(HUGO_DIR)/content.en/recipes -name "*.md" ! -name "_index.md" -delete
+	# Clean up Hugo resources/gen to fix those git tracking/build issues
+	rm -rf $(HUGO_DIR)/resources/_gen
+	# Remove the symlink that was causing the "File exists" error
+	rm -f $(HUGO_DIR)/static/images
