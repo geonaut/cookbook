@@ -90,5 +90,6 @@ pdf/src/main.aux
 
 website/public/
 website/resources/
+**/resources/_gen/
 gitleaks-report.json
 pdf/src/full_cookbook.tex
