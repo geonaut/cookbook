@@ -6,7 +6,7 @@ show_image = true
 name = "Sauces"
 template = "mini"
 [chapters.pdf]
-recipes = ["chimmichurri", "spicy_vinagrette"]
+recipes = ["chimmichurri", "spicy_vinagrette", "pol_sambol"]
 
 [[chapters]]
 name = "Starters"

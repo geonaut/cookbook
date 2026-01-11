@@ -1,269 +1,166 @@
 #!/usr/bin/env python3
-"""
-LaTeX Generation Script
-
-Reads raw recipe TOML files and PDF config to generate:
-- LaTeX (.tex) files for PDF inclusion
-- full_cookbook.tex that includes all recipes
-"""
-
 import tomllib
 import os
-from typing import Dict, Any
-
+import re
+from typing import Dict, Any, List
 
 # --- Path Resolution ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-
-# --- Paths ---
 RECIPE_DIR = os.path.join(ROOT_DIR, "recipes")
 PDF_CONFIG_PATH = os.path.join(SCRIPT_DIR, "pdf_config.toml")
 LATEX_OUTPUT_DIR = os.path.join(SCRIPT_DIR, "src", "chapters")
 FULL_COOKBOOK_PATH = os.path.join(SCRIPT_DIR, "src", "full_cookbook.tex")
 
+# --- LaTeX Utilities ---
 
 def escape_latex(text: str) -> str:
-    """Escape special LaTeX characters, preserving already-escaped sequences."""
-    import re
-    
-    # First, protect already-escaped LaTeX sequences (like \&, \%, etc.)
-    # These come from TOML as single backslash sequences
     protected_map = {}
     counter = 0
-    
     def protect_match(m):
         nonlocal counter
-        # Use a placeholder that won't be escaped (no special chars)
         placeholder = f'PROTECTEDLATEXSEQ{counter}PROTECTED'
-        protected_map[placeholder] = m.group(0)
-        counter += 1
+        protected_map[placeholder] = m.group(0); counter += 1
         return placeholder
     
-    # Match backslash followed by special LaTeX characters
     text = re.sub(r'\\([&%$#_{}])', protect_match, text)
-    
-    # Now escape unescaped special characters
-    replacements = {
-        '&': r'\&',
-        '%': r'\%',
-        '$': r'\$',
-        '#': r'\#',
-        '^': r'\textasciicircum{}',
-        '_': r'\_',
-        '{': r'\{',
-        '}': r'\}',
-        '~': r'\textasciitilde{}',
-    }
-    
+    replacements = {'&': r'\&', '%': r'\%', '$': r'\$', '#': r'\#', '^': r'\textasciicircum{}', '_': r'\_', '{': r'\{', '}': r'\}', '~': r'\textasciitilde{}'}
     for char, replacement in replacements.items():
         text = text.replace(char, replacement)
-    
-    # Restore protected sequences (they already have the backslash, so they're correct)
     for placeholder, original in protected_map.items():
         text = text.replace(placeholder, original)
-    
     return text
 
+def normalize_name(name: str) -> str:
+    return name.lower().replace(" ", "_").replace("-", "_").replace("'", "")
 
-def generate_latex(recipe: Dict[str, Any], config: Dict[str, Any], chapter_name: str) -> str:
-    """Generate LaTeX content for a recipe."""
-    lines = []
-    
-    # Section title
-    title = escape_latex(recipe['title'])
-    lines.append(f"\\section{{{title}}}")
-    
-    # Ingredients
-    columns = config.get('columns', 1)
-    lines.append("\\subsection*{Ingredients}")
-    if columns > 1:
-        lines.append(f"\\begin{{multicols}}{{{columns}}}")
-    # Use \begin{ingredients} environment (defined in cookbook.sty)
+# --- Formatting Helpers ---
+
+def get_ingredients_block(recipe: Dict[str, Any], columns: int) -> str:
+    lines = ["\\subsection*{Ingredients}"]
+    if columns > 1: lines.append(f"\\begin{{multicols}}{{{columns}}}")
     lines.append("\\begin{ingredients}")
     for ing in recipe.get('ingredients', []):
         lines.append(f"    \\item {escape_latex(ing)}")
     lines.append("\\end{ingredients}")
-    if columns > 1:
-        lines.append("\\end{multicols}")
-    lines.append("")
-    
-    # Recipe/Instructions - use "Recipe" to match original format
-    lines.append("\\subsection*{Recipe}")
-    lines.append("\\begin{enumerate}")
+    if columns > 1: lines.append("\\end{multicols}")
+    return "\n".join(lines)
+
+def get_method_block(recipe: Dict[str, Any]) -> str:
+    lines = ["\\subsection*{Recipe}", "\\begin{enumerate}"]
     for step in recipe.get('instructions', []):
         lines.append(f"    \\item {escape_latex(step)}")
     lines.append("\\end{enumerate}")
-    lines.append("")
-    
-    # Hints (from recipe TOML)
-    hints = recipe.get('hints', [])
-    if hints:
-        lines.append("\\subsection*{Hints}")
-        lines.append("\\begin{itemize}")
-        for hint in hints:
-            lines.append(f"    \\item {escape_latex(hint)}")
-        lines.append("\\end{itemize}")
-        lines.append("")
-    
-    # Image (if provided in recipe TOML)
-    image_filename = recipe.get('image')
-    show_image = config.get('show_image', True)
-    if image_filename and show_image:
-        # Normalize category to match folder structure
-        category_folder = normalize_name(chapter_name)
-        
-        # WE CHANGE THIS: Use a path relative to the PROJECT ROOT
-        # LaTeX will use graphicspath to find this
-        image_path = f"recipes/{category_folder}/images/{image_filename}"
-        
-        lines.append("\\vfill")
-        lines.append("\\begin{center}")
-        lines.append("    \\includegraphics[")
-        lines.append("        width=\\textwidth,")
-        lines.append("        height=\\dimexpr\\pagegoal-\\pagetotal-2\\baselineskip\\relax,")
-        lines.append("        keepaspectratio")
-        lines.append(f"    ]{{{image_path}}}")
-        lines.append("\\end{center}")
-    
-    lines.append("\\newpage")
-    
     return "\n".join(lines)
 
+def get_image_block(recipe: Dict[str, Any], chapter_name: str, height: str) -> str:
+    image_filename = recipe.get('image')
+    if not image_filename: return ""
+    cat_folder = normalize_name(chapter_name)
+    image_path = f"recipes/{cat_folder}/images/{image_filename}"
+    return f"\\begin{{center}}\n    \\includegraphics[width=\\textwidth,height={height},keepaspectratio]{{{image_path}}}\n\\end{{center}}"
 
-def normalize_name(name: str) -> str:
-    """Normalize a name for comparison (lowercase, replace spaces/special chars)."""
-    return name.lower().replace(" ", "_").replace("-", "_").replace("'", "")
+# --- Template Functions ---
 
+def format_standard_recipe(recipe: Dict[str, Any], config: Dict[str, Any], chapter_name: str) -> str:
+    """Standard full-page recipe template. Ends with a newpage."""
+    lines = [
+        f"\\section{{{escape_latex(recipe['title'])}}}",
+        get_ingredients_block(recipe, config.get('columns', 1)),
+        get_method_block(recipe),
+        get_image_block(recipe, chapter_name, "\\dimexpr\\pagegoal-\\pagetotal-2\\baselineskip\\relax"),
+        "\\newpage" 
+    ]
+    return "\n".join(lines)
+
+def format_mini_recipe(recipe: Dict[str, Any], config: Dict[str, Any], chapter_name: str) -> str:
+    """Compact template for stacking. Forced 2-col, All-Caps, and no horizontal line."""
+    lines = [
+        r"\begin{minipage}{\textwidth}",
+        f"\\subsection*{{{escape_latex(recipe['title']).upper()}}}",
+        get_ingredients_block(recipe, 2),
+        get_method_block(recipe),
+        get_image_block(recipe, chapter_name, "1.5in"),
+        r"\end{minipage}",
+        r"\vspace{4em}" # Just white space for a cleaner look
+    ]
+    return "\n".join(lines)
+
+TEMPLATES = {
+    "standard": format_standard_recipe,
+    "mini": format_mini_recipe
+}
+
+# --- Main Logic ---
 
 def get_chapter_directory(chapter_name: str) -> str:
-    """Map chapter name to directory name."""
-    # Simple mapping - can be extended
     chapter_map = {
         "Sauces": "01_sauces",
         "Starters": "02_starters_and_sides",
         "Mains": "03_mains",
         "Special Occaisions": "04_special_occaisions",
     }
-    return chapter_map.get(chapter_name, chapter_name.lower().replace(" ", "_"))
-
-
-def validate_category_chapter_match(recipe_data: Dict[str, Any], chapter_name: str, recipe_id: str) -> bool:
-    """Validate that recipe category matches chapter name."""
-    recipe_category = recipe_data.get('category', '').strip()
-    if not recipe_category:
-        print(f"⚠️  Warning: Recipe {recipe_id} has no category field")
-        return False
-    
-    # Normalize both for comparison
-    normalized_category = normalize_name(recipe_category)
-    normalized_chapter = normalize_name(chapter_name)
-    
-    if normalized_category != normalized_chapter:
-        print(f"❌ Error: Recipe {recipe_id} category '{recipe_category}' does not match chapter '{chapter_name}'")
-        return False
-    
-    return True
-
+    return chapter_map.get(chapter_name, normalize_name(chapter_name))
 
 def generate_tex():
-    """Main LaTeX generation function."""
-    # Ensure directories exist
     os.makedirs(LATEX_OUTPUT_DIR, exist_ok=True)
-    
-    # Load PDF config
     try:
         with open(PDF_CONFIG_PATH, "rb") as f:
             pdf_config_data = tomllib.load(f)
     except FileNotFoundError:
-        print(f"❌ Error: Could not find PDF config at {PDF_CONFIG_PATH}")
-        return
-    
-    pdf_defaults = pdf_config_data.get("defaults", {"columns": 1, "show_image": True})
-    
-    # Build lookup map: chapter_name -> recipe_id -> recipe_config
-    pdf_recipe_configs = {}
-    for chapter in pdf_config_data.get("chapters", []):
-        chapter_name = chapter['name']
-        pdf_recipe_configs[chapter_name] = {}
-        for recipe_config in chapter.get("recipes", []):
-            recipe_id = recipe_config['id']
-            pdf_recipe_configs[chapter_name][recipe_id] = recipe_config
-    
-    # Store full cookbook content for PDF
+        print("❌ Config not found."); return
+
+    defaults = pdf_config_data.get("defaults", {"columns": 1, "show_image": True, "template": "standard"})
     full_cookbook_lines = []
     current_chapter = None
     
-    # Process PDF chapters
     for chapter in pdf_config_data.get("chapters", []):
         chapter_name = chapter['name']
+        ch_template_name = chapter.get('template', defaults.get('template', 'standard'))
         chapter_dir = get_chapter_directory(chapter_name)
+        
         latex_chapter_dir = os.path.join(LATEX_OUTPUT_DIR, chapter_dir)
         os.makedirs(latex_chapter_dir, exist_ok=True)
         
-        # Get PDF manifest
         pdf_manifest = chapter.get("pdf", {}).get("recipes", [])
+        recipe_overrides = {r['id']: r for r in chapter.get("recipes", [])}
         
-        # Process PDF recipes in manifest order
         if pdf_manifest:
-            # Add chapter header to full cookbook if this is a new chapter
+            # Chapter Transition: Clear previous page if stacking was happening
             if current_chapter != chapter_name:
+                if current_chapter is not None:
+                    full_cookbook_lines.append(r"\clearpage")
                 full_cookbook_lines.append(f"\\chapter{{{chapter_name}}}")
                 current_chapter = chapter_name
             
             for recipe_id in pdf_manifest:
-                # Get recipe config for this recipe
-                recipe_config = pdf_recipe_configs.get(chapter_name, {}).get(recipe_id, {})
+                cat_folder = normalize_name(chapter_name)
+                recipe_path = os.path.join(RECIPE_DIR, cat_folder, f"{recipe_id}.toml")
+                if not os.path.exists(recipe_path):
+                    recipe_path = os.path.join(RECIPE_DIR, f"{recipe_id}.toml")
                 
-                # Search for recipe file in category subdirectory
-                # Normalize chapter name to folder name (e.g., "Mains" -> "mains")
-                category_folder = normalize_name(chapter_name)
-                recipe_file = os.path.join(RECIPE_DIR, category_folder, f"{recipe_id}.toml")
-                
-                # If not found in category folder, try root recipes folder (backward compatibility)
-                if not os.path.exists(recipe_file):
-                    recipe_file = os.path.join(RECIPE_DIR, f"{recipe_id}.toml")
-                
-                # Load recipe
                 try:
-                    with open(recipe_file, "rb") as f:
+                    with open(recipe_path, "rb") as f:
                         recipe_data = tomllib.load(f)
-                except FileNotFoundError:
-                    print(f"⚠️  Warning: Recipe {recipe_id}.toml not found in {RECIPE_DIR}")
-                    continue
+                except Exception: continue
+
+                r_config = {**defaults, "template": ch_template_name, **recipe_overrides.get(recipe_id, {})}
+                template_func = TEMPLATES.get(r_config["template"], format_standard_recipe)
                 
-                # Validate category matches chapter
-                if not validate_category_chapter_match(recipe_data, chapter_name, recipe_id):
-                    print(f"   Skipping PDF generation for {recipe_id}")
-                    continue
+                # Get self-contained LaTeX block from template
+                latex_content = template_func(recipe_data, r_config, chapter_name)
                 
-                # Merge defaults with recipe-specific config
-                merged_config = {**pdf_defaults, **recipe_config}
-                
-                # Generate LaTeX
-                latex_content = generate_latex(recipe_data, merged_config, chapter_name)
-                # Determine LaTeX filename (use chapter number prefix if available)
+                # Write individual file
                 latex_filename = f"{chapter_dir.split('_')[0]}_{recipe_id}.tex"
-                latex_path = os.path.join(latex_chapter_dir, latex_filename)
-                with open(latex_path, "w", encoding="utf-8") as f:
+                with open(os.path.join(latex_chapter_dir, latex_filename), "w") as f:
                     f.write(latex_content)
-                print(f"✅ LaTeX: {latex_path}")
                 
-                # Add to full cookbook (remove the final \newpage, we'll add it separately)
-                cookbook_content = latex_content.rstrip()
-                if cookbook_content.endswith("\\newpage"):
-                    cookbook_content = cookbook_content[:-8].rstrip()
-                elif cookbook_content.endswith("\n\\newpage"):
-                    cookbook_content = cookbook_content[:-9].rstrip()
-                full_cookbook_lines.append(cookbook_content)
-                full_cookbook_lines.append("\\newpage")
-    
-    # Write full cookbook file
+                # Append directly to full cookbook buffer
+                full_cookbook_lines.append(latex_content)
+
     with open(FULL_COOKBOOK_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(full_cookbook_lines))
-    print(f"✅ Full Cookbook: {FULL_COOKBOOK_PATH}")
-
+    print(f"✅ Full Cookbook generated at {FULL_COOKBOOK_PATH}")
 
 if __name__ == "__main__":
     generate_tex()
-

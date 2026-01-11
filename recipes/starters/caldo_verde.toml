@@ -1,13 +1,19 @@
 title = "Caldo Verde"
 category = "Starters"
 ingredients = [
-    "Beans",
+    "Chicken stock", "Finely-chopped couve (collard greens)", "Potatoes", "Calabresa sausage (similar to kielbasa)", "Onion", "Garlic"
 ]
 instructions = [
-    "Make",
+    "Cook the potatoes in the chicken stock and some water until tender. Do not drain them.", 
+    "Fry-off the sausage, onion and garlic until translucent.", 
+    "Add the couve (collard greens) and cook until wilted.",
+    "Take one or two potatoes out, and blend the rest using a hand blender",
+    "Add the onion, garlic, sausage and couve mixture back into the soup and simmer for 10 minutes.",
 ]
 
 # Optional: hints and tips for the recipe
 hints = [
-    "Hint 1",
+    "Spanish chorizo will make the soup red, and taste of paprika, which is not traditional.",
+    "The key is to get the number of potatoes right so the soup is thickened but not too heavy.",
+    "Serve with chilli sauce.",
 ]

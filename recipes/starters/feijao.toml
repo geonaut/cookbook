@@ -1,13 +1,18 @@
 title = "Feijão"
 category = "Starters"
 ingredients = [
-    "Beans",
+    "Black turtle beans", "Garlic", "Lardons", "Bay leaves", "Olive oil", "Salt", "Pepper"
 ]
 instructions = [
-    "Make",
+    "Pressure cook the beans and Bay Leaves for 1 hour, or less if pre-soaked.",
+    "Sauté the garlic and lardons in olive oil until fragrant.",
+    "Add the sautéed mixture to the cooked beans and pressure cook for a further 15 minutes.",
+    "Season with salt and pepper to taste.",
 ]
 
 # Optional: hints and tips for the recipe
 hints = [
-    "Hint 1",
+    "Any pork sausage or smoked meat can be used instead of lardons.",
+    "Don't overcook the beans; they should be tender but not mushy.",
+    "Don't add too much water, otherwise the beans will be soupy.",
 ]

@@ -1,0 +1,16 @@
+title = "Pol Sambol"
+category = "Sauces"
+ingredients = [
+    "shallots",
+    "grated fresh coconut",
+    "red chilli",
+    "lime juice",
+    "salt",
+]
+instructions = [
+    "Put all the ingredients into a pestle and mortar and pound until well combined. Adjust seasoning to taste. Serve as a condiment with rice and curry dishes."
+]
+hints = [
+    "Fresh chilli is best, but dried/powdered chilli is fine.",
+    "Loosen with a little coconut water if needed."
+]
