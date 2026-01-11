@@ -1,0 +1,16 @@
+title = "Spicy vinagrette"
+category = "Sauces"
+ingredients = [
+    "red wine vinegar",
+    "olive oil",
+    "garlic",
+    "fresh chilli",
+    "green pepper",
+    "fresh tomato",
+    "onion",
+    "salt",
+    "pepper"
+]
+instructions = [
+    "Combine all ingredients in a bowl and whisk until well mixed. Adjust seasoning to taste."
+]

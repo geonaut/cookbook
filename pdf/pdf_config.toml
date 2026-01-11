@@ -3,6 +3,12 @@ columns = 1
 show_image = true
 
 [[chapters]]
+name = "Sauces"
+
+[chapters.pdf]
+recipes = ["chimmichurri"]
+
+[[chapters]]
 name = "Starters"
 
 [chapters.pdf]
@@ -13,21 +19,10 @@ id = "pao_de_queijo"
 columns = 2     
 show_image = true
 [chapters.recipes.pdf]
-image = "02_starters_and_sides/pao_de_queijo.jpg"
 
 [[chapters.recipes]]
 id = "jolloff_rice"
 columns = 2
-show_image = false
-
-[[chapters.recipes]]
-id = "caldo_verde"
-columns = 1
-show_image = false
-
-[[chapters.recipes]]
-id = "feijao"
-columns = 1
 show_image = false
 
 [[chapters]]
@@ -35,41 +30,6 @@ name = "Mains"
 
 [chapters.pdf]
 recipes = ["cod_with_morcilla", "lamb_shank_curry", "midweek_grilled_chicken copy", "spiced_short_ribs", "puttanesca", "nice_salad", "shakshuka_with_feta"]
-
-[[chapters.recipes]]
-id = "cod_with_morcilla"
-columns = 1
-show_image = false
-
-[[chapters.recipes]]
-id = "lamb_shank_curry"
-columns = 1
-show_image = false
-
-[[chapters.recipes]]
-id = "midweek_grilled_chicken copy"
-columns = 1
-show_image = false
-
-[[chapters.recipes]]
-id = "spiced_short_ribs"
-columns = 1
-show_image = false
-
-[[chapters.recipes]]
-id = "puttanesca"
-columns = 1
-show_image = false
-
-[[chapters.recipes]]
-id = "nice_salad"
-columns = 1
-show_image = false
-
-[[chapters.recipes]]
-id = "shakshuka_with_feta"
-columns = 1
-show_image = false
 
 [[chapters]]
 name = "Special Occaisions"

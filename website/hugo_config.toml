@@ -14,3 +14,7 @@ recipes = []
 name = "Special Occaisions"
 recipes = []
 
+[[chapters]]
+name = "Sauces"
+recipes = ["chimmichurri", "spicy_vinagrette"]
+

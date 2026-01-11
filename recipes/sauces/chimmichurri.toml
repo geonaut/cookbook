@@ -1,0 +1,14 @@
+title = "Chimmichurri"
+category = "Sauces"
+ingredients = [
+    "garlic",
+    "parsley",
+    "oregano",
+    "red wine vinegar",
+    "olive oil",
+    "salt",
+    "pepper"
+]
+instructions = [
+    "Chop all ingredients finely and mix together. Adjust seasoning to taste. Serve with grilled meats."
+]
