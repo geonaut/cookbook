@@ -1,6 +1,6 @@
 ---
 title: "Foodie Map"
-weight: 40
+weight: 30
 bookToc: false
 ---
 

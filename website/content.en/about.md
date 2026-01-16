@@ -1,6 +1,6 @@
 ---
 title: "About Me"
-weight: 30
+weight: 50
 ---
 
 # About Me
