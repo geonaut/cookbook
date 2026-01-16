@@ -19,12 +19,49 @@
   {{ if .Params.gallery }}
   <div class="recipe-gallery">
     <hr />
-    <div class="gallery-grid">
-      {{ range .Params.gallery }}
-      <div class="gallery-item"><img src="{{ . }}" /></div>
-      {{ end }}
-    </div>
+    {{ $images := .Page.Resources.Match "gallery_*" }} {{ if $images }}
+    <div class="gallery-container">
+      <div class="gallery-main">
+        <img
+          src="{{ (index $images 0).RelPermalink }}"
+          id="expandedImg"
+          alt="Recipe Preview"
+        />
+      </div>
+
+   <div class="gallery-thumbs">
+  {{ range $index, $image := $images }}
+  <div class="thumb-wrapper">
+    <img
+      src="{{ $image.RelPermalink }}"
+      class="recipe-thumb" 
+      alt="Thumbnail {{ $index }}"
+    />
   </div>
   {{ end }}
+</div>
+
+
+    {{ end }}
+  </div>
+  {{ end }}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mainImg = document.getElementById('expandedImg');
+  const thumbnails = document.querySelectorAll('.recipe-thumb'); // This must match the class above
+
+  if (mainImg && thumbnails.length > 0) {
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        mainImg.src = this.src;
+        
+        // Optional: Reset opacity for a quick flicker effect
+        mainImg.style.opacity = 0.5;
+        setTimeout(() => { mainImg.style.opacity = 1; }, 50);
+      });
+    });
+  }
+});
+</script>
 </article>
 {{ end }}
