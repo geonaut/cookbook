@@ -6,6 +6,14 @@
   >
     GitHub | 
   </a>
+{{ if .GitInfo }}
+    Build: 
+    <a href="https://github.com/geonaut/cookbook/commit/{{ .GitInfo.Hash }}" target="_blank">
+      {{ .GitInfo.AbbreviatedHash }}
+    </a>
+  {{ else }}
+    Build: <span class="local-hash">123abc |</span>
+  {{ end }}
   <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>
   |
   <a
