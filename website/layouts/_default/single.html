@@ -2,26 +2,26 @@
 <article class="markdown book-post">
   {{ if .Params.banner }}
   <div class="recipe-banner-wrapper">
-      <img src="{{ .Params.banner }}" class="recipe-banner" alt="{{ .Title }}">
+    <img src="{{ .Params.banner }}" class="recipe-banner" alt="{{ .Title }}" />
   </div>
   {{ end }}
 
   <h1>{{ .Title }}</h1>
 
   <div class="recipe-tags">
-    {{ range .Params.tags }}<span class="tag-pill">{{ . }}</span>{{ end }}
+    {{ range .Params.tags }}
+    <a href="/tags/{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
+    {{ end }}
   </div>
 
-  <div class="recipe-body">
-    {{ .Content }}
-  </div>
+  <div class="recipe-body">{{ .Content }}</div>
 
   {{ if .Params.gallery }}
   <div class="recipe-gallery">
-    <hr>
+    <hr />
     <div class="gallery-grid">
       {{ range .Params.gallery }}
-        <div class="gallery-item"><img src="{{ . }}"></div>
+      <div class="gallery-item"><img src="{{ . }}" /></div>
       {{ end }}
     </div>
   </div>

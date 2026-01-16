@@ -135,3 +135,29 @@
     }
   }
 }
+
+.recipe-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Aligns the group of pills to the right */
+  gap: 6px;
+  margin: 0.5rem 0;
+  width: 100%;               /* Ensure the container knows it has the full width to move within */
+
+  .tag-pill {
+    display: inline-flex;      /* Ensures the pill only takes up the space of the text */
+    flex: 0 0 auto;            /* STOPS the pill from growing/stretching */
+    padding: 2px 10px;
+    background-color: var(--gray-200);
+    color: var(--body-font-color);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: var(--color-link);
+      color: #fff;
+    }
+  }
+}
