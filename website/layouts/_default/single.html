@@ -1,0 +1,65 @@
+{{ define "main" }}
+<article class="markdown book-post">
+  {{ if .Params.banner }}
+  <div class="recipe-banner-wrapper">
+      <img src="{{ .Params.banner }}" class="recipe-banner" alt="{{ .Title }}">
+  </div>
+  {{ end }}
+
+  <h1>{{ .Title }}</h1>
+
+  <div class="recipe-tags">
+    {{ range .Params.tags }}
+      <span class="tag-pill">{{ . }}</span>
+    {{ end }}
+  </div>
+
+  <div class="recipe-grid">
+    <div class="recipe-left-col">
+      {{ with .Params.blurb }}
+        <p class="recipe-blurb">{{ . }}</p>
+      {{ end }}
+
+      <h3>Instructions</h3>
+      <ol>
+        {{ range .Params.instructions }}
+          <li>{{ . }}</li>
+        {{ end }}
+      </ol>
+    </div>
+
+    <aside class="recipe-sidebar">
+      <h3>Ingredients</h3>
+      <ul>
+        {{ range .Params.ingredients }}
+          <li>{{ . }}</li>
+        {{ end }}
+      </ul>
+    </aside>
+  </div>
+
+  {{ with .Params.hints }}
+  <footer class="recipe-hints">
+    <h3>Hints & Tips</h3>
+    <ul>
+      {{ range . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+  </footer>
+  {{ end }}
+
+  {{ with .Params.gallery }}
+  <div class="recipe-gallery">
+    <hr>
+    <h3>Process & Result Gallery</h3>
+    <div class="gallery-grid">
+      {{ range . }}
+        <div class="gallery-item">
+          <img src="{{ . }}" alt="Recipe Image">
+        </div>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+  
+</article>
+{{ end }}

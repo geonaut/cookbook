@@ -1,14 +1,90 @@
-/*
-  You can add custom styles here.
-  It could be plugins:
-    @import "plugins/numbered";
-    @import "plugins/scrollbars";
-  Or custom styles:
-    body { background: white; }
-  Or even theme mixins:
-    @mixin theme-light {
-      --body-background: white;
-      --body-font-color: black;
-      ...
+/* Global Recipe Styles */
+.recipe-banner-wrapper {
+  margin-bottom: 2rem;
+  .recipe-banner {
+    width: 100%;
+    border-radius: 12px;
+    max-height: 400px;
+    object-fit: cover;
+  }
+}
+
+.recipe-tags {
+  margin-bottom: 2rem;
+  .tag-pill {
+    background: #eee;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    display: inline-block;
+  }
+}
+
+/* 2-Column Grid */
+.recipe-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  .recipe-left-col {
+    flex: 2;
+    min-width: 300px;
+    
+    .recipe-blurb {
+      font-style: italic;
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      color: #555;
     }
-*/
+  }
+
+  .recipe-sidebar {
+    flex: 1;
+    min-width: 250px;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    
+    ul {
+      padding-left: 1.2rem;
+    }
+  }
+}
+
+/* Footer Hints */
+.recipe-hints {
+  margin-top: 3rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+/* Gallery Grid */
+.recipe-gallery {
+  margin-top: 4rem;
+  hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin-bottom: 2rem;
+  }
+  
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+}
