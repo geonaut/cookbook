@@ -1,8 +1,9 @@
 ---
 title: "Foodie Map"
 weight: 40
+bookToc: false
 ---
 
-# Foodie Map
+# N. London Foodie Map
 
-An interactive map of my favorite food destinations coming soon!
+{{< googlemap id="1F2hS3T8QPhS3uK8dJCNxfgFnxC-DRmM" >}}
