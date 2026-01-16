@@ -21,22 +21,15 @@
   }
 }
 
-/* 2-Column Grid */
 .recipe-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  margin-top: 2rem;
 
   .recipe-left-col {
     flex: 2;
     min-width: 300px;
-    
-    .recipe-blurb {
-      font-style: italic;
-      border-left: 4px solid #ddd;
-      padding-left: 1rem;
-      color: #555;
-    }
   }
 
   .recipe-sidebar {
@@ -45,10 +38,9 @@
     background: #f9f9f9;
     padding: 1.5rem;
     border-radius: 8px;
+    border: 1px solid #eee;
     
-    ul {
-      padding-left: 1.2rem;
-    }
+    h3 { margin-top: 0; }
   }
 }
 

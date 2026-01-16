@@ -13,46 +13,46 @@ HUGO_CONFIG_PATH = os.path.join(SCRIPT_DIR, "hugo_config.toml")
 HUGO_CONTENT_DIR = os.path.join(SCRIPT_DIR, "content.en", "recipes")
 
 def generate_markdown(recipe: Dict[str, Any], order: Optional[int] = None) -> str:
-    """Generates Markdown with everything in Frontmatter for Template control."""
-    lines = ["---"]
-    lines.append(f'title: "{recipe.get("title", "Untitled")}"')
-    if order is not None:
-        lines.append(f"weight: {order}")
+    # 1. Standard TOML Frontmatter
+    lines = ["+++"]
+    lines.append(f'title = "{recipe.get("title", "Untitled")}"')
+    lines.append(f'weight = {order * 10 if order else 10}')
+    lines.append('layout = "single"')
+    lines.append('type = "docs"')
+    lines.append(f'tags = {json.dumps(recipe.get("tags", []))}')
+    lines.append('bookToc = false')
     
-    # Metadata
-    blurb = recipe.get("blurb", "").replace('"', '\\"')
-    lines.append(f'blurb: "{blurb}"')
-    
-    # Tags
-    tags = recipe.get("tags", [])
-    lines.append(f"tags: {json.dumps(tags)}")
-
-    # Ingredients & Instructions for the Template to use
-    ingredients = recipe.get("ingredients", [])
-    lines.append(f"ingredients: {json.dumps(ingredients)}")
-    
-    instructions = recipe.get("instructions", [])
-    lines.append(f"instructions: {json.dumps(instructions)}")
-
-    # Hints
-    hints = recipe.get("hints", [])
-    if isinstance(hints, dict):
-        hints = hints.get("items", [])
-    # Fallback for old TOML structure
-    if not hints:
-        hints = recipe.get("images", {}).get("hints", [])
-    lines.append(f"hints: {json.dumps(hints)}")
-
-    # Images
     img_data = recipe.get("images", {})
-    if img_data.get("banner"):
-        lines.append(f'banner: "{img_data["banner"]}"')
-    if img_data.get("gallery"):
-        lines.append(f"gallery: {json.dumps(img_data['gallery'])}")
+    lines.append(f'banner = "{img_data.get("banner", "")}"')
+    lines.append(f'gallery = {json.dumps(img_data.get("gallery", []))}')
+    lines.append("+++") # End Frontmatter
 
-    lines.append("---")
+    # 2. Markdown Body with Shortcodes
+    lines.append(f"\n_{recipe.get('blurb', '')}_\n")
     
-    # We leave the body empty so the template handles 100% of the layout
+    lines.append("{{< recipe-grid >}}")
+    
+    # Instructions Column
+    lines.append("{{< instructions >}}")
+    for idx, step in enumerate(recipe.get("instructions", []), 1):
+        lines.append(f"{idx}. {step}")
+    lines.append("{{< /instructions >}}")
+
+    # Ingredients Sidebar
+    lines.append("{{< ingredients >}}")
+    for ing in recipe.get("ingredients", []):
+        lines.append(f"- {ing}")
+    lines.append("{{< /ingredients >}}")
+    
+    lines.append("{{< /recipe-grid >}}")
+
+    # Hints outside the grid
+    if recipe.get("hints"):
+        lines.append("\n---")
+        lines.append("### Hints & Tips")
+        for hint in recipe.get("hints", []):
+            lines.append(f"- {hint}")
+
     return "\n".join(lines)
 
 def generate_md():
@@ -81,7 +81,7 @@ def generate_md():
             os.makedirs(recipe_bundle_dir, exist_ok=True)
 
             md_content = generate_markdown(recipe_data, order=idx + 1)
-            with open(os.path.join(recipe_bundle_dir, "index.md"), "w", encoding="utf-8") as f:
+            with open(os.path.join(recipe_bundle_dir, "_index.md"), "w", encoding="utf-8") as f:
                 f.write(md_content)
 
             img_section = recipe_data.get("images", {})
