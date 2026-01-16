@@ -78,8 +78,15 @@ node_modules/
 
 # Generated Markdown files (generated from TOML via generate_md.py)
 website/content.en/recipes/**/*.md
-!website/content.en/recipes/**/_index.md
-!website/content.en/recipes/00_intro.md
+website/content.en/recipes/**/_index.md
+
+# 2. Allow Git to track specific manual _index files 
+# Add a line for each directory where you wrote a manual index
+!website/content.en/recipes/sauces/_index.md
+!website/content.en/recipes/mains/_index.md
+website/content.en/recipes/special_occaisions/_index.md
+website/content.en/recipes/starters/_index.md
+website/content.en/_index.md
 
 # Static images (copied from recipe folders during generation)
 website/static/images/
