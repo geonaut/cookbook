@@ -1,4 +1,4 @@
-/* Global Recipe Styles */
+
 .recipe-banner-wrapper {
   margin-bottom: 2rem;
   .recipe-banner {
@@ -10,14 +10,31 @@
 }
 
 .recipe-tags {
-  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 1rem 0 2rem 0;
+  width: auto;             
+  max-width: fit-content;  
+
   .tag-pill {
-    background: #eee;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-right: 5px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background-color: var(--gray-200);
+    color: var(--body-font-color);
+    border-radius: 20px;   
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-link);
+      color: #fff;
+      transform: translateY(-1px);
+    }
   }
 }
 
@@ -35,50 +52,29 @@
   .recipe-sidebar {
     flex: 1;
     min-width: 250px;
-    background: #f9f9f9;
+    background: var(--gray-100, #f9f9f9);
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid var(--gray-200);
     
     h3 { margin-top: 0; }
   }
 }
 
-/* Footer Hints */
-.recipe-hints {
-  margin-top: 3rem;
-  border-top: 1px solid #eee;
-  padding-top: 1rem;
-}
 
-.recipe-thumb {
-  cursor: pointer;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  border-radius: 4px;
-
-  &:hover {
-    opacity: 0.8;
-    transform: translateY(-2px);
-  }
-}
-
-#expandedImg {
-  transition: opacity 0.2s ease-in-out;
-}
-
-/* Shrink the images regardless of which HTML Hugo uses */
-.gallery-grid, .gallery-container {
-  display: flex !important;
+.gallery-container {
+  display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
+  margin-top: 2rem;
 }
 
-.gallery-item, .gallery-main {
-  width: 100% !important;
-  height: 450px !important; /* This is what stops the "massive" look */
+.gallery-main {
+  width: 100%;
+  height: 450px; 
   position: relative;
-  background: #f9f9f9;
+  background: var(--gray-100);
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -88,39 +84,33 @@
   img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Shows full image without cropping */
+    object-fit: contain;
+    transition: opacity 0.2s ease-in-out;
   }
 }
 
-/* Arrow Styles */
-.gallery-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  padding: 1rem;
-  cursor: pointer;
-  z-index: 5;
-  &:hover { background: rgba(0,0,0,0.8); }
-  &.prev { left: 10px; }
-  &.next { right: 10px; }
-}
-
-/* Thumbnail Grid */
 .gallery-thumbs {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
-  gap: 10px;
+  display: flex;      
+  flex-wrap: wrap;               
+  justify-content: center;       
+  gap: 12px;                     
+  width: 100%;
+
   .thumb-wrapper img {
-    width: 100%;
-    aspect-ratio: 1/1;
+    width: 80px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     cursor: pointer;
     border-radius: 4px;
+    transition: transform 0.2s, opacity 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
   }
 }
+
 
 .contact-form {
   display: flex;
@@ -131,12 +121,7 @@
   label {
     display: block;
     margin-bottom: 1.5rem;
-
-    span {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
+    span { font-weight: 600; display: block; margin-bottom: 0.5rem; }
   }
 
   input, textarea {
@@ -147,7 +132,6 @@
     background: var(--body-background);
     color: var(--body-font-color);
     font-family: inherit;
-    font-size: 1rem;
 
     &:focus {
       outline: none;
@@ -165,40 +149,9 @@
     border-radius: 4px;
     cursor: pointer;
     font-weight: 600;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s, transform 0.1s;
 
-    &:hover {
-      opacity: 0.9;
-    }
-
-    &:active {
-      transform: translateY(1px);
-    }
-  }
-}
-
-.recipe-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; /* Aligns the group of pills to the right */
-  gap: 6px;
-  margin: 0.5rem 0;
-  width: 100%;               /* Ensure the container knows it has the full width to move within */
-
-  .tag-pill {
-    display: inline-flex;      /* Ensures the pill only takes up the space of the text */
-    flex: 0 0 auto;            /* STOPS the pill from growing/stretching */
-    padding: 2px 10px;
-    background-color: var(--gray-200);
-    color: var(--body-font-color);
-    border-radius: 12px;
-    font-size: 0.75rem;
-    text-decoration: none;
-    white-space: nowrap;
-
-    &:hover {
-      background-color: var(--color-link);
-      color: #fff;
-    }
+    &:hover { opacity: 0.9; }
+    &:active { transform: translateY(1px); }
   }
 }
