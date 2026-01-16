@@ -1,5 +1,5 @@
 ---
-title: "PDF Cookbook"
+title: "PDF Version"
 weight: 35
 bookToc: false
 ---
