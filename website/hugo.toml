@@ -59,11 +59,15 @@ enableGitInfo = true
   pageRef = '/foodie-map/'
   weight = 4
 
-# [[menu.before]]
-[[menu.after]]
-  name = 'Github'
-  url = 'https://github.com/geonaut/cookbook/'
-  weight = 10
+[[menu.main]]
+  name = 'Bookshelf'
+  pageRef = '/bookshelf/'
+  weight = 5
+
+[[menu.main]]
+  name = 'Contact Me'
+  pageRef = '/contact/'
+  weight = 6
 
 [params]
   # (Optional, default light) Sets color theme: light, dark or auto.
