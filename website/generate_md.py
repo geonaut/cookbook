@@ -55,15 +55,8 @@ def generate_md():
         print(f"❌ Error: {HUGO_CONFIG_PATH} not found.")
         return
 
-    # Targeted Cleanup: Only remove recipe subdirectories
-    if os.path.exists(HUGO_CONTENT_DIR):
-        for item in os.listdir(HUGO_CONTENT_DIR):
-            item_path = os.path.join(HUGO_CONTENT_DIR, item)
-            # Only delete directories (the recipe bundles), not the _index.md files
-            if os.path.isdir(item_path):
-                shutil.rmtree(item_path)
-    else:
-        os.makedirs(HUGO_CONTENT_DIR, exist_ok=True)
+
+    os.makedirs(HUGO_CONTENT_DIR, exist_ok=True)
 
     with open(HUGO_CONFIG_PATH, "rb") as f:
         config = tomllib.load(f)
