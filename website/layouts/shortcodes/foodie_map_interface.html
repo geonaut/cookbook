@@ -1,54 +1,57 @@
-{{ $map_id := .Page.Params.map_id }}
+{{ $map_id := .Page.Params.map_id }} 
 {{ $categories := .Page.Params.categories }}
 
-<div class="foodie-interface">
-    <div class="map-section" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 2rem;">
-        <iframe 
-            src="https://www.google.com/maps/d/embed?mid={{ $map_id }}" 
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-            allowfullscreen="" 
-            loading="lazy">
-        </iframe>
+<div class="foodie-container">
+  <aside class="map-sidebar">
+    <div class="category-tabs">
+      {{ range $categories }}
+      <button class="tab-btn" onclick="openCategory(event, '{{ .id }}')">
+        <span>{{ .name }}</span>
+      </button>
+      {{ end }}
     </div>
 
-    <div class="filter-controls">
-        <button class="filter-btn active" data-target="all">All</button>
-        {{ range $categories }}
-            <button class="filter-btn" data-target="{{ .id }}">{{ .name }}</button>
-        {{ end }}
-    </div>
-
-    <div class="hit-list-container">
-        {{ range $categories }}
-        <div class="category-group" id="group-{{ .id }}">
-            <h3 class="category-title">{{ .name }}</h3>
-            <ul class="hit-list">
-                {{ range .locations }}
-                <li class="hit-item">
-                    <strong class="loc-name">{{ .name }}</strong>
-                    {{ if .comment }}<p class="loc-comment">{{ .comment }}</p>{{ end }}
-                </li>
-                {{ end }}
-            </ul>
+    <div class="locations-list">
+      {{ range $categories }}
+      <div id="{{ .id }}" class="tab-content">
+        {{ range .locations }}
+        <div class="location-card" onclick="zoomTo('{{ .lat }}', '{{ .lon }}')">
+          <div class="loc-info">
+            <div class="loc-name-row">
+              <strong>{{ .name }}</strong>
+             <small><a href="https://www.google.com/search?q={{ .name | urlquery }}+London" target="_blank">🔍</a></small>
+            </div>
+            {{ if .comment }}<small>{{ .comment }}</small>{{ end }}
+          </div>
+          <span class="zoom-icon">⌖</span>
         </div>
         {{ end }}
+      </div>
+      {{ end }}
     </div>
+  </aside>
+
+  <main class="map-main">
+    <iframe id="main-foodie-map" src="https://www.google.com/maps/d/embed?mid={{ $map_id }}&ehbc=2E312F"></iframe>
+  </main>
 </div>
 
 <script>
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const target = this.dataset.target;
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+  function openCategory(evt, catId) {
+    document.querySelectorAll(".tab-content").forEach((x) => (x.style.display = "none"));
+    document.querySelectorAll(".tab-btn").forEach((x) => x.classList.remove("active"));
+    document.getElementById(catId).style.display = "block";
+    evt.currentTarget.classList.add("active");
+  }
 
-        document.querySelectorAll('.category-group').forEach(group => {
-            if (target === 'all' || group.id === `group-${target}`) {
-                group.style.display = 'block';
-            } else {
-                group.style.display = 'none';
-            }
-        });
-    });
-});
+  function zoomTo(lat, lon) {
+    if (!lat || lat === "0") return;
+    const map = document.getElementById("main-foodie-map");
+    map.src = `https://www.google.com/maps/d/embed?mid={{ $map_id }}&ll=${lat}%2C${lon}&z=18`;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const firstTab = document.querySelector(".tab-btn");
+    if (firstTab) firstTab.click();
+  });
 </script>

@@ -1,4 +1,168 @@
+// --- Global Variables & Sass Color Helpers ---
+// Sass needs these hex codes to perform math (lighten/darken)
+$sass-gray-100: #f9f9f9;
+$sass-gray-200: #eeeeee;
+$sass-link-color: #0073aa; // Fallback link color
 
+$border-color: var(--gray-200, $sass-gray-200);
+$active-color: var(--color-link, $sass-link-color);
+$sidebar-bg: var(--gray-100, $sass-gray-100);
+$hover-bg: #f0f7ff;
+$sidebar-width: 350px;
+$container-height: 600px;
+
+// --- 1. Foodie Map Interface (Tabbed Sidebar) ---
+.foodie-container {
+  display: flex;
+  height: $container-height;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--body-background, #fff);
+  margin: 2rem 0;
+
+  .map-sidebar {
+    width: $sidebar-width;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid $border-color;
+
+    .category-tabs {
+      display: flex;
+      background: $sidebar-bg;
+      border-bottom: 1px solid $border-color;
+
+      .tab-btn {
+        flex: 1;
+        padding: 12px 5px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        color: var(--body-font-color);
+        border-bottom: 3px solid transparent;
+        transition: all 0.2s ease;
+
+        span {
+          display: block;
+          font-size: 0.7rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.02em;
+        }
+
+        &.active {
+          color: $active-color;
+          background: var(--body-background, #fff);
+          border-bottom: 3px solid $active-color;
+        }
+
+        &:hover:not(.active) {
+          background: rgba(0, 0, 0, 0.03);
+        }
+      }
+    }
+
+    .locations-list {
+      flex-grow: 1;
+      overflow-y: auto;
+
+      .tab-content {
+        display: none; // Controlled via JS
+      }
+
+      .location-card {
+        padding: 12px 15px;
+        border-bottom: 1px solid lighten($sass-gray-200, 2%);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background: $hover-bg;
+          .zoom-icon {
+            opacity: 1;
+          }
+        }
+
+        .loc-info {
+          strong {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--body-font-color);
+          }
+          small {
+            color: #666;
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 2px;
+            line-height: 1.3;
+          }
+        }
+
+        .zoom-icon {
+          font-size: 1.2rem;
+          opacity: 0.2;
+          transition: opacity 0.2s;
+        }
+      }
+    }
+  }
+
+  .loc-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+  .map-main {
+    flex-grow: 1;
+    background: #f0f0f0;
+
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+
+    .icon-ui {
+      font-size: 1.2rem;
+      margin-bottom: 2px;
+      line-height: 1;
+    }
+
+    .zoom-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      opacity: 0.3;
+      transition: all 0.2s ease;
+      padding-left: 10px;
+
+      &:hover {
+        color: $active-color;
+        opacity: 1;
+      }
+    }
+
+    .map-main {
+      height: 350px;
+      order: 1;
+    }
+  }
+}
+
+// --- 2. Recipe Banner & Tags ---
 .recipe-banner-wrapper {
   margin-bottom: 2rem;
   .recipe-banner {
@@ -12,32 +176,31 @@
 .recipe-tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
   gap: 8px;
   margin: 1rem 0 2rem 0;
-  width: auto;             
-  max-width: fit-content;  
+  max-width: fit-content;
 
   .tag-pill {
     display: inline-flex;
     align-items: center;
     padding: 4px 12px;
-    background-color: var(--gray-200);
+    background-color: var(--gray-200, $sass-gray-200);
     color: var(--body-font-color);
-    border-radius: 20px;   
+    border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.2s ease;
 
     &:hover {
-      background-color: var(--color-link);
+      background-color: $active-color;
       color: #fff;
       transform: translateY(-1px);
     }
   }
 }
 
+// --- 3. Recipe Grid Layout ---
 .recipe-grid {
   display: flex;
   flex-wrap: wrap;
@@ -52,16 +215,17 @@
   .recipe-sidebar {
     flex: 1;
     min-width: 250px;
-    background: var(--gray-100, #f9f9f9);
+    background: $sidebar-bg;
     padding: 1.5rem;
     border-radius: 8px;
-    border: 1px solid var(--gray-200);
-    
-    h3 { margin-top: 0; }
+    border: 1px solid $border-color;
+    h3 {
+      margin-top: 0;
+    }
   }
 }
 
-
+// --- 4. Photo Gallery ---
 .gallery-container {
   display: flex;
   flex-direction: column;
@@ -72,9 +236,9 @@
 
 .gallery-main {
   width: 100%;
-  height: 450px; 
+  height: 450px;
   position: relative;
-  background: var(--gray-100);
+  background: $sidebar-bg;
   border-radius: 8px;
   overflow: hidden;
   display: flex;
@@ -90,10 +254,10 @@
 }
 
 .gallery-thumbs {
-  display: flex;      
-  flex-wrap: wrap;               
-  justify-content: center;       
-  gap: 12px;                     
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   width: 100%;
 
   .thumb-wrapper img {
@@ -111,7 +275,7 @@
   }
 }
 
-
+// --- 5. Contact Form ---
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -121,13 +285,18 @@
   label {
     display: block;
     margin-bottom: 1.5rem;
-    span { font-weight: 600; display: block; margin-bottom: 0.5rem; }
+    span {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
   }
 
-  input, textarea {
+  input,
+  textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid var(--gray-200);
+    border: 1px solid $border-color;
     border-radius: 4px;
     background: var(--body-background);
     color: var(--body-font-color);
@@ -135,14 +304,15 @@
 
     &:focus {
       outline: none;
-      border-color: var(--color-link);
-      box-shadow: 0 0 0 2px rgba(var(--color-link-rgb), 0.1);
+      border-color: $active-color;
+      // Note: We avoid rgba calculation on CSS vars to prevent compile errors
+      box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
     }
   }
 
   button {
     align-self: flex-start;
-    background-color: var(--color-link);
+    background-color: $active-color;
     color: #fff;
     border: none;
     padding: 0.75rem 2rem;
@@ -151,93 +321,11 @@
     font-weight: 600;
     transition: opacity 0.2s, transform 0.1s;
 
-    &:hover { opacity: 0.9; }
-    &:active { transform: translateY(1px); }
-  }
-}
-
-.map-container { // Assuming your shortcode wraps everything in this class
-    display: flex;
-    gap: 2rem;
-    
-    .map-sidebar {
-        flex: 1;
-        max-height: 80vh;
-        overflow-y: auto;
-        
-        .location-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .location-item {
-            padding: 1rem 0;
-            border-bottom: 1px solid #eeeeee;
-            
-            .location-name { font-weight: bold; display: block; }
-            .location-comment { font-size: 0.9rem; margin: 0.5rem 0; }
-        }
+    &:hover {
+      opacity: 0.9;
     }
-
-    .map-display {
-        flex: 2;
-        iframe {
-            width: 100%;
-            height: 600px;
-            border: 0;
-            border-radius: 8px;
-        }
-    }
-}
-
-.foodie-interface {
-  .filter-controls {
-    display: flex;
-    gap: 0.75rem;
-    margin: 2rem 0;
-    flex-wrap: wrap;
-
-    .filter-btn {
-      background: var(--gray-100, #f8f9fa);
-      border: 1px solid #ddd;
-      padding: 0.4rem 1rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.2s ease;
-
-      &.active {
-        background: var(--color-primary, #343a40);
-        color: white;
-        border-color: transparent;
-      }
-    }
-  }
-
-  .category-group {
-    margin-bottom: 2.5rem;
-    
-    .category-title {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hit-list {
-      list-style: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-
-      .hit-item {
-        padding: 1rem;
-        background: rgba(0,0,0,0.02);
-        border-radius: 8px;
-        
-        .loc-name { display: block; margin-bottom: 0.3rem; }
-        .loc-comment { font-size: 0.85rem; color: #666; margin: 0; }
-      }
+    &:active {
+      transform: translateY(1px);
     }
   }
 }
