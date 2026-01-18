@@ -1,0 +1,54 @@
+{{ $map_id := .Page.Params.map_id }}
+{{ $categories := .Page.Params.categories }}
+
+<div class="foodie-interface">
+    <div class="map-section" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 2rem;">
+        <iframe 
+            src="https://www.google.com/maps/d/embed?mid={{ $map_id }}" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <div class="filter-controls">
+        <button class="filter-btn active" data-target="all">All</button>
+        {{ range $categories }}
+            <button class="filter-btn" data-target="{{ .id }}">{{ .name }}</button>
+        {{ end }}
+    </div>
+
+    <div class="hit-list-container">
+        {{ range $categories }}
+        <div class="category-group" id="group-{{ .id }}">
+            <h3 class="category-title">{{ .name }}</h3>
+            <ul class="hit-list">
+                {{ range .locations }}
+                <li class="hit-item">
+                    <strong class="loc-name">{{ .name }}</strong>
+                    {{ if .comment }}<p class="loc-comment">{{ .comment }}</p>{{ end }}
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const target = this.dataset.target;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        document.querySelectorAll('.category-group').forEach(group => {
+            if (target === 'all' || group.id === `group-${target}`) {
+                group.style.display = 'block';
+            } else {
+                group.style.display = 'none';
+            }
+        });
+    });
+});
+</script>

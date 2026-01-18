@@ -67,3 +67,13 @@ clean:
 	rm -rf $(HUGO_DIR)/resources/_gen
 	# Remove the symlink that was causing the "File exists" error
 	rm -f $(HUGO_DIR)/static/images
+
+PYTHON := python3
+HUGO := hugo
+MAP_SCRIPT := map/process_map_data.py
+MAP_SOURCE := "Geonaut's North London Foodie Map.kmz"
+MAP_OUT_DIR := .
+
+sync-map:
+	@echo "📍 Extracting latest map pins..."
+	@$(PYTHON) $(MAP_SCRIPT)
