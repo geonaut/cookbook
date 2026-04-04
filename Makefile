@@ -7,7 +7,7 @@ BOOTSTRAP  = $(HUGO_DIR)/bootstrap/bootstrap.sh
 
 # --- Commands ---
 LATEXMK    = latexmk
-PYTHON     = python3
+PYTHON     = mise exec -- python3
 
 .PHONY: all pdf hugo website-init compose clean serve watch
 
@@ -68,7 +68,6 @@ clean:
 	# Remove the symlink that was causing the "File exists" error
 	rm -f $(HUGO_DIR)/static/images
 
-PYTHON := python3
 HUGO := hugo
 MAP_SCRIPT := map/process_map_data.py
 MAP_SOURCE := "Geonaut's North London Foodie Map.kmz"

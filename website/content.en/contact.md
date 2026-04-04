@@ -1,18 +1,16 @@
 ---
 title: "Contact"
-weight: 60
-bookToc: false
+weight: 50
 ---
 
 <form action="https://formspree.io/f/mkooogba" method="POST" class="contact-form">
   <label>
-    Your email:
-    <input type="email" name="email" style="width: 100%; margin-bottom: 10px; display: block;">
+    <span>Your email</span>
+    <input type="email" name="email" autocomplete="email">
   </label>
   <label>
-    Your message:
-    <textarea name="message" style="width: 100%; height: 100px; margin-bottom: 10px; display: block;"></textarea>
+    <span>Your message</span>
+    <textarea name="message"></textarea>
   </label>
-  <button type="submit" style="padding: 10px 20px;">Send</button>
+  <button type="submit">Send</button>
 </form>
-

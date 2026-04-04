@@ -1,7 +1,7 @@
 ---
 title: "Foodie Map"
 map_id: "1F2hS3T8QPhS3uK8dJCNxfgFnxC-DRmM"
-categories:
+map_categories:
   - name: 'Drinks'
     id: 'drinks'
     locations:

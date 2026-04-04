@@ -1,8 +1,6 @@
 ---
 title: "About Me"
-weight: 50
+weight: 40
 ---
-
-# About Me
 
 More about me coming soon!

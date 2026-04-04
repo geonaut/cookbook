@@ -1,0 +1,12 @@
+{{- $page   := .Page }}
+{{- $layout := default "vertical" (.Get "layout") }}
+{{- $gallery := .Page.Params.gallery }}
+<div class="recipe-gallery recipe-gallery--{{ $layout }}">
+  {{- range $gallery }}
+  {{- with $page.Resources.Get . }}
+  <a href="{{ .RelPermalink }}">
+    <img src="{{ .RelPermalink }}" alt="" loading="lazy">
+  </a>
+  {{- end }}
+  {{- end }}
+</div>

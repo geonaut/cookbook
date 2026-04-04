@@ -1,141 +1,92 @@
-# hugo server --minify --themesDir ../..
-
-# for maximum cleanups and rebuilds, run where you checked out the repository
-# hugo server --printPathWarnings --disableFastRender --cleanDestinationDir=true --logLevel=debug \
-# --gc -M -s exampleSite --themesDir ../.. -b http://127.0.0.1/
-
-baseURL = 'https://cookbook-89460.web.app/'
+baseURL = "https://cookbook-89460.web.app/"
 title = "Geonaut's Cookbook"
-theme = 'hugo-book'
 
-copyright = '[© CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)'
+[outputs]
+  page = ["HTML", "print"]
 
-# Book configuration
-disablePathToLower = true
-enableGitInfo = true
+[outputFormats.print]
+  name = "print"
+  baseName = "index"
+  isHTML = true
+  mediaType = "text/html"
+  path = "print"
 
-[taxonomies]
-  tag = "tags"
-
-# Needed for mermaid/katex shortcodes
-[markup]
-[markup.goldmark.renderer]
-  unsafe = true
-
-[markup.tableOfContents]
-  startLevel = 1
-
-[markup.highlight]
-  style = 'base16-snazzy'
-
-# Multi-lingual mode config
-# There are different options to translate files
-# See https://gohugo.io/content-management/multilingual/#translation-by-filename
-# And https://gohugo.io/content-management/multilingual/#translation-by-content-directory
 [languages]
-[languages.en]
-  languageName = 'English'
-  contentDir = 'content.en'
-  weight = 1
-
-[menu]
-[[menu.main]]
-  name = 'Recipes'
-  pageRef = '/recipes/'
-  weight = 1
-
-[[menu.main]]
-  name = 'Blog'
-  pageRef = '/blog/'
-  weight = 2
-
-[[menu.main]]
-  name = 'About Me'
-  pageRef = '/about/'
-  weight = 3
-
-[[menu.main]]
-  name = 'Foodie Map'
-  pageRef = '/foodie-map/'
-  weight = 4
-
-[[menu.main]]
-  name = 'Bookshelf'
-  pageRef = '/bookshelf/'
-  weight = 5
-
-[[menu.main]]
-  name = 'Contact Me'
-  pageRef = '/contact/'
-  weight = 6
+  [languages.en]
+    languageCode = "en-US"
+    contentDir = "content.en"
+    weight = 1
 
 [params]
-  # (Optional, default light) Sets color theme: light, dark or auto.
-  # Theme 'auto' switches between dark and light modes based on browser/os preferences
-  BookTheme = 'light'
+  homeEyebrow = "Welcome to"
+  description = "A collection of recipes for delicious cooking."
 
-  # (Optional, default none) Controls table of contents visibility on right side of pages.
-  # Start and end levels can be controlled globally with markup.tableOfContents setting.
-  # You can also specify this parameter per page in front matter.
-  # BookToC = true
+  [params.colors]
+    primary = "#1b4332"
+    tertiary = "#9d0208"
 
-  # (Optional, default favicon.png) Set the path to a favicon file.
-  # If the favicon is /static/favicon.png then the path would be favicon.png
-  # BookFavicon = 'favicon.png'
+  [[params.utilityCards]]
+    title = "PDF Cookbook"
+    description = "Download the entire collection as a printable, bookmarked PDF."
+    url = "/pdf-cookbook"
+    icon = "picture_as_pdf"
+    color = "primary"
 
-  # (Optional, default none) Set the path to a logo for the book.
-  # If the logo is /static/logo.png then the path would be logo.png
-  # BookLogo = 'logo.png'
+  [[params.utilityCards]]
+    title = "Foodie Map"
+    description = "An interactive map of my favourite local markets and hidden gems."
+    url = "/foodie-map"
+    icon = "location_on"
+    color = "tertiary"
 
-  # (Optional, default docs) Specify root page to render child pages as menu.
-  # Page is resoled by .GetPage function: https://gohugo.io/functions/getpage/
-  # For backward compatibility you can set '*' to render all sections to menu. Acts same as '/'
-  BookSection = '/'
+[menus]
+  [[menus.main]]
+    name = "Recipes"
+    pageRef = "/recipes"
+    weight = 10
+    [menus.main.params]
+      icon = "menu_book"
 
-  # Here for backward compatibility, not required.
-  # It's here as an example how to use it with BookLastChangeLink or BookEditLink
-  BookRepo = 'https://github.com/geonaut/cookbook/'
+  [[menus.main]]
+    name = "Tags"
+    pageRef = "/tags"
+    weight = 20
+    [menus.main.params]
+      icon = "label"
 
-  # (Optional, default none) Set template for commit link for the page. Requires enableGitInfo.
-  # When set enabled 'Last Modified' and a link to the commit in the footer of the page.
-  # Param is executed as template using .Site, .Page and .GitInfo as context.
-  # BookLastChangeLink = '{{ .Site.Params.BookRepo }}/commit/{{ .GitInfo.Hash }}'
+  [[menus.main]]
+    name = "Writing"
+    pageRef = "/writing"
+    weight = 30
+    [menus.main.params]
+      icon = "edit_note"
 
-  # (Optional, default none) Set template for edit page link.
-  # When set enabled 'Edit this page' link in the footer of the page.
-  # Param is executed as template using .Site, .Page and .Path as context.
-  # BookEditLink = '{{ .Site.Params.BookRepo }}/edit/main/exampleSite/{{ .Path }}'
+  [[menus.main]]
+    name = "Map"
+    pageRef = "/foodie-map"
+    weight = 40
+    [menus.main.params]
+      icon = "map"
 
-  # (Optional, default 'January 2, 2006') Configure the date format used on the pages
-  # - In git information
-  # - In blog posts
-  # https://gohugo.io/functions/time/format/
-  # BookDateFormat = 'January 2, 2006'
+  [[menus.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 50
+    [menus.main.params]
+      icon = "person"
 
-  # (Optional, default true) Enables search function with fuse.js.
-  # Index is built on fly, therefore it might slowdown your website.
-  # Configuration for indexing can be adjusted in i18n folder per language.
-  BookSearch = true
+  [[menus.main]]
+    name = "Contact"
+    pageRef = "/contact"
+    weight = 60
+    [menus.main.params]
+      icon = "mail"
 
-  # (Optional, default true) Enables comments template on pages
-  # By default partials/docs/comments.html includes Disqus template
-  # See https://gohugo.io/content-management/comments/#configure-disqus
-  # Can be overwritten by same param in page frontmatter
-  BookComments = true
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
-  # /!\ This is an experimental feature, might be removed or changed at any time
-  # (Optional, experimental, default false) Enables portable links and link checks in markdown pages.
-  # Portable links meant to work with text editors and let you write markdown without {{< relref >}} shortcode
-  # Hugo Book will print warning or error if page referenced in markdown does not exists.
-  # Possible values are false | 'warning' | 'error'
-  BookPortableLinks = 'warning'
-
-  # /!\ This is an experimental feature, might be removed or changed at any time
-  # (Optional, experimental, default false)
-  # When set to 'preache' it enables a service worker that caches visited pages and resources for offline use.
-  # Possible values are false | true | 'precache'
-  BookServiceWorker = 'precache'
-
-  # /!\ This is an experimental feature, might be removed or changed at any time
-  # (Optional, experimental, default false) Enables a drop-down menu for translations only if a translation is present.
-  BookTranslatedOnly = false
+[module]
+  [[module.imports]]
+    path = "github.com/geonaut/hugo-cookbook-theme"
