@@ -1,0 +1,106 @@
+<nav class="top-app-bar" aria-label="{{ i18n "nav_label" | default "Main navigation" }}">
+  <div class="top-app-bar__inner">
+    <a href="{{ "/" | relURL }}" class="top-app-bar__headline">
+      {{- with site.Params.logo -}}
+        <img src="{{ . | relURL }}" alt="{{ site.Title }}" height="32">
+      {{- else -}}
+        {{ site.Title }}
+      {{- end -}}
+    </a>
+
+    {{- $currentPage := . }}
+    {{- with site.Menus.main }}
+    <ul class="top-app-bar__nav">
+      {{- range . }}
+      {{- $item := . }}
+      {{- $itemPage := .Page }}
+
+      {{- /* Detect whether this menu item points to a section with subsections */ -}}
+      {{- $subsections := slice }}
+      {{- with $itemPage }}
+        {{- if .IsSection }}
+          {{- $subsections = .Sections }}
+        {{- end }}
+      {{- end }}
+
+      {{- if $subsections }}
+      {{- /* ── Dropdown item ── */ -}}
+      <li class="nav-item nav-item--dropdown">
+        <a href="{{ $item.URL }}"
+          class="nav-dropdown-trigger"
+          aria-haspopup="true"
+          {{- if $currentPage.IsMenuCurrent "main" $item }} aria-current="page"{{ end }}>
+          {{- with $item.Params.icon }}<span class="material-symbols-outlined" aria-hidden="true">{{ . }}</span>{{ end }}
+          {{- $item.Name }}
+          <span class="material-symbols-outlined nav-chevron" aria-hidden="true">expand_more</span>
+        </a>
+        <div class="nav-dropdown" role="menu">
+          <div class="nav-dropdown__sections">
+            {{- range $subsections }}
+            {{- $section := . }}
+            {{- $recipes := $section.Pages }}
+            {{- if $recipes }}
+            <div class="nav-dropdown__group">
+              <p class="nav-dropdown__group-title">{{ $section.Title }}</p>
+              {{- range first 5 $recipes }}
+              <a href="{{ .RelPermalink }}" class="nav-dropdown__item" role="menuitem">{{ .Title }}</a>
+              {{- end }}
+              {{- if gt (len $recipes) 5 }}
+              <a href="{{ $section.RelPermalink }}" class="nav-dropdown__more" role="menuitem">
+                {{ i18n "nav_more_items" | default "More" }} {{ $section.Title }}…
+              </a>
+              {{- end }}
+            </div>
+            {{- end }}
+            {{- end }}
+          </div>
+          <div class="nav-dropdown__divider"></div>
+          <a href="{{ $item.URL }}" class="nav-dropdown__all" role="menuitem">
+            {{ i18n "nav_all_items" | default "All" }} {{ $item.Name }} →
+          </a>
+        </div>
+      </li>
+
+      {{- else }}
+      {{- /* ── Plain item ── */ -}}
+      <li class="nav-item">
+        <a href="{{ $item.URL }}"
+          {{- if $currentPage.IsMenuCurrent "main" $item }} aria-current="page"{{ end }}
+          {{- if $item.Params.iconOnly }} aria-label="{{ $item.Name }}" title="{{ $item.Name }}"{{ end }}>
+          {{- with $item.Params.icon }}<span class="material-symbols-outlined" aria-hidden="true">{{ . }}</span>{{ end }}
+          {{- if not $item.Params.iconOnly }}{{ $item.Name }}{{ end }}
+        </a>
+      </li>
+      {{- end }}
+
+      {{- end }}
+    </ul>
+    {{- end }}
+
+    <button class="nav-hamburger" aria-label="{{ i18n "nav_open" | default "Open navigation" }}" aria-expanded="false" aria-controls="mobile-nav">
+      <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+    </button>
+  </div>
+</nav>
+
+{{- /* ── Mobile nav drawer ── */ -}}
+<div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav__header">
+    <span class="mobile-nav__title">{{ site.Title }}</span>
+    <button class="mobile-nav__close" aria-label="{{ i18n "nav_close" | default "Close navigation" }}">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+  </div>
+  <nav class="mobile-nav__links">
+    {{- $currentPage := . }}
+    {{- range site.Menus.main }}
+    <a href="{{ .URL }}" class="mobile-nav__item"
+      {{- if $currentPage.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>
+      {{- with .Params.icon }}<span class="material-symbols-outlined" aria-hidden="true">{{ . }}</span>{{ end }}
+      {{- .Name }}
+    </a>
+    {{- end }}
+  </nav>
+</div>
+<div class="mobile-nav__backdrop" aria-hidden="true"></div>
+

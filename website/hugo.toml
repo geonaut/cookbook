@@ -71,7 +71,7 @@ title = "Geonaut's Cookbook"
       icon = "picture_as_pdf"
 
   [[menus.main]]
-    name = "Map"
+    name = "Foodie Map"
     pageRef = "/foodie-map"
     weight = 40
     [menus.main.params]
@@ -83,6 +83,7 @@ title = "Geonaut's Cookbook"
     weight = 50
     [menus.main.params]
       icon = "person"
+      iconOnly = true
 
   [[menus.main]]
     name = "Contact"
@@ -90,6 +91,7 @@ title = "Geonaut's Cookbook"
     weight = 60
     [menus.main.params]
       icon = "mail"
+      iconOnly = true
 
 [[cascade]]
   layout = "fullwidth"
