@@ -14,3 +14,9 @@ weight: 50
   </label>
   <button type="submit">Send</button>
 </form>
+
+<div class="contact-social">
+  <a href="https://www.instagram.com/placeholder" class="social-link" rel="noopener">
+    <span>Instagram</span>
+  </a>
+</div>

@@ -72,6 +72,11 @@ Thumbs.db
 # Node deps (if used)
 node_modules/
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
 # Misc
 *.tmp
 *.partial
