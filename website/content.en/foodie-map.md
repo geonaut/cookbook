@@ -268,4 +268,4 @@ map_categories:
         website: ''
 ---
 
-{{< foodie_map_interface >}}
+{{< foodie-map-interface >}}
