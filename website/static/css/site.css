@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Site-level styles — foodie map & contact form
+   Site-level styles — foodie map
    Uses MD3 custom properties from the theme where possible.
    ========================================================================== */
 
@@ -7,19 +7,41 @@
 
 .foodie-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-large, 16px);
   overflow: hidden;
   background: var(--md-sys-color-surface);
   margin: 2rem 0;
+  height: min(600px, 75dvh);
 }
 
 .map-sidebar {
-  width: 100%;
+  width: 320px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  border-right: 1px solid var(--md-sys-color-outline-variant);
+  border-bottom: none;
+  overflow: hidden;
+}
+
+.map-main {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .foodie-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .map-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  }
 }
 
 .category-tabs {
@@ -54,7 +76,7 @@
 }
 
 .locations-list {
-  max-height: min(280px, 35dvh);
+  flex: 1;
   overflow-y: auto;
 }
 
@@ -115,73 +137,6 @@
 .map-main iframe {
   border: 0;
   width: 100%;
-  height: min(520px, 60dvh);
+  height: 100%;
   display: block;
-}
-
-/* --- Contact Form -------------------------------------------------------- */
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  max-width: 520px;
-  margin-top: 2rem;
-}
-
-.contact-form label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--md-sys-color-on-surface);
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--md-sys-color-outline);
-  border-radius: var(--md-sys-shape-corner-extra-small, 4px);
-  background: var(--md-sys-color-surface);
-  color: var(--md-sys-color-on-surface);
-  font-family: inherit;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  box-sizing: border-box;
-}
-
-.contact-form textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: var(--md-sys-color-primary);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--md-sys-color-primary) 20%, transparent);
-}
-
-.contact-form button[type="submit"] {
-  align-self: flex-start;
-  background: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-  border: none;
-  padding: 0.75rem 2rem;
-  border-radius: var(--md-sys-shape-corner-full, 9999px);
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  transition: opacity 0.2s, transform 0.1s;
-}
-
-.contact-form button[type="submit"]:hover {
-  opacity: 0.88;
-}
-
-.contact-form button[type="submit"]:active {
-  transform: translateY(1px);
 }

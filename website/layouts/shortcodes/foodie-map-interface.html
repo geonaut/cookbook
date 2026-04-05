@@ -1,57 +1,41 @@
-{{ $map_id := .Page.Params.map_id }} 
-{{ $categories := .Page.Params.map_categories }}
+{{- $map_id    := .Page.Params.map_id }}
+{{- $categories := .Page.Params.map_categories }}
+{{- $js := resources.Get "js/foodie-map.js" | minify | fingerprint }}
 
-<div class="foodie-container">
+<div class="foodie-container" data-map-id="{{ $map_id }}">
   <aside class="map-sidebar">
     <div class="category-tabs">
-      {{ range $categories }}
-      <button class="tab-btn" onclick="openCategory(event, '{{ .id }}')">
-        <span>{{ .name }}</span>
-      </button>
-      {{ end }}
+      {{- range $categories }}
+      <button class="tab-btn" data-cat-id="{{ .id }}">{{ .name }}</button>
+      {{- end }}
     </div>
 
     <div class="locations-list">
-      {{ range $categories }}
+      {{- range $categories }}
       <div id="{{ .id }}" class="tab-content">
-        {{ range .locations }}
-        <div class="location-card" onclick="zoomTo('{{ .lat }}', '{{ .lon }}')">
+        {{- range .locations }}
+        <div class="location-card" data-lat="{{ .lat }}" data-lon="{{ .lon }}">
           <div class="loc-info">
             <div class="loc-name-row">
               <strong>{{ .name }}</strong>
-             <small><a href="https://www.google.com/search?q={{ .name | urlquery }}+London" target="_blank">🔍</a></small>
+              <small><a href="https://www.google.com/search?q={{ .name | urlquery }}+London" target="_blank" rel="noopener">🔍</a></small>
             </div>
-            {{ if .comment }}<small>{{ .comment }}</small>{{ end }}
+            {{- if .comment }}<small>{{ .comment }}</small>{{- end }}
           </div>
-          <span class="zoom-icon">⌖</span>
+          <span class="zoom-icon" aria-hidden="true">⌖</span>
         </div>
-        {{ end }}
+        {{- end }}
       </div>
-      {{ end }}
+      {{- end }}
     </div>
   </aside>
 
   <main class="map-main">
-    <iframe id="main-foodie-map" src="https://www.google.com/maps/d/embed?mid={{ $map_id }}&ehbc=2E312F"></iframe>
+    <iframe id="main-foodie-map"
+      src="https://www.google.com/maps/d/embed?mid={{ $map_id }}&ehbc=2E312F"
+      loading="lazy"
+      title="Foodie Map"></iframe>
   </main>
 </div>
 
-<script>
-  function openCategory(evt, catId) {
-    document.querySelectorAll(".tab-content").forEach((x) => (x.style.display = "none"));
-    document.querySelectorAll(".tab-btn").forEach((x) => x.classList.remove("active"));
-    document.getElementById(catId).style.display = "block";
-    evt.currentTarget.classList.add("active");
-  }
-
-  function zoomTo(lat, lon) {
-    if (!lat || lat === "0") return;
-    const map = document.getElementById("main-foodie-map");
-    map.src = `https://www.google.com/maps/d/embed?mid={{ $map_id }}&ll=${lat}%2C${lon}&z=18`;
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const firstTab = document.querySelector(".tab-btn");
-    if (firstTab) firstTab.click();
-  });
-</script>
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
