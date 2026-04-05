@@ -1,0 +1,2 @@
+{{- $count := .Get "count" | default 2 -}}
+<div class="columns columns--{{ $count }} breakout">{{ .Inner }}</div>
