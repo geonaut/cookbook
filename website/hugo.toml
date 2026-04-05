@@ -93,7 +93,7 @@ title = "Geonaut's Cookbook"
 
 [[cascade]]
   layout = "fullwidth"
-  [cascade._target]
+  [cascade.target]
     path = "/foodie-map"
 
 [markup]
