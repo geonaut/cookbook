@@ -5,4 +5,4 @@ go 1.23
 
 require github.com/geonaut/hugo-cookbook-theme v0.0.0-20260404183057-98fa812110df // indirect
 
-replace github.com/geonaut/hugo-cookbook-theme => ../../hugo-cookbook-theme
+// replace github.com/geonaut/hugo-cookbook-theme => ../../hugo-cookbook-theme
