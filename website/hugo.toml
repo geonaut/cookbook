@@ -18,9 +18,10 @@ title = "Geonaut's Cookbook"
   homeEyebrow = "Welcome to"
   description = "A collection of recipes for delicious cooking."
 
-  instagram    = "https://www.instagram.com/placeholder"
-  githubRepo   = "https://github.com/geonaut/cookbook"
-  buildCommit  = ""  # set via HUGO_PARAMS_BUILDCOMMIT at deploy time
+  instagram         = "https://www.instagram.com/placeholder"
+  githubRepo        = "https://github.com/geonaut/cookbook"
+  buildCommit       = ""  # set via HUGO_PARAMS_BUILDCOMMIT at deploy time
+  googleAnalyticsID = "G-DB35ZGZPT1"
 
   [params.colors]
     primary = "#1b4332"

@@ -62,7 +62,7 @@ def generate_markdown(recipe: Dict[str, Any], chapter_name: str) -> str:
 
     # Gallery inside the grid (grid-area: gallery) — reads from .Params.gallery
     if img_data.get("gallery"):
-        lines.append("{{< gallery />}}")
+        lines.append("{{< gallery >}}")
 
     lines.append("{{< /recipe-grid >}}")
 
