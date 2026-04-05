@@ -23,9 +23,6 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Download Hugo modules
-        run: cd website && hugo mod download
-
       - name: Generate Recipes (TOML to Markdown & LaTeX)
         run: |
           python3 pdf/generate_tex.py
