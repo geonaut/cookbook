@@ -1,13 +1,39 @@
-title = "Shakshuka with feta"
+title = "Shakshuka with Feta"
 category = "Mains"
+blurb = "Eggs poached directly in a spiced tomato and pepper sauce, finished with creamy feta. Works for breakfast, lunch, or a quick weeknight dinner."
+tags = ["Middle Eastern", "Vegetarian", "Weeknight", "Eggs"]
+
 ingredients = [
-    "Beans",
-]
-instructions = [
-    "Make",
+    "6 eggs",
+    "100g feta, crumbled",
+    "2 x 400g tins chopped tomatoes",
+    "2 red peppers, deseeded and diced",
+    "1 onion, finely diced",
+    "4 cloves garlic, sliced",
+    "1 tsp cumin, ground",
+    "1 tsp smoked paprika",
+    "1/2 tsp cayenne",
+    "1 tsp sugar",
+    "Olive oil",
+    "Salt & black pepper",
+    "Fresh flatleaf parsley to finish",
 ]
 
-# Optional: hints and tips for the recipe
-hints = [
-    "Hint 1",
+instructions = [
+    "Heat olive oil in a wide, lidded frying pan over medium heat. Fry the onion and peppers for 8–10 minutes until soft.",
+    "Add the garlic, cumin, paprika, and cayenne. Stir for 1 minute.",
+    "Add the tomatoes and sugar. Season well. Simmer uncovered for 15 minutes, stirring occasionally, until the sauce thickens.",
+    "Make 6 wells in the sauce and crack an egg into each one. Scatter the feta over the sauce between the eggs.",
+    "Cover with a lid and cook on low heat for 6–8 minutes, until the whites are set but yolks are still runny.",
+    "Scatter with parsley and serve immediately, straight from the pan with flatbreads.",
 ]
+
+hints = [
+    "Watch the eggs carefully — they go from runny to overcooked quickly.",
+    "A pinch of cinnamon in the sauce adds a subtle warmth that works well.",
+    "Leftovers reheat poorly. Make only what you'll eat.",
+]
+
+[site]
+featured = true
+nav = true

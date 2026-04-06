@@ -1,16 +1,29 @@
-title = "Chimmichurri"
+title = "Chimichurri"
 category = "Sauces"
+blurb = "The Argentinian herb sauce that makes everything taste better. Essential with any grilled meat."
+tags = ["Argentinian", "Sauce", "Vegan", "Gluten-Free"]
+
 ingredients = [
-    "garlic",
-    "parsley",
-    "oregano",
-    "red wine vinegar",
-    "olive oil",
-    "salt",
-    "pepper"
+    "Large bunch flat-leaf parsley, leaves only",
+    "1 tbsp dried oregano",
+    "3 cloves garlic, minced",
+    "1 fresh red chilli, finely diced (or 1/2 tsp chilli flakes)",
+    "3 tbsp red wine vinegar",
+    "6 tbsp extra virgin olive oil",
+    "Salt & black pepper",
 ]
+
 instructions = [
-    "Chop all ingredients finely and mix together. Adjust seasoning to taste. Serve with grilled meats."
+    "Finely chop the parsley by hand — don't use a blender or food processor, it turns it into a paste.",
+    "Combine parsley, oregano, garlic, and chilli in a bowl.",
+    "Stir in the vinegar and olive oil. Season generously.",
+    "Leave to rest for at least 30 minutes before serving. The flavours improve significantly with time.",
+]
+
+hints = [
+    "This keeps in the fridge for up to a week. The colour fades but the flavour deepens.",
+    "Also works as a marinade — coat meat and leave overnight.",
+    "Use it as a sauce, not a condiment: be generous.",
 ]
 
 [site]

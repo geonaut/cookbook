@@ -1,13 +1,39 @@
 title = "Short Ribs with Spiced Gravy"
 category = "Mains"
+blurb = "Beef short ribs braised low and slow in a warming spiced gravy. A weekend project that rewards patience."
+tags = ["Beef", "Slow Cook", "Weekend", "Special Occasion"]
+
 ingredients = [
-    "Beans",
-]
-instructions = [
-    "Make",
+    "4 bone-in beef short ribs (about 300g each)",
+    "2 onions, roughly chopped",
+    "3 cloves garlic, whole",
+    "2 carrots, roughly chopped",
+    "400ml red wine",
+    "400ml beef stock",
+    "2 tbsp tomato paste",
+    "1 cinnamon stick",
+    "3 cloves",
+    "1 tsp allspice",
+    "2 bay leaves",
+    "Salt & black pepper",
+    "Neutral oil for browning",
 ]
 
-# Optional: hints and tips for the recipe
-hints = [
-    "Hint 1",
+instructions = [
+    "Season the short ribs well with salt and pepper. Brown all over in batches in a hot, oiled roasting tin or heavy pot. Remove and set aside.",
+    "Fry the onion, carrot, and garlic in the same pan for 5 minutes. Add the tomato paste and stir for 1 minute.",
+    "Add the wine and let it reduce by half. Add the stock, cinnamon, cloves, allspice, and bay leaves.",
+    "Return the short ribs to the pan. The liquid should come about two-thirds up the ribs.",
+    "Cover tightly with foil or a lid and cook at 160°C for 3–3.5 hours until the meat is tender and pulling away from the bone.",
+    "Remove the ribs and strain the cooking liquid into a saucepan. Reduce over high heat until glossy and sauce-like.",
+    "Return the ribs to the sauce to glaze before serving.",
 ]
+
+hints = [
+    "This benefits massively from being made a day ahead — skim the fat off the chilled sauce before reheating.",
+    "Serve with creamy mashed potato or soft polenta to catch the sauce.",
+    "Ask the butcher for English-cut ribs (short, thick sections) rather than flanken-cut.",
+]
+
+[pdf]
+template = "mini"

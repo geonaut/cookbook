@@ -1,16 +1,26 @@
-title = "Spicy vinagrette"
+title = "Spicy Vinaigrette"
 category = "Sauces"
+blurb = "A Brazilian-style molho vinagrete — more salsa than dressing. Goes with everything grilled."
+tags = ["Brazilian", "Sauce", "Vegan"]
+
 ingredients = [
-    "red wine vinegar",
-    "olive oil",
-    "garlic",
-    "fresh chilli",
-    "green pepper",
-    "fresh tomato",
-    "onion",
-    "salt",
-    "pepper"
+    "3 tbsp red wine vinegar",
+    "4 tbsp olive oil",
+    "1 clove garlic, very finely minced",
+    "1 fresh red chilli, finely diced",
+    "1/2 green pepper, very finely diced",
+    "1 ripe tomato, deseeded and finely diced",
+    "1/2 small onion, very finely diced",
+    "Salt & pepper to taste",
 ]
+
 instructions = [
-    "Combine all ingredients in a bowl and whisk until well mixed. Adjust seasoning to taste."
+    "Combine the vinegar, olive oil, and garlic in a bowl and whisk to emulsify.",
+    "Add the chilli, green pepper, tomato, and onion. Stir well.",
+    "Season generously. Leave to stand for at least 15 minutes before serving so the vegetables soften slightly.",
+]
+
+hints = [
+    "All the vegetables should be cut very finely — this is a sauce, not a salsa.",
+    "Makes ahead well; keeps in the fridge for 2 days.",
 ]

@@ -1,13 +1,32 @@
 title = "Puttanesca"
 category = "Mains"
+blurb = "Punchy, briny, and deeply savoury — this storecupboard pasta comes together in the time it takes to boil water. No fresh ingredients required."
+tags = ["Italian", "Pasta", "Weeknight", "Storecupboard"]
+
 ingredients = [
-    "Beans",
-]
-instructions = [
-    "Make",
+    "400g spaghetti or linguine",
+    "2 x 400g tins chopped tomatoes",
+    "6 anchovy fillets in oil",
+    "3 cloves garlic, thinly sliced",
+    "80g pitted black olives, roughly chopped",
+    "2 tbsp capers, drained",
+    "1/2 tsp dried chilli flakes",
+    "2 tbsp olive oil",
+    "Salt & black pepper",
+    "Fresh parsley (optional)",
 ]
 
-# Optional: hints and tips for the recipe
+instructions = [
+    "Cook the pasta in well-salted boiling water according to packet instructions. Reserve a cup of pasta water before draining.",
+    "While the pasta cooks, heat olive oil in a large pan over medium heat. Add the anchovies and stir until they dissolve into the oil.",
+    "Add the garlic and chilli flakes, cook for 1 minute. Add the tomatoes and a pinch of salt.",
+    "Simmer the sauce for 10 minutes. Stir in the olives and capers and cook for 2 more minutes.",
+    "Drain the pasta and toss directly in the sauce, adding a splash of pasta water to loosen if needed.",
+    "Season, finish with parsley if using, and serve immediately.",
+]
+
 hints = [
-    "Hint 1",
+    "Don't add extra salt until you've tasted — anchovies, olives and capers are all very salty.",
+    "The sauce can be made ahead and refrigerated for up to 3 days.",
+    "No anchovies? Double the capers and add a teaspoon of miso for depth.",
 ]

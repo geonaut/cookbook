@@ -1,16 +1,24 @@
 title = "Pol Sambol"
 category = "Sauces"
+blurb = "A Sri Lankan fresh coconut relish — spicy, tangy, and addictive. Served with nearly every meal in Sri Lanka."
+tags = ["Sri Lankan", "Sauce", "Vegan", "Gluten-Free"]
+
 ingredients = [
-    "shallots",
-    "grated fresh coconut",
-    "red chilli",
-    "lime juice",
-    "salt",
+    "100g freshly grated coconut (or desiccated, rehydrated)",
+    "2 shallots, finely sliced",
+    "2 fresh red chillies, roughly chopped",
+    "Juice of 1 lime",
+    "1/2 tsp salt",
 ]
+
 instructions = [
-    "Put all the ingredients into a pestle and mortar and pound until well combined. Adjust seasoning to taste. Serve as a condiment with rice and curry dishes."
+    "Put all the ingredients into a pestle and mortar and pound until well combined — the coconut should be slightly broken down but still have texture.",
+    "Taste and adjust: more lime for acidity, more chilli for heat, more salt if needed.",
+    "Serve as a condiment alongside rice and curry.",
 ]
+
 hints = [
-    "Fresh chilli is best, but dried/powdered chilli is fine.",
-    "Loosen with a little coconut water if needed."
+    "Fresh chilli is best, but dried/powdered chilli is fine — use 1/2 tsp.",
+    "Loosen with a little coconut water if it seems dry.",
+    "Desiccated coconut works but soak it in warm water for 10 minutes first and drain well.",
 ]

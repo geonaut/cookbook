@@ -1,13 +1,36 @@
 title = "Cod with Morcilla"
 category = "Mains"
+blurb = "Salt cod and blood sausage sounds like an unlikely pairing, but this is a deeply satisfying Portuguese-inspired dish — earthy, rich, and surprisingly quick to pull together."
+tags = ["Portuguese", "Fish", "Weeknight"]
+
 ingredients = [
-    "500g Cod",
-]
-instructions = [
-    "Scald: Bring milk, water, oil, and salt to a rolling boil. Pour immediately over the starch in a large bowl. Stir until a lumpy, sticky paste forms.",
+    "4 thick cod fillets (skin on)",
+    "150g morcilla (or black pudding), sliced 1cm thick",
+    "2 large potatoes, peeled and thinly sliced",
+    "1 red onion, finely sliced",
+    "3 cloves garlic, crushed",
+    "200ml dry white wine",
+    "1 tbsp smoked paprika",
+    "Handful flat-leaf parsley, roughly chopped",
+    "Olive oil",
+    "Salt & black pepper",
 ]
 
-# Optional: hints and tips for the recipe
-hints = [
-    "Texture Science: Scalding causes starch gelatinization (), creating the elastic matrix that traps steam for the rise.",
+instructions = [
+    "Parboil the potato slices for 5 minutes, drain and set aside.",
+    "Fry the morcilla slices in a little olive oil over medium-high heat until crisp. Remove and set aside.",
+    "In the same pan, soften the onion and garlic for 5 minutes. Add the paprika and stir for 30 seconds.",
+    "Add the potatoes to the pan and arrange evenly. Pour over the wine and season well.",
+    "Nestle the cod fillets skin-side up on top of the potatoes. Cover and cook on low-medium heat for 10–12 minutes until just cooked through.",
+    "Return the morcilla to the pan, scatter with parsley, and serve directly from the pan.",
 ]
+
+hints = [
+    "Don't overcook the cod — it should just flake apart. Check at 10 minutes.",
+    "Chouriço works as a substitute if morcilla is hard to find, though the flavour is quite different.",
+    "A simple green salad or crusty bread alongside is all this needs.",
+]
+
+[site]
+featured = true
+nav = true

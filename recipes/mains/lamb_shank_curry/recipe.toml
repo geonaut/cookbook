@@ -1,16 +1,43 @@
-title = "Lamb shank curry"
+title = "Lamb Shank Curry"
 category = "Mains"
+blurb = "Slow-braised lamb shanks in a deeply spiced South Asian-style gravy. The meat falls off the bone and the sauce is rich enough to eat with a spoon."
+tags = ["Indian", "Slow Cook", "Weekend"]
+
 ingredients = [
-    "Beans",
-]
-instructions = [
-    "Make",
+    "2 lamb shanks",
+    "2 onions, finely diced",
+    "4 cloves garlic, minced",
+    "2cm piece ginger, grated",
+    "400g tin chopped tomatoes",
+    "200ml lamb or chicken stock",
+    "2 tbsp neutral oil",
+    "1 tsp cumin seeds",
+    "1 tsp coriander, ground",
+    "1 tsp turmeric",
+    "1 tsp garam masala",
+    "1 tsp kashmiri chilli powder",
+    "Salt to taste",
+    "Fresh coriander and sliced green chilli to finish",
 ]
 
-# Optional: hints and tips for the recipe
+instructions = [
+    "Season the lamb shanks generously with salt. Brown all over in oil in a heavy-bottomed pot over high heat. Remove and set aside.",
+    "In the same pot, fry the cumin seeds for 30 seconds, then add the onions. Cook on medium heat for 15–20 minutes until deeply golden.",
+    "Add the garlic and ginger, cook for 2 minutes. Add all the ground spices and stir for 1 minute.",
+    "Add the tomatoes and cook down for 5 minutes until the oil separates from the masala.",
+    "Return the lamb shanks to the pot. Add the stock — it should come about halfway up the shanks. Bring to a simmer.",
+    "Cover and cook on the lowest heat for 2–2.5 hours, turning the shanks halfway, until the meat is completely tender and falling off the bone.",
+    "Uncover and reduce the gravy for 10 minutes if it needs thickening. Finish with garam masala, fresh coriander and green chilli.",
+]
+
 hints = [
-    "Hint 1",
+    "The long, slow cook is non-negotiable — lamb shanks need time to become truly tender.",
+    "This is even better the next day once the flavours have developed.",
+    "Serve with rice or naan and a cooling raita.",
 ]
 
 [site]
 nav = true
+
+[pdf]
+columns = 2

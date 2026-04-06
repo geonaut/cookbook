@@ -1,13 +1,27 @@
-title = "Midweek grilled chicken"
+title = "Midweek Grilled Chicken"
 category = "Mains"
+blurb = "A quick weeknight marinade that keeps chicken thighs juicy under the grill. Work in progress — marinade ratios still being tweaked."
+tags = ["Chicken", "Weeknight", "Grilled"]
+
+dev = true
+
 ingredients = [
-    "Beans",
-]
-instructions = [
-    "Make",
+    "8 bone-in, skin-on chicken thighs",
+    "4 tbsp olive oil",
+    "2 tbsp lemon juice",
+    "4 cloves garlic, minced",
+    "1 tsp smoked paprika",
+    "1 tsp dried oregano",
+    "Salt & black pepper",
 ]
 
-# Optional: hints and tips for the recipe
+instructions = [
+    "Combine olive oil, lemon juice, garlic, paprika, oregano, salt and pepper in a bowl.",
+    "Score the chicken thighs and coat in the marinade. Leave for at least 30 minutes, or overnight in the fridge.",
+    "Cook under a hot grill for 20–25 minutes, turning halfway, until skin is charred and juices run clear.",
+]
+
 hints = [
-    "Hint 1",
+    "Still testing: trying a yoghurt-based marinade as an alternative.",
+    "The scoring is important — it helps the marinade penetrate and the skin crisp up.",
 ]

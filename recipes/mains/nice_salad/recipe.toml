@@ -1,13 +1,34 @@
-title = "Salad du Nice"
+title = "Salade Niçoise"
 category = "Mains"
+blurb = "The definitive composed salad. Tuna, eggs, olives, and green beans on a bed of dressed leaves — substantial enough to be a main course."
+tags = ["French", "Salad", "Fish", "Summer"]
+
 ingredients = [
-    "Beans",
-]
-instructions = [
-    "Make",
+    "2 x 160g tins tuna in olive oil, drained",
+    "4 eggs",
+    "200g fine green beans, trimmed",
+    "200g cherry tomatoes, halved",
+    "100g pitted Niçoise olives",
+    "4 anchovy fillets",
+    "1/2 red onion, very finely sliced",
+    "Mixed salad leaves",
+    "3 tbsp extra virgin olive oil",
+    "1 tbsp red wine vinegar",
+    "1 tsp Dijon mustard",
+    "Salt & black pepper",
 ]
 
-# Optional: hints and tips for the recipe
+instructions = [
+    "Boil the eggs for 7 minutes, then plunge into cold water. Peel and halve.",
+    "Blanch the green beans in salted boiling water for 3 minutes. Drain and refresh in cold water.",
+    "Make the dressing: whisk together the olive oil, vinegar, and mustard. Season well.",
+    "Arrange the salad leaves on a large platter. Dress lightly.",
+    "Arrange the tuna, eggs, beans, tomatoes, and olives on top. Scatter over the red onion and anchovies.",
+    "Drizzle the remaining dressing over everything and serve immediately.",
+]
+
 hints = [
-    "Hint 1",
+    "Don't toss — a Niçoise is a composed salad. Everything should be arranged, not mixed.",
+    "Use tuna in olive oil, not brine. The quality of the tuna matters here.",
+    "The dressing also works as a general-purpose vinaigrette.",
 ]
