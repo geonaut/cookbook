@@ -33,3 +33,4 @@ hints = [
 
 [pdf]
 layout = "half"
+columns = 2

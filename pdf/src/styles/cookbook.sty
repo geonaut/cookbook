@@ -9,16 +9,14 @@
 \RequirePackage{enumitem}
 \RequirePackage{geometry}
 \RequirePackage{multicol}
-\RequirePackage{tikz}
 \RequirePackage{xifthen}
 
 \geometry{top=2cm, bottom=2cm, left=2.5cm, right=2.5cm}
-\setstretch{1.2}
+\setstretch{1.1}
 
 \setmainfont{XCharter}
 
 % ── Page layout dimensions ───────────────────────────────────────────────────
-% Defined after geometry is applied. These fractions leave room for rules/gaps.
 \newlength{\fullpageheight}
 \newlength{\halfpageheight}
 \newlength{\thirdpageheight}
@@ -30,14 +28,31 @@
 }
 
 % ── Typography ───────────────────────────────────────────────────────────────
-\setlist{noitemsep, topsep=2pt, parsep=0pt, partopsep=0pt}
-\setlength{\columnsep}{1cm}
+\setlength{\columnsep}{0.8cm}
+\setlength{\parskip}{0pt}
 
+% Section = recipe title (full / double layouts)
 \titleformat{\section}
-  {\normalfont\Large\scshape}{\thesection}{1em}{}
+  {\normalfont\large\scshape}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{4pt}{3pt}
 
+% Subsection = Ingredients / Instructions / Hints & Tips
 \titleformat{\subsection}
-  {\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+  {\normalfont\small\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{4pt}{1pt}
+
+% Lists — tight throughout
+\setlist{noitemsep, topsep=1pt, parsep=0pt, partopsep=0pt}
+
+% ── Ingredient list ──────────────────────────────────────────────────────────
+\newlist{ingredients}{itemize}{1}
+\setlist[ingredients]{
+  label=\textbullet,
+  nosep,
+  topsep=1pt,
+  leftmargin=1.5em,
+  font=\small
+}
 
 % ── Header / footer ──────────────────────────────────────────────────────────
 \pagestyle{fancy}
@@ -48,15 +63,6 @@
 \setlength{\headheight}{15pt}
 \addtolength{\topmargin}{-3pt}
 
-% ── Ingredient list ──────────────────────────────────────────────────────────
-\newlist{ingredients}{itemize}{1}
-\setlist[ingredients]{
-  label=\textbullet,
-  nosep,
-  leftmargin=1.5em,
-  font=\small
-}
-
 % ── Recipe separator (between sub-page recipes sharing a page) ────────────────
 \newcommand{\recipesep}{%
   \par\vspace{3mm}%
@@ -64,53 +70,56 @@
   \vspace{3mm}\par\noindent%
 }
 
-% ── Chapter break: full-bleed image page + title page ────────────────────────
+% ── Chapter break: image page + title page ───────────────────────────────────
 % #1 = chapter name   #2 = image path   #3 = caption (may be empty)
 \newcommand{\chapterbreak}[3]{%
+  % Image page — full page within margins
   \clearpage
   \thispagestyle{empty}%
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[inner sep=0pt] at (current page.center) {%
-      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{#2}%
-    };
-    \ifthenelse{\equal{#3}{}}{}{%
-      \node[anchor=south east,inner sep=14pt,fill=black!55,text=white,
-            font=\small\itshape,rounded corners=2pt]
-        at (current page.south east) {\strut #3};
-    }
-  \end{tikzpicture}%
+  \noindent\includegraphics[%
+    width=\textwidth,%
+    height=0.93\textheight,%
+    keepaspectratio=false]{#2}%
+  \ifthenelse{\equal{#3}{}}{}{%
+    \par\vspace{4mm}%
+    \noindent\small\itshape #3%
+  }%
   \clearpage
   % Chapter title page
   \thispagestyle{empty}%
-  \vspace*{\fill}
-  {\centering\fontsize{40}{50}\selectfont\scshape #1\par}
-  \vspace*{\fill}
+  \vspace*{\fill}%
+  {\centering\fontsize{36}{46}\selectfont\scshape #1\par}%
+  \vspace*{\fill}%
   \clearpage
   \pagestyle{fancy}%
-  % Register chapter name for running headers
   \markboth{#1}{#1}%
 }
 
-% Fallback chapter break (no image)
+% Fallback: chapter title only (no image)
 \newcommand{\chapterbreakplain}[1]{%
-  \chapter{#1}%
+  \clearpage
+  \thispagestyle{empty}%
+  \vspace*{\fill}%
+  {\centering\fontsize{36}{46}\selectfont\scshape #1\par}%
+  \vspace*{\fill}%
+  \clearpage
+  \pagestyle{fancy}%
+  \markboth{#1}{#1}%
 }
 
-% ── Image pages ──────────────────────────────────────────────────────────────
-% Full-bleed image page.  #1 = image path   #2 = caption (may be empty)
+% ── Image pages — full page within margins ───────────────────────────────────
+% Full single image.  #1 = image path   #2 = caption (may be empty)
 \newcommand{\imagepagefull}[2]{%
   \clearpage
   \thispagestyle{empty}%
-  \begin{tikzpicture}[remember picture,overlay]
-    \node[inner sep=0pt] at (current page.center) {%
-      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{#1}%
-    };
-    \ifthenelse{\equal{#2}{}}{}{%
-      \node[anchor=south east,inner sep=14pt,fill=black!55,text=white,
-            font=\small\itshape,rounded corners=2pt]
-        at (current page.south east) {\strut #2};
-    }
-  \end{tikzpicture}%
+  \noindent\includegraphics[%
+    width=\textwidth,%
+    height=0.93\textheight,%
+    keepaspectratio=false]{#1}%
+  \ifthenelse{\equal{#2}{}}{}{%
+    \par\vspace{4mm}%
+    \noindent\small\itshape #2%
+  }%
   \clearpage
 }
 
@@ -118,13 +127,22 @@
 \newcommand{\imagepagesplit}[4]{%
   \clearpage
   \thispagestyle{empty}%
-  \vspace*{0pt}%
-  \noindent\includegraphics[width=\textwidth,height=0.475\textheight,
-    keepaspectratio=false,clip]{#1}\par
-  \ifthenelse{\equal{#2}{}}{}{\noindent\small\itshape #2\par}
+  \noindent\includegraphics[%
+    width=\textwidth,%
+    height=0.46\textheight,%
+    keepaspectratio=false]{#1}%
+  \ifthenelse{\equal{#2}{}}{}{%
+    \par\vspace{2mm}%
+    \noindent\small\itshape #2\par%
+  }%
   \vspace{4mm}%
-  \noindent\includegraphics[width=\textwidth,height=0.475\textheight,
-    keepaspectratio=false,clip]{#3}\par
-  \ifthenelse{\equal{#4}{}}{}{\noindent\small\itshape #4\par}
+  \noindent\includegraphics[%
+    width=\textwidth,%
+    height=0.46\textheight,%
+    keepaspectratio=false]{#3}%
+  \ifthenelse{\equal{#4}{}}{}{%
+    \par\vspace{2mm}%
+    \noindent\small\itshape #4%
+  }%
   \clearpage
 }

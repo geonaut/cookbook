@@ -38,3 +38,6 @@ banner = "banner.jpg"
 [site]
 featured = true
 nav = true
+
+[pdf]
+columns = 2
