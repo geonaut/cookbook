@@ -19,5 +19,9 @@ hints = [
     "Serve with chilli sauce.",
 ]
 
+[images]
+thumbnail = "thumbnail.jpg"
+banner = "banner.jpg"
+
 [site]
 nav = true

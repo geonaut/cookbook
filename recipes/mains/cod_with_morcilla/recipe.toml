@@ -31,6 +31,10 @@ hints = [
     "A simple green salad or crusty bread alongside is all this needs.",
 ]
 
+[images]
+thumbnail = "thumbnail.jpg"
+banner = "banner.jpg"
+
 [site]
 featured = true
 nav = true

@@ -34,6 +34,10 @@ hints = [
     "Leftovers reheat poorly. Make only what you'll eat.",
 ]
 
+[images]
+thumbnail = "thumbnail.jpg"
+banner = "banner.jpg"
+
 [site]
 featured = true
 nav = true

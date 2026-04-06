@@ -36,6 +36,10 @@ hints = [
     "Serve with rice or naan and a cooling raita.",
 ]
 
+[images]
+thumbnail = "thumbnail.jpg"
+banner = "banner.jpg"
+
 [site]
 nav = true
 

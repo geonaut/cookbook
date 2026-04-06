@@ -18,3 +18,7 @@ instructions = [
 hints = [
     "Buy the pineapple in advance, to make sure it's ripe.",
 ]
+
+[images]
+thumbnail = "thumbnail.jpg"
+banner = "banner.jpg"
