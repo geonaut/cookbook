@@ -34,3 +34,6 @@ thumbnail = "thumbnail.jpg"
 banner = "banner.jpg"
 gallery = ["gallery_1.jpg", "gallery_2.jpg", "gallery_3.jpg", "gallery_4.jpg"]
 
+
+[pdf]
+columns = 2

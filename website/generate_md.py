@@ -1,48 +1,107 @@
 #!/usr/bin/env python3
+"""
+generate_md.py — compile recipe TOMLs into Hugo markdown content.
+
+Discovery-based: every recipe in recipes/ is included unless it has dev = true.
+Group order and recipe render order are defined in recipes/recipe_groups.toml.
+
+Usage:
+    python3 generate_md.py          # production — skips dev recipes
+    python3 generate_md.py --dev    # includes dev recipes
+"""
 import tomllib
 import os
 import shutil
 import json
 import datetime
-from typing import Dict, Any, Optional
+import argparse
+from typing import Dict, Any, List, Tuple
 
 # --- Paths ---
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.dirname(SCRIPT_DIR)
-RECIPE_DIR = os.path.join(ROOT_DIR, "recipes")
-HUGO_CONFIG_PATH = os.path.join(SCRIPT_DIR, "hugo_config.toml")
+SCRIPT_DIR      = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR        = os.path.dirname(SCRIPT_DIR)
+RECIPE_DIR      = os.path.join(ROOT_DIR, "recipes")
+GROUPS_PATH     = os.path.join(RECIPE_DIR, "recipe_groups.toml")
 HUGO_CONTENT_DIR = os.path.join(SCRIPT_DIR, "content.en", "recipes")
 
-def generate_markdown(recipe: Dict[str, Any], chapter_name: str) -> str:
+
+def group_folder(group_name: str) -> str:
+    return group_name.lower().replace(" ", "_")
+
+
+def load_groups() -> List[Dict]:
+    with open(GROUPS_PATH, "rb") as f:
+        return tomllib.load(f)["groups"]
+
+
+def ordered_recipes(group: Dict, include_dev: bool) -> List[Tuple[str, Dict]]:
+    """
+    Return (recipe_id, recipe_data) pairs in render order:
+      1. Recipes explicitly listed in recipe_groups.toml, in that order.
+      2. Any unlisted recipes in the folder, appended alphabetically.
+    Dev recipes are filtered out unless include_dev is True.
+    """
+    folder = group_folder(group["name"])
+    group_dir = os.path.join(RECIPE_DIR, folder)
+    explicit = group.get("recipes", [])
+
+    # Discover all recipe folders in this group directory
+    discovered = set()
+    if os.path.isdir(group_dir):
+        for entry in os.scandir(group_dir):
+            if entry.is_dir() and os.path.isfile(os.path.join(entry.path, "recipe.toml")):
+                discovered.add(entry.name)
+
+    # Warn about recipes listed in groups file but missing from disk
+    for recipe_id in explicit:
+        if recipe_id not in discovered:
+            print(f"⚠️  '{recipe_id}' listed in recipe_groups.toml but not found in recipes/{folder}/")
+
+    # Build ordered list: explicit first, then unlisted alphabetically
+    ordered = [r for r in explicit if r in discovered]
+    ordered += sorted(r for r in discovered if r not in explicit)
+
+    result = []
+    for recipe_id in ordered:
+        recipe_path = os.path.join(group_dir, recipe_id, "recipe.toml")
+        with open(recipe_path, "rb") as f:
+            recipe_data = tomllib.load(f)
+        if recipe_data.get("dev", False) and not include_dev:
+            continue
+        result.append((recipe_id, recipe_data))
+
+    return result
+
+
+def generate_markdown(recipe: Dict[str, Any], group_name: str) -> str:
     lines = ["---"]
     lines.append(f'title: "{recipe.get("title", "Untitled")}"')
     lines.append(f'date: {datetime.date.today().isoformat()}')
 
     blurb = recipe.get("blurb", "")
     if blurb:
-        # Escape any quotes in the blurb for YAML safety
-        lines.append(f'description: "{blurb}"')
+        safe_blurb = blurb.replace('"', '\\"')
+        lines.append(f'description: "{safe_blurb}"')
 
-    # categories: prefer recipe-level category, fall back to chapter name
-    category = recipe.get("category", chapter_name)
+    category = recipe.get("category", group_name)
     lines.append(f'categories: ["{category}"]')
-
     lines.append(f'tags: {json.dumps(recipe.get("tags", []))}')
 
     img_data = recipe.get("images", {})
     lines.append(f'banner: "{img_data.get("banner", "")}"')
     if img_data.get("thumbnail"):
-        lines.append(f'thumbnail: "{img_data.get("thumbnail")}"')
+        lines.append(f'thumbnail: "{img_data["thumbnail"]}"')
     if img_data.get("gallery"):
-        lines.append(f'gallery: {json.dumps(img_data.get("gallery"))}')
+        lines.append(f'gallery: {json.dumps(img_data["gallery"])}')
+
+    if recipe.get("featured"):
+        lines.append("featured: true")
 
     lines.append("---")
 
-    # Italic blurb intro
     if blurb:
         lines.append(f"\n_{blurb}_\n")
 
-    # Recipe grid shortcode
     lines.append("{{< recipe-grid >}}")
     lines.append("{{< instructions >}}")
     for idx, step in enumerate(recipe.get("instructions", []), 1):
@@ -53,14 +112,13 @@ def generate_markdown(recipe: Dict[str, Any], chapter_name: str) -> str:
     for ing in recipe.get("ingredients", []):
         lines.append(f"- {ing}")
     lines.append("{{< /ingredients >}}")
-    # Hints inside the grid (grid-area: hints)
+
     if recipe.get("hints"):
         lines.append("{{< hints >}}")
         for hint in recipe.get("hints", []):
             lines.append(f"- {hint}")
         lines.append("{{< /hints >}}")
 
-    # Gallery inside the grid (grid-area: gallery) — reads from .Params.gallery
     if img_data.get("gallery"):
         lines.append("{{< gallery >}}")
 
@@ -68,62 +126,63 @@ def generate_markdown(recipe: Dict[str, Any], chapter_name: str) -> str:
 
     return "\n".join(lines)
 
-def generate_md():
-    if not os.path.exists(HUGO_CONFIG_PATH):
-        print(f"❌ Error: {HUGO_CONFIG_PATH} not found.")
+
+def generate_md(include_dev: bool = False):
+    if not os.path.exists(GROUPS_PATH):
+        print(f"❌ recipe_groups.toml not found at {GROUPS_PATH}")
         return
 
-    with open(HUGO_CONFIG_PATH, "rb") as f:
-        config = tomllib.load(f)
+    groups = load_groups()
 
-    # Clean output directory for a fresh generation
+    # Fresh output directory
     if os.path.exists(HUGO_CONTENT_DIR):
         shutil.rmtree(HUGO_CONTENT_DIR)
     os.makedirs(HUGO_CONTENT_DIR)
 
-    for chapter in config.get("chapters", []):
-        chapter_name = chapter["name"]
-        chapter_folder = chapter_name.lower().replace(" ", "_")
+    # Top-level _index.md — cascade print output to all recipe pages
+    with open(os.path.join(HUGO_CONTENT_DIR, "_index.md"), "w") as f:
+        f.write('---\ntitle: "Recipes"\ncascade:\n  outputs:\n    - HTML\n    - print\n---\n')
 
-        for recipe_id in chapter.get("recipes", []):
-            recipe_path = os.path.join(RECIPE_DIR, chapter_folder, recipe_id, "recipe.toml")
+    for group in groups:
+        group_name = group["name"]
+        folder = group_folder(group_name)
 
-            if not os.path.exists(recipe_path):
-                print(f"⚠️  Skipping: {recipe_id} (not found at {recipe_path})")
-                continue
+        recipes = ordered_recipes(group, include_dev)
 
-            with open(recipe_path, "rb") as f:
-                recipe_data = tomllib.load(f)
+        # Always write the section _index.md
+        section_dir = os.path.join(HUGO_CONTENT_DIR, folder)
+        os.makedirs(section_dir, exist_ok=True)
+        with open(os.path.join(section_dir, "_index.md"), "w") as f:
+            f.write(f'---\ntitle: "{group_name}"\n---\n')
 
-            recipe_bundle_dir = os.path.join(HUGO_CONTENT_DIR, chapter_folder, recipe_id)
+        for recipe_id, recipe_data in recipes:
+            recipe_bundle_dir = os.path.join(section_dir, recipe_id)
             os.makedirs(recipe_bundle_dir, exist_ok=True)
 
-            md_content = generate_markdown(recipe_data, chapter_name)
+            md_content = generate_markdown(recipe_data, group_name)
             with open(os.path.join(recipe_bundle_dir, "index.md"), "w", encoding="utf-8") as f:
                 f.write(md_content)
 
-            # Copy associated images
-            img_section = recipe_data.get("images", {})
-            images_to_copy = [img_section.get("thumbnail"), img_section.get("banner")]
-            images_to_copy.extend(img_section.get("gallery", []))
-
-            for img_name in set(filter(None, images_to_copy)):
-                src = os.path.join(RECIPE_DIR, chapter_folder, recipe_id, img_name)
+            # Copy images
+            img_data = recipe_data.get("images", {})
+            images = [img_data.get("thumbnail"), img_data.get("banner")]
+            images += img_data.get("gallery", [])
+            for img_name in set(filter(None, images)):
+                src = os.path.join(RECIPE_DIR, folder, recipe_id, img_name)
                 dst = os.path.join(recipe_bundle_dir, img_name)
                 if os.path.exists(src):
                     shutil.copy2(src, dst)
                 else:
                     print(f"⚠️  Image not found: {src}")
 
-        # Write section _index.md if it doesn't already exist
-        section_dir = os.path.join(HUGO_CONTENT_DIR, chapter_folder)
-        os.makedirs(section_dir, exist_ok=True)
-        index_path = os.path.join(section_dir, "_index.md")
-        if not os.path.exists(index_path):
-            with open(index_path, "w", encoding="utf-8") as f:
-                f.write(f"---\ntitle: \"{chapter_name}\"\n---\n")
+        label = " [DEV]" if include_dev else ""
+        print(f"  {group_name}: {len(recipes)} recipe(s){label}")
 
     print("✅ All recipes compiled successfully!")
 
+
 if __name__ == "__main__":
-    generate_md()
+    parser = argparse.ArgumentParser(description="Compile recipe TOMLs to Hugo markdown.")
+    parser.add_argument("--dev", action="store_true", help="Include dev recipes.")
+    args = parser.parse_args()
+    generate_md(include_dev=args.dev)

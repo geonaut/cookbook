@@ -1,0 +1,37 @@
+# Recipe groups — single source of truth for both the website and PDF.
+#
+# groups:           defines chapter order (PDF) and section/filter structure (website)
+# recipes:          defines render order within the group — explicit entries first,
+#                   any recipe in the folder not listed here auto-appends alphabetically
+# groups.pdf:
+#   template:       "standard" (default) or "mini" — PDF layout for this group
+#
+# Per-recipe overrides live in each recipe.toml under [pdf].
+# Mark a recipe as dev = true in its recipe.toml to hide it from all outputs.
+# Pass --dev to either script to include dev recipes.
+
+[[groups]]
+name = "Sauces"
+recipes = ["chimmichurri", "spicy_vinagrette", "pol_sambol"]
+[groups.pdf]
+template = "mini"
+
+[[groups]]
+name = "Starters"
+recipes = ["pao_de_queijo", "jolloff_rice", "caldo_verde", "feijao"]
+
+[[groups]]
+name = "Mains"
+recipes = [
+    "cod_with_morcilla",
+    "lamb_shank_curry",
+    "midweek_grilled_chicken copy",
+    "spiced_short_ribs",
+    "puttanesca",
+    "nice_salad",
+    "shakshuka_with_feta",
+]
+
+[[groups]]
+name = "Special Occaisions"
+recipes = ["christmas_gammon"]

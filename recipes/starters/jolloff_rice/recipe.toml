@@ -29,3 +29,6 @@ hints = [
     "Excess sauce base can be served on the side.",
     "Add oil or butter towards the end of cooking, to prevent the rice becoming dry",
 ]
+[pdf]
+columns = 2
+show_image = false
