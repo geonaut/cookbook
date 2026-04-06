@@ -18,3 +18,6 @@ hints = [
     "The key is to get the number of potatoes right so the soup is thickened but not too heavy.",
     "Serve with chilli sauce.",
 ]
+
+[site]
+nav = true

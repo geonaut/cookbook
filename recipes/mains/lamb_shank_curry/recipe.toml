@@ -11,3 +11,6 @@ instructions = [
 hints = [
     "Hint 1",
 ]
+
+[site]
+nav = true

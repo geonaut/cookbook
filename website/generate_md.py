@@ -94,8 +94,11 @@ def generate_markdown(recipe: Dict[str, Any], group_name: str) -> str:
     if img_data.get("gallery"):
         lines.append(f'gallery: {json.dumps(img_data["gallery"])}')
 
-    if recipe.get("featured"):
+    site_cfg = recipe.get("site", {})
+    if site_cfg.get("featured") or recipe.get("featured"):  # support legacy top-level key
         lines.append("featured: true")
+    if site_cfg.get("nav"):
+        lines.append("nav: true")
 
     lines.append("---")
 

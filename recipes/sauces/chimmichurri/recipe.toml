@@ -12,3 +12,6 @@ ingredients = [
 instructions = [
     "Chop all ingredients finely and mix together. Adjust seasoning to taste. Serve with grilled meats."
 ]
+
+[site]
+nav = true

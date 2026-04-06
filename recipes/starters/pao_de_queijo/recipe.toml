@@ -35,5 +35,9 @@ banner = "banner.jpg"
 gallery = ["gallery_1.jpg", "gallery_2.jpg", "gallery_3.jpg", "gallery_4.jpg"]
 
 
+[site]
+featured = true
+nav = true
+
 [pdf]
 columns = 2
