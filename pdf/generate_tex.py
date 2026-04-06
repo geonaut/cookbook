@@ -23,7 +23,8 @@ ROOT_DIR          = os.path.dirname(SCRIPT_DIR)
 RECIPE_DIR        = os.path.join(ROOT_DIR, "recipes")
 GROUPS_PATH       = os.path.join(RECIPE_DIR, "recipe_groups.toml")
 LATEX_OUTPUT_DIR  = os.path.join(SCRIPT_DIR, "src", "chapters")
-FULL_COOKBOOK_PATH = os.path.join(SCRIPT_DIR, "src", "full_cookbook.tex")
+FULL_COOKBOOK_PATH     = os.path.join(SCRIPT_DIR, "src", "full_cookbook.tex")
+FULL_COOKBOOK_DEV_PATH = os.path.join(SCRIPT_DIR, "src", "full_cookbook_dev.tex")
 
 
 # --- Utilities ---
@@ -218,6 +219,7 @@ def generate_tex(include_dev: bool = False):
         print(f"❌ recipe_groups.toml not found at {GROUPS_PATH}")
         return
 
+    output_path = FULL_COOKBOOK_DEV_PATH if include_dev else FULL_COOKBOOK_PATH
     os.makedirs(LATEX_OUTPUT_DIR, exist_ok=True)
     groups = load_groups()
 
@@ -256,10 +258,10 @@ def generate_tex(include_dev: bool = False):
         label = " [DEV]" if include_dev else ""
         print(f"  {group_name}: {len(recipes)} recipe(s){label}")
 
-    with open(FULL_COOKBOOK_PATH, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(full_cookbook_lines))
 
-    print(f"✅ Full cookbook generated at {FULL_COOKBOOK_PATH}")
+    print(f"✅ Full cookbook generated at {output_path}")
 
 
 if __name__ == "__main__":
