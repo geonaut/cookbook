@@ -32,3 +32,6 @@ hints = [
     "Use tuna in olive oil, not brine. The quality of the tuna matters here.",
     "The dressing also works as a general-purpose vinaigrette.",
 ]
+
+[pdf]
+layout = "half"

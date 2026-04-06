@@ -36,4 +36,4 @@ hints = [
 ]
 
 [pdf]
-template = "mini"
+layout = "half"

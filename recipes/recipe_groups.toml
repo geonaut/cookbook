@@ -1,10 +1,24 @@
 # Recipe groups — single source of truth for both the website and PDF.
 #
 # groups:           defines chapter order (PDF) and section/filter structure (website)
-# recipes:          defines render order within the group — explicit entries first,
+# recipes:          defines render order — explicit entries first,
 #                   any recipe in the folder not listed here auto-appends alphabetically
-# groups.pdf:
-#   template:       "standard" (default) or "mini" — PDF layout for this group
+#
+# Chapter breaks (PDF only):
+#   chapter_image:         path relative to repo root — full-bleed verso image
+#   chapter_image_caption: optional caption overlay
+#
+# Group PDF defaults (overridable per-recipe in recipe.toml [pdf]):
+# [groups.pdf]
+#   layout: "full" | "double" | "half" | "half-image" | "third"
+#
+# Image pages (PDF only) — [[groups.image_pages]]:
+#   after:    "__start__" | recipe_id | "__end__"
+#   type:     "full" | "split"
+#   image:    path relative to repo root        (full only)
+#   images:   [top_path, bottom_path]           (split only)
+#   caption:  string                            (full only; may be "")
+#   captions: [top_caption, bottom_caption]     (split only)
 #
 # Per-recipe overrides live in each recipe.toml under [pdf].
 # Mark a recipe as dev = true in its recipe.toml to hide it from all outputs.
@@ -13,12 +27,23 @@
 [[groups]]
 name = "Sauces"
 recipes = ["chimmichurri", "spicy_vinagrette", "pol_sambol"]
+chapter_image = "recipes/starters/pao_de_queijo/banner.jpg"
+chapter_image_caption = ""
+
 [groups.pdf]
-template = "mini"
+layout = "third"
 
 [[groups]]
 name = "Starters"
 recipes = ["pao_de_queijo", "jolloff_rice", "caldo_verde", "feijao"]
+chapter_image = "recipes/starters/pao_de_queijo/banner.jpg"
+chapter_image_caption = "Pão de Queijo, fresh from the oven"
+
+[[groups.image_pages]]
+after = "pao_de_queijo"
+type = "split"
+images = ["recipes/starters/pao_de_queijo/gallery_1.jpg", "recipes/starters/pao_de_queijo/gallery_2.jpg"]
+captions = ["The dough, just after scalding", "Ready to roll"]
 
 [[groups]]
 name = "Mains"
@@ -31,7 +56,11 @@ recipes = [
     "nice_salad",
     "shakshuka_with_feta",
 ]
+chapter_image = "recipes/mains/cod_with_morcilla/banner.jpg"
+chapter_image_caption = ""
 
 [[groups]]
 name = "Special Occaisions"
 recipes = ["christmas_gammon"]
+chapter_image = "recipes/special_occaisions/christmas_gammon/banner.jpg"
+chapter_image_caption = ""

@@ -1,14 +1,11 @@
 % !TEX program = xelatex
-% !BIB program = biber
 
 \documentclass[a4paper,11pt,openany]{book}
-\usepackage{graphicx}
-% \usepackage{tocloft}
 \usepackage{styles/cookbook}
-\usepackage{tikz}
-\usepackage{multicol}
 
-\graphicspath{{./}}
+% Resolve images relative to both this file's dir (pdf/src)
+% and the repo root (../../ from pdf/src)
+\graphicspath{{./}{../../}}
 
 \begin{document}
 \setcounter{secnumdepth}{-1}

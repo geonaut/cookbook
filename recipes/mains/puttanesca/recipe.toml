@@ -30,3 +30,6 @@ hints = [
     "The sauce can be made ahead and refrigerated for up to 3 days.",
     "No anchovies? Double the capers and add a teaspoon of miso for depth.",
 ]
+
+[pdf]
+layout = "half"

@@ -40,4 +40,5 @@ featured = true
 nav = true
 
 [pdf]
+layout = "half-image"
 columns = 2

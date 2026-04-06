@@ -4,8 +4,19 @@ generate_tex.py — compile recipe TOMLs into LaTeX for PDF generation.
 
 Discovery-based: every recipe in recipes/ is included unless it has dev = true.
 Group order and recipe render order are defined in recipes/recipe_groups.toml.
-Per-recipe PDF config (template, columns, show_image) lives in each recipe.toml
-under [pdf]. Group-level defaults live in recipe_groups.toml under [groups.pdf].
+
+Layout system (set per-recipe in recipe.toml [pdf], default from [groups.pdf]):
+  layout = "full"        — 1 page per recipe (default)
+  layout = "double"      — 2 pages per recipe
+  layout = "half"        — ½ page; two recipes packed per page
+  layout = "half-image"  — recipe top half + recipe image bottom half = 1 page
+  layout = "third"       — ⅓ page; three recipes packed per page
+
+Image pages (declared in recipe_groups.toml [[groups.image_pages]]):
+  type = "full"   — full-bleed image with caption
+  type = "split"  — top + bottom images with captions
+
+Chapter breaks use chapter_image + chapter_image_caption from recipe_groups.toml.
 
 Usage:
     python3 generate_tex.py          # production — skips dev recipes
@@ -15,16 +26,31 @@ import tomllib
 import os
 import re
 import argparse
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List, Tuple, Optional
 
 # --- Paths ---
-SCRIPT_DIR        = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR          = os.path.dirname(SCRIPT_DIR)
-RECIPE_DIR        = os.path.join(ROOT_DIR, "recipes")
-GROUPS_PATH       = os.path.join(RECIPE_DIR, "recipe_groups.toml")
-LATEX_OUTPUT_DIR  = os.path.join(SCRIPT_DIR, "src", "chapters")
+SCRIPT_DIR         = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR           = os.path.dirname(SCRIPT_DIR)
+RECIPE_DIR         = os.path.join(ROOT_DIR, "recipes")
+GROUPS_PATH        = os.path.join(RECIPE_DIR, "recipe_groups.toml")
+LATEX_OUTPUT_DIR   = os.path.join(SCRIPT_DIR, "src", "chapters")
 FULL_COOKBOOK_PATH     = os.path.join(SCRIPT_DIR, "src", "full_cookbook.tex")
 FULL_COOKBOOK_DEV_PATH = os.path.join(SCRIPT_DIR, "src", "full_cookbook_dev.tex")
+
+# How much of a page each layout consumes.
+# "full" and "half-image" always occupy exactly 1 page.
+# "double" occupies 2 pages.
+# "half" and "third" are packed together.
+LAYOUT_SIZE = {
+    "full":       1.0,
+    "double":     2.0,
+    "half":       0.5,
+    "half-image": 1.0,
+    "third":      1 / 3,
+}
+
+# Layouts that always start and end on their own page(s).
+SELF_CONTAINED = {"full", "double", "half-image"}
 
 
 # --- Utilities ---
@@ -63,17 +89,16 @@ def escape_latex(text: str) -> str:
 
 
 def get_chapter_directory(group_name: str) -> str:
-    """Map group name to the LaTeX chapter subdirectory."""
     mapping = {
-        "Sauces":            "01_sauces",
-        "Starters":          "02_starters_and_sides",
-        "Mains":             "03_mains",
+        "Sauces":             "01_sauces",
+        "Starters":           "02_starters_and_sides",
+        "Mains":              "03_mains",
         "Special Occaisions": "04_special_occaisions",
     }
     return mapping.get(group_name, normalize_name(group_name))
 
 
-# --- Block generators ---
+# --- Content block generators ---
 
 def ingredients_block(recipe: Dict, columns: int) -> str:
     lines = [r"\subsection*{Ingredients}"]
@@ -109,52 +134,110 @@ def hints_block(recipe: Dict) -> str:
     return "\n".join(lines)
 
 
-def image_block(recipe: Dict, group_name: str, recipe_id: str, height: str) -> str:
+def recipe_image_path(recipe: Dict, group_name: str, recipe_id: str) -> str:
+    """Return the image path (relative to repo root) for the recipe's banner/thumbnail."""
     img_data = recipe.get("images", {})
     filename = img_data.get("banner") or img_data.get("thumbnail")
     if not filename:
         return ""
     folder = group_folder(group_name)
-    path = f"recipes/{folder}/{recipe_id}/{filename}"
+    return f"recipes/{folder}/{recipe_id}/{filename}"
+
+
+# --- Recipe content (layout-agnostic inner content) ---
+
+def recipe_inner(recipe: Dict, cfg: Dict) -> str:
+    """Generate the recipe body (title + content) without any layout wrapper."""
+    lines = []
+    title = escape_latex(recipe.get("title", "Untitled"))
+
+    # Use \section* for full/double, \subsection* for smaller layouts
+    layout = cfg.get("layout", "full")
+    if layout in ("half", "third"):
+        lines.append(f"\\textbf{{\\large {title}}}")
+    else:
+        lines.append(f"\\section*{{{title}}}")
+
+    if recipe.get("blurb") and layout not in ("third",):
+        lines.append(f"\\textit{{{escape_latex(recipe['blurb'])}}}\\\\[2pt]")
+
+    lines.append(ingredients_block(recipe, cfg.get("columns", 1)))
+    lines.append(method_block(recipe))
+
+    # Omit hints for third-page layout to save space
+    if layout != "third":
+        lines.append(hints_block(recipe))
+
+    return "\n".join(lines)
+
+
+# --- Layout wrappers ---
+
+def wrap_layout(inner: str, layout: str, image_path: str = "") -> str:
+    """Wrap recipe inner content in the appropriate fixed-height LaTeX block."""
+    if layout == "full":
+        return (
+            "\\begin{minipage}[t][\\fullpageheight][t]{\\textwidth}\n"
+            + inner + "\n"
+            + "\\end{minipage}\n"
+            + "\\clearpage"
+        )
+    elif layout == "double":
+        return inner + "\n\\clearpage"
+    elif layout == "half":
+        return (
+            "\\begin{minipage}[t][\\halfpageheight][t]{\\textwidth}\n"
+            + inner + "\n"
+            + "\\end{minipage}"
+        )
+    elif layout == "half-image":
+        img_line = (
+            f"\\noindent\\includegraphics[width=\\textwidth,height=\\halfpageheight,"
+            f"keepaspectratio=false,clip]{{{image_path}}}"
+            if image_path else
+            "\\vspace{\\halfpageheight}"
+        )
+        return (
+            "\\begin{minipage}[t][\\halfpageheight][t]{\\textwidth}\n"
+            + inner + "\n"
+            + "\\end{minipage}\n"
+            + "\\par\\vspace{2mm}\n"
+            + img_line + "\n"
+            + "\\clearpage"
+        )
+    elif layout == "third":
+        return (
+            "\\begin{minipage}[t][\\thirdpageheight][t]{\\textwidth}\n"
+            + inner + "\n"
+            + "\\end{minipage}"
+        )
+    # Fallback
+    return inner + "\n\\clearpage"
+
+
+# --- Image page generators ---
+
+def image_page_full(image_path: str, caption: str) -> str:
+    return f"\\imagepagefull{{{image_path}}}{{{escape_latex(caption)}}}"
+
+
+def image_page_split(images: List[str], captions: List[str]) -> str:
+    top_img  = images[0]  if len(images)  > 0 else ""
+    bot_img  = images[1]  if len(images)  > 1 else ""
+    top_cap  = captions[0] if len(captions) > 0 else ""
+    bot_cap  = captions[1] if len(captions) > 1 else ""
     return (
-        f"\\begin{{center}}\n"
-        f"    \\includegraphics[width=\\textwidth,height={height},keepaspectratio]{{{path}}}\n"
-        f"\\end{{center}}"
+        f"\\imagepagesplit{{{top_img}}}{{{escape_latex(top_cap)}}}"
+        f"{{{bot_img}}}{{{escape_latex(bot_cap)}}}"
     )
 
 
-# --- Templates ---
-
-def format_standard(recipe: Dict, cfg: Dict, group_name: str, recipe_id: str) -> str:
-    lines = [f"\\section{{{escape_latex(recipe['title'])}}}"]
-    if recipe.get("blurb"):
-        lines.append(f"\\textit{{{escape_latex(recipe['blurb'])}}}\\\\")
-    lines.append(ingredients_block(recipe, cfg.get("columns", 1)))
-    lines.append(method_block(recipe))
-    lines.append(hints_block(recipe))
-    if cfg.get("show_image", True):
-        lines.append(image_block(recipe, group_name, recipe_id, "3in"))
-    lines.append(r"\newpage")
-    return "\n".join(lines)
-
-
-def format_mini(recipe: Dict, cfg: Dict, group_name: str, recipe_id: str) -> str:
-    lines = [
-        r"\begin{minipage}{0.98\textwidth}",
-        f"\\subsection*{{{escape_latex(recipe['title']).upper()}}}",
-        ingredients_block(recipe, 2),
-        method_block(recipe),
-    ]
-    if cfg.get("show_image", True):
-        lines.append(image_block(recipe, group_name, recipe_id, "1.5in"))
-    lines += [r"\end{minipage}", r"\vspace{4em}"]
-    return "\n".join(lines)
-
-
-TEMPLATES = {
-    "standard": format_standard,
-    "mini":     format_mini,
-}
+def generate_image_page(item: Dict) -> str:
+    page_type = item.get("type", "full")
+    if page_type == "split":
+        return image_page_split(item.get("images", []), item.get("captions", []))
+    else:
+        return image_page_full(item.get("image", ""), item.get("caption", ""))
 
 
 # --- Discovery ---
@@ -165,15 +248,9 @@ def load_groups() -> List[Dict]:
 
 
 def ordered_recipes(group: Dict, include_dev: bool) -> List[Tuple[str, Dict]]:
-    """
-    Return (recipe_id, recipe_data) in render order:
-      1. Explicitly listed recipes in recipe_groups.toml order.
-      2. Unlisted recipes in the folder, alphabetically.
-    Filters out dev = true unless include_dev is True.
-    """
-    folder = group_folder(group["name"])
+    folder    = group_folder(group["name"])
     group_dir = os.path.join(RECIPE_DIR, folder)
-    explicit = group.get("recipes", [])
+    explicit  = group.get("recipes", [])
 
     discovered = set()
     if os.path.isdir(group_dir):
@@ -203,13 +280,114 @@ def ordered_recipes(group: Dict, include_dev: bool) -> List[Tuple[str, Dict]]:
 def recipe_pdf_config(recipe_data: Dict, group: Dict) -> Dict:
     """Merge group-level PDF defaults with per-recipe [pdf] overrides."""
     group_pdf = group.get("pdf", {})
+    # Migrate legacy 'template' field to 'layout'
+    group_layout = group_pdf.get("layout") or {
+        "standard": "full", "mini": "half"
+    }.get(group_pdf.get("template", ""), "full")
+
     defaults = {
-        "template":   group_pdf.get("template", "standard"),
+        "layout":     group_layout,
         "columns":    1,
         "show_image": True,
     }
-    per_recipe = recipe_data.get("pdf", {})
+    per_recipe = dict(recipe_data.get("pdf", {}))
+    # Migrate legacy 'template' field in per-recipe config
+    if "template" in per_recipe and "layout" not in per_recipe:
+        per_recipe["layout"] = {"standard": "full", "mini": "half"}.get(per_recipe.pop("template"), "full")
     return {**defaults, **per_recipe}
+
+
+# --- Page packing ---
+
+def generate_group_latex(
+    group: Dict,
+    include_dev: bool,
+) -> List[str]:
+    """
+    Return a list of LaTeX strings for this group (chapter break + recipes +
+    image pages), with correct page packing for sub-page layouts.
+    """
+    group_name = group["name"]
+    lines: List[str] = []
+
+    # ── Chapter break ────────────────────────────────────────────────────────
+    chapter_img     = group.get("chapter_image", "")
+    chapter_caption = group.get("chapter_image_caption", "")
+    if chapter_img:
+        lines.append(
+            f"\\chapterbreak{{{escape_latex(group_name)}}}"
+            f"{{{chapter_img}}}{{{escape_latex(chapter_caption)}}}"
+        )
+    else:
+        lines.append(f"\\chapterbreakplain{{{escape_latex(group_name)}}}")
+
+    # ── Build image-page index keyed by position ──────────────────────────────
+    # Each entry: after → list of image page dicts
+    image_pages_raw: List[Dict] = group.get("image_pages", [])
+    image_page_map: Dict[str, List[Dict]] = {}
+    for ip in image_pages_raw:
+        key = ip.get("after", "__start__")
+        image_page_map.setdefault(key, []).append(ip)
+
+    # ── Emit image pages scheduled for __start__ ──────────────────────────────
+    for ip in image_page_map.get("__start__", []):
+        lines.append(generate_image_page(ip))
+
+    # ── Recipes + interleaved image pages ─────────────────────────────────────
+    recipes = ordered_recipes(group, include_dev)
+
+    space_used = 0.0  # fraction of current page already filled
+
+    for recipe_id, recipe_data in recipes:
+        cfg    = recipe_pdf_config(recipe_data, group)
+        layout = cfg.get("layout", "full")
+        size   = LAYOUT_SIZE.get(layout, 1.0)
+
+        # Self-contained layouts always start fresh
+        if layout in SELF_CONTAINED and space_used > 0.01:
+            lines.append(r"\clearpage")
+            space_used = 0.0
+
+        # Packed layout: flush page if recipe won't fit
+        if layout not in SELF_CONTAINED and space_used > 0.01:
+            if space_used + size > 1.0 + 0.01:
+                lines.append(r"\clearpage")
+                space_used = 0.0
+
+        # Separator between recipes sharing a page
+        if space_used > 0.01:
+            lines.append(r"\recipesep")
+
+        # Generate and wrap recipe
+        img_path = recipe_image_path(recipe_data, group_name, recipe_id)
+        inner    = recipe_inner(recipe_data, cfg)
+        lines.append(wrap_layout(inner, layout, img_path))
+
+        # Update page accounting
+        if layout in SELF_CONTAINED:
+            space_used = 0.0
+        else:
+            space_used += size
+            if space_used >= 1.0 - 0.01:
+                lines.append(r"\clearpage")
+                space_used = 0.0
+
+        # ── Image pages after this recipe ─────────────────────────────────────
+        for ip in image_page_map.get(recipe_id, []):
+            if space_used > 0.01:
+                lines.append(r"\clearpage")
+                space_used = 0.0
+            lines.append(generate_image_page(ip))
+
+    # Flush any partial page at end of group
+    if space_used > 0.01:
+        lines.append(r"\clearpage")
+
+    # ── Image pages scheduled for __end__ ─────────────────────────────────────
+    for ip in image_page_map.get("__end__", []):
+        lines.append(generate_image_page(ip))
+
+    return lines
 
 
 # --- Main ---
@@ -223,11 +401,10 @@ def generate_tex(include_dev: bool = False):
     os.makedirs(LATEX_OUTPUT_DIR, exist_ok=True)
     groups = load_groups()
 
-    full_cookbook_lines = []
-    current_chapter = None
+    all_lines: List[str] = []
 
     for group in groups:
-        group_name = group["name"]
+        group_name  = group["name"]
         chapter_dir = get_chapter_directory(group_name)
         latex_chapter_dir = os.path.join(LATEX_OUTPUT_DIR, chapter_dir)
         os.makedirs(latex_chapter_dir, exist_ok=True)
@@ -236,30 +413,14 @@ def generate_tex(include_dev: bool = False):
         if not recipes:
             continue
 
-        if current_chapter != group_name:
-            if current_chapter is not None:
-                full_cookbook_lines.append(r"\clearpage")
-            full_cookbook_lines.append(f"\\chapter{{{group_name}}}")
-            current_chapter = group_name
-
-        for recipe_id, recipe_data in recipes:
-            cfg = recipe_pdf_config(recipe_data, group)
-            template_fn = TEMPLATES.get(cfg["template"], format_standard)
-            latex_content = template_fn(recipe_data, cfg, group_name, recipe_id)
-
-            # Write individual .tex file
-            prefix = chapter_dir.split("_")[0]
-            latex_filename = f"{prefix}_{normalize_name(recipe_id)}.tex"
-            with open(os.path.join(latex_chapter_dir, latex_filename), "w", encoding="utf-8") as f:
-                f.write(latex_content)
-
-            full_cookbook_lines.append(latex_content)
+        group_lines = generate_group_latex(group, include_dev)
+        all_lines.extend(group_lines)
 
         label = " [DEV]" if include_dev else ""
         print(f"  {group_name}: {len(recipes)} recipe(s){label}")
 
     with open(output_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(full_cookbook_lines))
+        f.write("\n".join(all_lines))
 
     print(f"✅ Full cookbook generated at {output_path}")
 

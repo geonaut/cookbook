@@ -1,7 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{styles/cookbook}
 
-\RequirePackage{lmodern}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
 \RequirePackage{titlesec}
@@ -10,90 +9,122 @@
 \RequirePackage{enumitem}
 \RequirePackage{geometry}
 \RequirePackage{multicol}
-% \RequirePackage[
-%     paperwidth=210mm,
-%     paperheight=297mm,
-%     margin=20mm,
-%     heightrounded
-% ]{geometry}
+\RequirePackage{tikz}
+\RequirePackage{xifthen}
 
-% % 2. Use the crop package to "mount" that A4 on an A3 sheet
-% % 'cam' provides the crosshair marks, 'info' adds the filename/date
-% \RequirePackage[a3, center, cam, info]{crop}
-\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+\geometry{top=2cm, bottom=2cm, left=2.5cm, right=2.5cm}
 \setstretch{1.2}
 
 \setmainfont{XCharter}
 
-% simple chapter/section formats (safe defaults)
-\titleformat{\section}{\huge\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+% ── Page layout dimensions ───────────────────────────────────────────────────
+% Defined after geometry is applied. These fractions leave room for rules/gaps.
+\newlength{\fullpageheight}
+\newlength{\halfpageheight}
+\newlength{\thirdpageheight}
 
-% header/footer
-\pagestyle{fancy}
-\fancyhf{}
-% \fancyhead[L]{\leftmark}
-\fancyfoot[C]{\thepage}
+\AtBeginDocument{%
+  \setlength{\fullpageheight}{\textheight}%
+  \setlength{\halfpageheight}{0.475\textheight}%
+  \setlength{\thirdpageheight}{0.30\textheight}%
+}
 
-\setlength{\headheight}{15pt}
-\addtolength{\topmargin}{-3pt}  
-
+% ── Typography ───────────────────────────────────────────────────────────────
 \setlist{noitemsep, topsep=2pt, parsep=0pt, partopsep=0pt}
+\setlength{\columnsep}{1cm}
 
 \titleformat{\section}
-  {\normalfont\Large\scshape} % \scshape triggers Small Caps
-  {\thesection}
-  {1em}
-  {} % Leave this empty so it respects your Title Case input
+  {\normalfont\Large\scshape}{\thesection}{1em}{}
 
-% Optional: Set the gap between columns
-\setlength{\columnsep}{1cm} 
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
 
-% Create a custom command for a compact ingredient list
+% ── Header / footer ──────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\itshape\leftmark}
+\fancyhead[RO]{\small\itshape\rightmark}
+\fancyfoot[C]{\small\thepage}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+
+% ── Ingredient list ──────────────────────────────────────────────────────────
 \newlist{ingredients}{itemize}{1}
 \setlist[ingredients]{
-    label=\textbullet,
-    nosep,
-    leftmargin=1.5em,
-    font=\small
+  label=\textbullet,
+  nosep,
+  leftmargin=1.5em,
+  font=\small
 }
 
-\newcommand{\minirecipe}[2]{% #1=Title, #2=Content
-    \subsection*{#1}
-    #2
-    \vspace{1em}
-    \hrule
-    \vspace{1em}
+% ── Recipe separator (between sub-page recipes sharing a page) ────────────────
+\newcommand{\recipesep}{%
+  \par\vspace{3mm}%
+  \noindent\rule{\textwidth}{0.3pt}%
+  \vspace{3mm}\par\noindent%
 }
 
-\newcommand{\simplerecipe}[2]{% #1=Title, #2=Content
-    \clearpage
-    \section*{#1}
-    #2
-    \vfill
-    \clearpage
+% ── Chapter break: full-bleed image page + title page ────────────────────────
+% #1 = chapter name   #2 = image path   #3 = caption (may be empty)
+\newcommand{\chapterbreak}[3]{%
+  \clearpage
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0pt] at (current page.center) {%
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{#2}%
+    };
+    \ifthenelse{\equal{#3}{}}{}{%
+      \node[anchor=south east,inner sep=14pt,fill=black!55,text=white,
+            font=\small\itshape,rounded corners=2pt]
+        at (current page.south east) {\strut #3};
+    }
+  \end{tikzpicture}%
+  \clearpage
+  % Chapter title page
+  \thispagestyle{empty}%
+  \vspace*{\fill}
+  {\centering\fontsize{40}{50}\selectfont\scshape #1\par}
+  \vspace*{\fill}
+  \clearpage
+  \pagestyle{fancy}%
+  % Register chapter name for running headers
+  \markboth{#1}{#1}%
 }
 
-\newcommand{\illustratedrecipe}[3]{% #1=Image, #2=Title, #3=Content
-    \clearpage
-    \thispagestyle{empty}
-    \begin{tikzpicture}[remember picture, overlay]
-        \node[inner sep=0pt] at (current page.center) {%
-            \includegraphics[width=\paperwidth, height=\paperheight]{#1}%
-        };
-    \end{tikzpicture}
-    \newpage
-    % The Text Page
-    \section*{#2}
-    #3
-    \clearpage
+% Fallback chapter break (no image)
+\newcommand{\chapterbreakplain}[1]{%
+  \chapter{#1}%
 }
 
-\newenvironment{recipeIngredients}[1]{%
-    \subsection*{Ingredients}
-    \begin{multicols}{#1}
-    \begin{itemize}
-}{%
-    \end{itemize}
-    \end{multicols}
+% ── Image pages ──────────────────────────────────────────────────────────────
+% Full-bleed image page.  #1 = image path   #2 = caption (may be empty)
+\newcommand{\imagepagefull}[2]{%
+  \clearpage
+  \thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0pt] at (current page.center) {%
+      \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{#1}%
+    };
+    \ifthenelse{\equal{#2}{}}{}{%
+      \node[anchor=south east,inner sep=14pt,fill=black!55,text=white,
+            font=\small\itshape,rounded corners=2pt]
+        at (current page.south east) {\strut #2};
+    }
+  \end{tikzpicture}%
+  \clearpage
+}
+
+% Split image page (top + bottom). #1/#3 = image paths, #2/#4 = captions
+\newcommand{\imagepagesplit}[4]{%
+  \clearpage
+  \thispagestyle{empty}%
+  \vspace*{0pt}%
+  \noindent\includegraphics[width=\textwidth,height=0.475\textheight,
+    keepaspectratio=false,clip]{#1}\par
+  \ifthenelse{\equal{#2}{}}{}{\noindent\small\itshape #2\par}
+  \vspace{4mm}%
+  \noindent\includegraphics[width=\textwidth,height=0.475\textheight,
+    keepaspectratio=false,clip]{#3}\par
+  \ifthenelse{\equal{#4}{}}{}{\noindent\small\itshape #4\par}
+  \clearpage
 }
