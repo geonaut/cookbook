@@ -161,7 +161,12 @@ def recipe_inner(recipe: Dict, cfg: Dict) -> str:
     if recipe.get("blurb") and layout not in ("third",):
         lines.append(f"\\textit{{{escape_latex(recipe['blurb'])}}}\\\\[2pt]")
 
-    lines.append(ingredients_block(recipe, cfg.get("columns", 1)))
+    # Use explicit columns if set in [pdf]; otherwise auto-2-col for >4 ingredients
+    if "columns" in recipe.get("pdf", {}):
+        columns = cfg.get("columns", 1)
+    else:
+        columns = 2 if len(recipe.get("ingredients", [])) > 4 else 1
+    lines.append(ingredients_block(recipe, columns))
     lines.append(method_block(recipe))
 
     # Omit hints for third-page layout to save space
