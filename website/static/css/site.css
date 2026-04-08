@@ -39,8 +39,14 @@
 
   .map-sidebar {
     width: 100%;
+    max-height: 40dvh;
     border-right: none;
     border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  }
+
+  .map-main {
+    height: 55dvh;
+    flex: none;
   }
 }
 
