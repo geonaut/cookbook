@@ -1,0 +1,34 @@
+title = "Feijão"
+category = "Sides"
+tags = ["Brazilian"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = "Beans are a staple in Brazil, and an artform. The nuances are endless; the qualiity of the bean, the age of the bean, soaking time, cooking time, how much liquid to leave in the pan, how to handle the garlic. It's a shame that Baked Beans have such a stranglehold on the UK. Europe has a much finer appreciation, with dishes like cassoulet, fabada, cocido and feijoada. Mastering beans is a worthwhile endeavour, and for that, you need to make friends with a pressure cooker."
+
+ingredients = [
+    "Black turtle beans",
+    "Garlic",
+    "Lardons",
+    "Bay leaves",
+    "Olive oil",
+    "Salt",
+    "Pepper",
+]
+
+instructions = [
+    "Pressure cook the beans and Bay Leaves for 1 hour, or ~40 minutes if pre-soaked.",
+    "Sauté the garlic and lardons in olive oil until fragrant.",
+    "Add the sautéed mixture to the cooked beans and pressure cook for a further 15 minutes.",
+    "Season with salt and pepper to taste.",
+]
+
+hints = [
+    "Any pork sausage or smoked meat can be used instead of lardons.",
+    "Don't overcook the beans; they should be tender but not mushy.",
+    "Don't add too much water, otherwise the beans will be soupy.",
+    "Adding some dried chilli in with the garlic mix is unconventional, but has become standard in our house.",
+    "Add chili sauce and farofa (manioc root powder) on top, for a true Brazilian experience."
+]

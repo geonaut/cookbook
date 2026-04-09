@@ -1,6 +1,6 @@
 title = "Jollof Rice"
-category = "Starters"
-tags = []
+category = "Sides"
+tags = ["Nigerian", "Rice"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}
@@ -9,14 +9,13 @@ pdf = {layout = "", columns = 2, show_image = false}
 blurb = ""
 
 ingredients = [
-    "200g Guanciale",
-    "2 cups Rice",
-    "Red pepper",
-    "Tomato",
+    "2 cups Rice - jasmine or basmati",
+    "1 Red pepper",
+    "2 Tomatoes",
     "Tomato paste",
     "2 onions",
-    "Scotch bonnet pepper",
-    "Garlic",
+    "1 Scotch bonnet pepper",
+    "4-6 cloves of garlic",
     "Chicken stock",
     "Neutral oil (vegetable/sunflower)",
     "Herbs: thyme, bay leaf",
@@ -27,9 +26,9 @@ ingredients = [
 instructions = [
     "Sauce base: blend the red pepper, 1 onion, tomato with some ckicken stock. Fry off and put aside.",
     "Spice blend: In the same pan, fry the remaining onion, garlic, tomato paste, scotch bonnet and spices until fragrant.",
-    "Combine: Add the rice to the spice mix \\& coat the grains. Add half of the sauce base, stock and water. Add the bay leaves.",
-    "Cook: Bring to the boil, then simmer on low heat, covered, until rice is cooked (15-20 mins).",
-    "Finish: Stir through the remaining sauce base, thyme, adjust seasoning and serve.",
+    "Add the rice to the spice mix \\& coat the grains. Add half of the sauce base, stock and water. Add the bay leaves.",
+    "Bring to the boil, then simmer on low heat, covered, until rice is cooked (15-20 mins).",
+    "Stir through the remaining sauce base, thyme, adjust seasoning and serve.",
 ]
 
 hints = [

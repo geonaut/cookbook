@@ -1,37 +1,37 @@
 title = "Cod with Morcilla"
 category = "Mains"
-tags = ["Portuguese", "Fish", "Weeknight"]
+tags = ["Portuguese", "Fish"]
 dev = false
 site = {nav = true, featured = true}
 images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
 pdf = {layout = "", columns = 2}
 
-blurb = "Salt cod and blood sausage sounds like an unlikely pairing, but this is a deeply satisfying Portuguese-inspired dish — earthy, rich, and surprisingly quick to pull together."
+blurb = ""
 
 ingredients = [
     "4 thick cod fillets (skin on)",
     "150g morcilla (or black pudding), sliced 1cm thick",
-    "2 large potatoes, peeled and thinly sliced",
+    "1 red pepper",
+    "1 tin of chickpeas",
     "1 red onion, finely sliced",
     "3 cloves garlic, crushed",
-    "200ml dry white wine",
-    "1 tbsp smoked paprika",
+    "200ml fish stock, chicken stock or white wine",
+    "1 tsp saffron",
+    "1 tbsp paprika - smoked or sweet, according to taste",
     "Handful flat-leaf parsley, roughly chopped",
     "Olive oil",
     "Salt & black pepper",
 ]
 
 instructions = [
-    "Parboil the potato slices for 5 minutes, drain and set aside.",
     "Fry the morcilla slices in a little olive oil over medium-high heat until crisp. Remove and set aside.",
-    "In the same pan, soften the onion and garlic for 5 minutes. Add the paprika and stir for 30 seconds.",
-    "Add the potatoes to the pan and arrange evenly. Pour over the wine and season well.",
-    "Nestle the cod fillets skin-side up on top of the potatoes. Cover and cook on low-medium heat for 10–12 minutes until just cooked through.",
-    "Return the morcilla to the pan, scatter with parsley, and serve directly from the pan.",
+    "In the same pan, soften the onion and garlic for 5 minutes. Add the paprika and saffron and stir for 30 seconds.",
+    "Add the chickpeas and liquid.",
+    "Nestle the cod fillets skin-side up. Cover and cook on low-medium heat for 10–12 minutes until just cooked through.",
+    "Return the morcilla to the pan, crisp up under the grill, scatter with parsley, and serve directly from the pan.",
 ]
 
 hints = [
     "Don't overcook the cod — it should just flake apart. Check at 10 minutes.",
     "Chouriço works as a substitute if morcilla is hard to find, though the flavour is quite different.",
-    "A simple green salad or crusty bread alongside is all this needs.",
 ]

@@ -13,21 +13,21 @@ ingredients = [
     "250g Whole Milk (oat is fine)",
     "100ml Water",
     "100ml Vegetable Oil",
-    "10g Fine Salt",
+    "10g Salt",
     "3 Eggs",
     "150g Parmesan, finely grated",
     "100g Mozzarella or mild cheddar, grated",
 ]
 
 instructions = [
-    "Scald: Bring milk, water, oil, and salt to a rolling boil and pour over the starch.",
-    "Cool: Allow the dough to cool for 15 minutes.",
-    "Mix: Incorporate eggs one at a time and add the cheeses.",
-    "Form: Preheat oven to 190°C. Roll 30g balls.",
-    "Bake: Bake for 20-25 minutes.",
+    "Bring milk, water, oil, and salt to a rolling boil and pour over the tapioca.",
+    "Allow the dough to cool for 15 minutes.",
+    "Incorporate eggs one at a time and add the cheeses.",
+    "Preheat oven to 190°C. Roll 30g balls.",
+    "Bake for 20-25 minutes.",
 ]
 
 hints = [
-    "Texture Science: Scalding causes starch gelatinization, creating the elastic matrix that traps steam for the rise.",
+    "Scalding causes starch gelatinization, creating the elastic matrix that traps steam for the rise.",
     "Starch Ratio: 100% Doce yields a dense roll; 100% Azedo creates a hollow puff.",
 ]

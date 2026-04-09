@@ -36,7 +36,8 @@ layout = "third"
 
 [[groups]]
 name = "Starters"
-recipes = ["pao_de_queijo", "jolloff_rice", "caldo_verde", "feijao"]
+title = "Starters & Snacks"
+recipes = ["pao_de_queijo", "caldo_verde"]
 chapter_image = "pdf/src/placeholder-chapter.pdf"
 chapter_image_caption = "Pão de Queijo, fresh from the oven"
 
@@ -54,7 +55,7 @@ chapter_image_caption = ""
 
 [[groups]]
 name = "Sides"
-recipes = ["pastel_de_feira", "garlic_miso_roast_potatoes", "okra_with_preserved_lemon"]
+recipes = ["feijao", "jolloff_rice", "pastel_de_feira", "garlic_miso_roast_potatoes", "okra_with_preserved_lemon"]
 chapter_image = "pdf/src/placeholder-chapter.pdf"
 chapter_image_caption = ""
 
