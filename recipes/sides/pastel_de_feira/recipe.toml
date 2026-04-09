@@ -1,0 +1,21 @@
+title = "Pastel de Feira"
+category = "Sides"
+tags = ["Brazilian"]
+dev = true
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = ""
+
+ingredients = [
+    "",
+]
+
+instructions = [
+    "",
+]
+
+hints = [
+    "",
+]

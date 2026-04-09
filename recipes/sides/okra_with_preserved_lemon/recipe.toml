@@ -1,0 +1,21 @@
+title = "Okra with Preserved Lemon"
+category = "Sides"
+tags = []
+dev = true
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = ""
+
+ingredients = [
+    "",
+]
+
+instructions = [
+    "",
+]
+
+hints = [
+    "",
+]

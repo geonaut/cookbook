@@ -1,7 +1,12 @@
 title = "Short Ribs with Spiced Gravy"
 category = "Mains"
-blurb = "Beef short ribs braised low and slow in a warming spiced gravy. A weekend project that rewards patience."
 tags = ["Beef", "Slow Cook", "Weekend", "Special Occasion"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = "half", columns = 2}
+
+blurb = "Beef short ribs braised low and slow in a warming spiced gravy. A weekend project that rewards patience."
 
 ingredients = [
     "4 bone-in beef short ribs (about 300g each)",
@@ -34,7 +39,3 @@ hints = [
     "Serve with creamy mashed potato or soft polenta to catch the sauce.",
     "Ask the butcher for English-cut ribs (short, thick sections) rather than flanken-cut.",
 ]
-
-[pdf]
-layout = "half"
-columns = 2

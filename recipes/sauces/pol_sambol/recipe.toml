@@ -1,7 +1,12 @@
 title = "Pol Sambol"
 category = "Sauces"
-blurb = "A Sri Lankan fresh coconut relish — spicy, tangy, and addictive. Served with nearly every meal in Sri Lanka."
 tags = ["Sri Lankan", "Sauce", "Vegan", "Gluten-Free"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = "A Sri Lankan fresh coconut relish — spicy, tangy, and addictive. Served with nearly every meal in Sri Lanka."
 
 ingredients = [
     "100g freshly grated coconut (or desiccated, rehydrated)",

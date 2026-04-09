@@ -1,30 +1,32 @@
 title = "Chimichurri"
 category = "Sauces"
-blurb = "The Argentinian herb sauce that makes everything taste better. Essential with any grilled meat."
-tags = ["Argentinian", "Sauce", "Vegan", "Gluten-Free"]
+tags = ["Brazilian"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = ["gallery_1.jpg", "gallery_2.jpg", "gallery_3.jpg", "gallery_4.jpg"]}
+pdf = {layout = ""}
+
+blurb = "This is a classic Argentinian sauce, but as it's popular with the ranchers of Rio Grande do Sul, I've considered it Brazilian. This should be intensely flavoured, and the volume can be turned up or down the various consituents according to taste. Personally, I like it moderately spicy, with only a little garlic. The key herb here is oregano, which gives it a distinctive flavour. Always use fresh oregano if you can find it. I am to make ~150ml at a time, and leave it to muddle for a while if you can."
 
 ingredients = [
-    "Large bunch flat-leaf parsley, leaves only",
-    "1 tbsp dried oregano",
-    "3 cloves garlic, minced",
-    "1 fresh red chilli, finely diced (or 1/2 tsp chilli flakes)",
+    "Bunch fresh oregano",
+    "Good flat-leaf parsely (not too stalky, dark green)",
+    "1 juicy tomato, diced",
+    "1 cloves garlic, finely chopped",
+    "1 fresh red chilli, finely diced",
     "3 tbsp red wine vinegar",
-    "6 tbsp extra virgin olive oil",
-    "Salt & black pepper",
+    "4 tbsp extra virgin olive oil",
+    "A good amount of salt & black pepper",
 ]
 
 instructions = [
     "Finely chop the parsley by hand — don't use a blender or food processor, it turns it into a paste.",
     "Combine parsley, oregano, garlic, and chilli in a bowl.",
     "Stir in the vinegar and olive oil. Season generously.",
-    "Leave to rest for at least 30 minutes before serving. The flavours improve significantly with time.",
 ]
 
 hints = [
-    "This keeps in the fridge for up to a week. The colour fades but the flavour deepens.",
-    "Also works as a marinade — coat meat and leave overnight.",
-    "Use it as a sauce, not a condiment: be generous.",
+    "Use as a condiment, rather than a marinade.",
+    "Avoid too much oil. Balance with more tomato if it's a little dry",
+    "I like using mild salad vinegar - not malt or balsamic vinegar. Greek supermarkets often stock a good salad vinegar.",
 ]
-
-[site]
-nav = true

@@ -26,8 +26,9 @@
 
 [[groups]]
 name = "Sauces"
-recipes = ["chimmichurri", "spicy_vinagrette", "pol_sambol"]
-chapter_image = "recipes/starters/pao_de_queijo/banner.jpg"
+title = "Sauces & Marinades"
+recipes = ["chimmichurri", "spicy_vinagrette", "pol_sambol", "gremolata"]
+chapter_image = "pdf/src/placeholder-chapter.pdf"
 chapter_image_caption = ""
 
 [groups.pdf]
@@ -36,7 +37,7 @@ layout = "third"
 [[groups]]
 name = "Starters"
 recipes = ["pao_de_queijo", "jolloff_rice", "caldo_verde", "feijao"]
-chapter_image = "recipes/starters/pao_de_queijo/banner.jpg"
+chapter_image = "pdf/src/placeholder-chapter.pdf"
 chapter_image_caption = "Pão de Queijo, fresh from the oven"
 
 [[groups.image_pages]]
@@ -46,6 +47,18 @@ images = ["recipes/starters/pao_de_queijo/gallery_1.jpg", "recipes/starters/pao_
 captions = ["The dough, just after scalding", "Ready to roll"]
 
 [[groups]]
+name = "Salads"
+recipes = ["nice_salad", "greek_salad"]
+chapter_image = "pdf/src/placeholder-chapter.pdf"
+chapter_image_caption = ""
+
+[[groups]]
+name = "Sides"
+recipes = ["pastel_de_feira", "garlic_miso_roast_potatoes", "okra_with_preserved_lemon"]
+chapter_image = "pdf/src/placeholder-chapter.pdf"
+chapter_image_caption = ""
+
+[[groups]]
 name = "Mains"
 recipes = [
     "cod_with_morcilla",
@@ -53,14 +66,16 @@ recipes = [
     "midweek_grilled_chicken copy",
     "spiced_short_ribs",
     "puttanesca",
-    "nice_salad",
     "shakshuka_with_feta",
+    "ratatouille",
+    "jerk_chicken",
+    "meat_loaf",
+    "brisket",
+    "vietnamese_summer_rolls",
+    "palak_paneer",
+    "fabada",
+    "feijao_tropeiro",
+    "christmas_gammon",
 ]
-chapter_image = "recipes/mains/cod_with_morcilla/banner.jpg"
-chapter_image_caption = ""
-
-[[groups]]
-name = "Special Occaisions"
-recipes = ["christmas_gammon"]
-chapter_image = "recipes/special_occaisions/christmas_gammon/banner.jpg"
+chapter_image = "pdf/src/placeholder-chapter.pdf"
 chapter_image_caption = ""

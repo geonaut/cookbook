@@ -90,10 +90,11 @@ def escape_latex(text: str) -> str:
 
 def get_chapter_directory(group_name: str) -> str:
     mapping = {
-        "Sauces":             "01_sauces",
-        "Starters":           "02_starters_and_sides",
-        "Mains":              "03_mains",
-        "Special Occaisions": "04_special_occaisions",
+        "Sauces":   "01_sauces",
+        "Starters": "02_starters",
+        "Salads":   "03_salads",
+        "Sides":    "04_sides",
+        "Mains":    "05_mains",
     }
     return mapping.get(group_name, normalize_name(group_name))
 
@@ -151,12 +152,13 @@ def recipe_inner(recipe: Dict, cfg: Dict) -> str:
     lines = []
     title = escape_latex(recipe.get("title", "Untitled"))
 
-    # Use \section* for full/double, \subsection* for smaller layouts
+    # Use \section* for full/double, \textbf for smaller layouts
     layout = cfg.get("layout", "full")
     if layout in ("half", "third"):
         lines.append(f"\\textbf{{\\large {title}}}")
     else:
         lines.append(f"\\section*{{{title}}}")
+    lines.append(f"\\addcontentsline{{toc}}{{section}}{{{title}}}")
 
     if recipe.get("blurb") and layout not in ("third",):
         lines.append(f"\\textit{{{escape_latex(recipe['blurb'])}}}\\\\[2pt]")
@@ -312,7 +314,9 @@ def generate_group_latex(
     Return a list of LaTeX strings for this group (chapter break + recipes +
     image pages), with correct page packing for sub-page layouts.
     """
-    group_name = group["name"]
+    group_name  = group["name"]
+    # Optional display title — falls back to name if not set
+    group_title = group.get("title", group_name)
     lines: List[str] = []
 
     # ── Chapter break ────────────────────────────────────────────────────────
@@ -320,11 +324,11 @@ def generate_group_latex(
     chapter_caption = group.get("chapter_image_caption", "")
     if chapter_img:
         lines.append(
-            f"\\chapterbreak{{{escape_latex(group_name)}}}"
+            f"\\chapterbreak{{{escape_latex(group_title)}}}"
             f"{{{chapter_img}}}{{{escape_latex(chapter_caption)}}}"
         )
     else:
-        lines.append(f"\\chapterbreakplain{{{escape_latex(group_name)}}}")
+        lines.append(f"\\chapterbreakplain{{{escape_latex(group_title)}}}")
 
     # ── Build image-page index keyed by position ──────────────────────────────
     # Each entry: after → list of image page dicts

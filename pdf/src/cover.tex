@@ -1,9 +1,60 @@
 \thispagestyle{empty}
+\pagecolor{CoverBg}
+
+% ── Cover page ───────────────────────────────────────────────────────────────
+% Uses \pagecolor for a full-bleed background — no overlay required.
+% To use a full-bleed photo instead, comment out \pagecolor and replace the
+% content with: \noindent\includegraphics[width=\paperwidth,height=\paperheight]{images/cover.jpg}
+
+{\color{CoverFg}
 
 \vspace*{\fill}
+
+% ── Illustration placeholder ──────────────────────────────────────────────
+% Replace the tikzpicture with:
+%   \begin{center}\includegraphics[width=8cm]{images/cover-illustration.pdf}\end{center}
 \begin{center}
-  {Cover placeholder\par}
-  \vspace{1em}
-  {Place  (or images/your-image.jpg) and re-run make\par}
+  \begin{tikzpicture}
+    % Large central diamond
+    \filldraw[CoverAccent, fill=CoverAccent!20, line width=0.8pt]
+      (0, 2.2) -- (2.2, 0) -- (0, -2.2) -- (-2.2, 0) -- cycle;
+    % Four corner diamonds
+    \foreach \angle in {45, 135, 225, 315} {
+      \begin{scope}[rotate=\angle, shift={(3.1,0)}]
+        \filldraw[CoverAccent, fill=CoverAccent!30, line width=0.5pt]
+          (0, 0.6) -- (0.6, 0) -- (0, -0.6) -- (-0.6, 0) -- cycle;
+      \end{scope}
+    }
+  \end{tikzpicture}
 \end{center}
+
+\vspace{1.5cm}
+
+% ── Title ─────────────────────────────────────────────────────────────────
+\begin{center}
+  {\color{CoverFg}\fontsize{52}{60}\selectfont\scshape The Cookbook\par}
+  \vspace{0.5cm}
+  {\color{CoverAccent}\rule{8cm}{0.6pt}\par}
+  \vspace{0.5cm}
+  {\color{CoverFg!70}\fontsize{13}{18}\selectfont\itshape A collection of recipes\par}
+\end{center}
+
+% ── Border frame ──────────────────────────────────────────────────────────
+% Drawn last so it sits on top of everything
+\begin{tikzpicture}[remember picture, overlay]
+  \draw[CoverAccent, line width=0.8pt]
+    ([xshift=1cm, yshift=-1cm] current page.north west)
+    rectangle
+    ([xshift=-1cm, yshift=1cm] current page.south east);
+  \draw[CoverAccent!50, line width=0.3pt]
+    ([xshift=1.4cm, yshift=-1.4cm] current page.north west)
+    rectangle
+    ([xshift=-1.4cm, yshift=1.4cm] current page.south east);
+\end{tikzpicture}
+
 \vspace*{\fill}
+
+} % end \color{CoverFg}
+
+\newpage
+\pagecolor{white}

@@ -1,7 +1,12 @@
 title = "Salade Niçoise"
-category = "Mains"
-blurb = "The definitive composed salad. Tuna, eggs, olives, and green beans on a bed of dressed leaves — substantial enough to be a main course."
+category = "Salads"
 tags = ["French", "Salad", "Fish", "Summer"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = "half", columns = 2}
+
+blurb = "The definitive composed salad. Tuna, eggs, olives, and green beans on a bed of dressed leaves — substantial enough to be a main course."
 
 ingredients = [
     "2 x 160g tins tuna in olive oil, drained",
@@ -32,7 +37,3 @@ hints = [
     "Use tuna in olive oil, not brine. The quality of the tuna matters here.",
     "The dressing also works as a general-purpose vinaigrette.",
 ]
-
-[pdf]
-layout = "half"
-columns = 2

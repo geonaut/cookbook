@@ -1,0 +1,16 @@
+% Standalone placeholder for chapter image pages.
+% Compile with: pdflatex placeholder-chapter.tex
+% Output: placeholder-chapter.pdf (160mm × 239mm — matches \textwidth × 0.93\textheight on A4)
+\documentclass[border=0pt]{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  % Outer border
+  \draw[black, line width=1pt] (0,0) rectangle (160mm, 239mm);
+  % Diagonal cross — shows the bounding box clearly without solid fill
+  \draw[black!25, line width=0.4pt] (0,0) -- (160mm, 239mm);
+  \draw[black!25, line width=0.4pt] (160mm,0) -- (0, 239mm);
+  % Label
+  \node[black!40, font=\large\sffamily] at (80mm, 119.5mm) {chapter image};
+\end{tikzpicture}
+\end{document}

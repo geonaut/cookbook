@@ -1,9 +1,12 @@
 title = "Midweek Grilled Chicken"
 category = "Mains"
-blurb = "A quick weeknight marinade that keeps chicken thighs juicy under the grill. Work in progress — marinade ratios still being tweaked."
 tags = ["Chicken", "Weeknight", "Grilled"]
-
 dev = true
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = "A quick weeknight marinade that keeps chicken thighs juicy under the grill. Work in progress — marinade ratios still being tweaked."
 
 ingredients = [
     "8 bone-in, skin-on chicken thighs",

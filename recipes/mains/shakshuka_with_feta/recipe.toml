@@ -1,7 +1,12 @@
 title = "Shakshuka with Feta"
 category = "Mains"
-blurb = "Eggs poached directly in a spiced tomato and pepper sauce, finished with creamy feta. Works for breakfast, lunch, or a quick weeknight dinner."
 tags = ["Middle Eastern", "Vegetarian", "Weeknight", "Eggs"]
+dev = false
+site = {nav = true, featured = true}
+images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
+pdf = {layout = "", columns = 2}
+
+blurb = "Eggs poached directly in a spiced tomato and pepper sauce, finished with creamy feta. Works for breakfast, lunch, or a quick weeknight dinner."
 
 ingredients = [
     "6 eggs",
@@ -33,14 +38,3 @@ hints = [
     "A pinch of cinnamon in the sauce adds a subtle warmth that works well.",
     "Leftovers reheat poorly. Make only what you'll eat.",
 ]
-
-[images]
-thumbnail = "thumbnail.jpg"
-banner = "banner.jpg"
-
-[site]
-featured = true
-nav = true
-
-[pdf]
-columns = 2

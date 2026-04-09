@@ -1,7 +1,12 @@
 title = "Spicy Vinaigrette"
 category = "Sauces"
-blurb = "A Brazilian-style molho vinagrete — more salsa than dressing. Goes with everything grilled."
 tags = ["Brazilian", "Sauce", "Vegan"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = "A Brazilian-style molho vinagrete — more salsa than dressing. Goes with everything grilled."
 
 ingredients = [
     "3 tbsp red wine vinegar",

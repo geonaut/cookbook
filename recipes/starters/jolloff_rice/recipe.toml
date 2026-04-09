@@ -1,5 +1,13 @@
 title = "Jollof Rice"
 category = "Starters"
+tags = []
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = "", columns = 2, show_image = false}
+
+blurb = ""
+
 ingredients = [
     "200g Guanciale",
     "2 cups Rice",
@@ -15,6 +23,7 @@ ingredients = [
     "Spices: fennel, clove, ginger, paprika, tumeric",
     "Salt \\& peper",
 ]
+
 instructions = [
     "Sauce base: blend the red pepper, 1 onion, tomato with some ckicken stock. Fry off and put aside.",
     "Spice blend: In the same pan, fry the remaining onion, garlic, tomato paste, scotch bonnet and spices until fragrant.",
@@ -23,12 +32,8 @@ instructions = [
     "Finish: Stir through the remaining sauce base, thyme, adjust seasoning and serve.",
 ]
 
-# Optional: hints and tips for the recipe
 hints = [
     "Not too much spice or tumeric - Jollof is meant to be red, not orange!",
     "Excess sauce base can be served on the side.",
     "Add oil or butter towards the end of cooking, to prevent the rice becoming dry",
 ]
-[pdf]
-columns = 2
-show_image = false

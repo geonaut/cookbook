@@ -1,7 +1,12 @@
 title = "Cod with Morcilla"
 category = "Mains"
-blurb = "Salt cod and blood sausage sounds like an unlikely pairing, but this is a deeply satisfying Portuguese-inspired dish — earthy, rich, and surprisingly quick to pull together."
 tags = ["Portuguese", "Fish", "Weeknight"]
+dev = false
+site = {nav = true, featured = true}
+images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
+pdf = {layout = "", columns = 2}
+
+blurb = "Salt cod and blood sausage sounds like an unlikely pairing, but this is a deeply satisfying Portuguese-inspired dish — earthy, rich, and surprisingly quick to pull together."
 
 ingredients = [
     "4 thick cod fillets (skin on)",
@@ -30,14 +35,3 @@ hints = [
     "Chouriço works as a substitute if morcilla is hard to find, though the flavour is quite different.",
     "A simple green salad or crusty bread alongside is all this needs.",
 ]
-
-[images]
-thumbnail = "thumbnail.jpg"
-banner = "banner.jpg"
-
-[site]
-featured = true
-nav = true
-
-[pdf]
-columns = 2

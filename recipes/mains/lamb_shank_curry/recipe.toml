@@ -1,7 +1,12 @@
 title = "Lamb Shank Curry"
 category = "Mains"
-blurb = "Slow-braised lamb shanks in a deeply spiced South Asian-style gravy. The meat falls off the bone and the sauce is rich enough to eat with a spoon."
 tags = ["Indian", "Slow Cook", "Weekend"]
+dev = false
+site = {nav = true, featured = false}
+images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
+pdf = {layout = "", columns = 2}
+
+blurb = "Slow-braised lamb shanks in a deeply spiced South Asian-style gravy. The meat falls off the bone and the sauce is rich enough to eat with a spoon."
 
 ingredients = [
     "2 lamb shanks",
@@ -35,13 +40,3 @@ hints = [
     "This is even better the next day once the flavours have developed.",
     "Serve with rice or naan and a cooling raita.",
 ]
-
-[images]
-thumbnail = "thumbnail.jpg"
-banner = "banner.jpg"
-
-[site]
-nav = true
-
-[pdf]
-columns = 2

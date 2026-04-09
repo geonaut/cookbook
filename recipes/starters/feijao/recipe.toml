@@ -1,8 +1,23 @@
 title = "Feijão"
 category = "Starters"
+tags = []
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = ""
+
 ingredients = [
-    "Black turtle beans", "Garlic", "Lardons", "Bay leaves", "Olive oil", "Salt", "Pepper"
+    "Black turtle beans",
+    "Garlic",
+    "Lardons",
+    "Bay leaves",
+    "Olive oil",
+    "Salt",
+    "Pepper",
 ]
+
 instructions = [
     "Pressure cook the beans and Bay Leaves for 1 hour, or less if pre-soaked.",
     "Sauté the garlic and lardons in olive oil until fragrant.",
@@ -10,7 +25,6 @@ instructions = [
     "Season with salt and pepper to taste.",
 ]
 
-# Optional: hints and tips for the recipe
 hints = [
     "Any pork sausage or smoked meat can be used instead of lardons.",
     "Don't overcook the beans; they should be tender but not mushy.",

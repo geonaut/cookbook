@@ -1,5 +1,13 @@
 title = "Baked Gammon with Pineapple Glaze"
-category = "Special Occaisions"
+category = "Mains"
+tags = []
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
+pdf = {layout = ""}
+
+blurb = ""
+
 ingredients = [
     "Gammon",
     "Fresh pineapple - fibrous core removed",
@@ -9,16 +17,12 @@ ingredients = [
     "Vinegar (mild)",
     "Marmelade",
 ]
+
 instructions = [
     "Pressure cook the gammon for 20 minutes per 500g plus 20 minutes.",
     "Blend the other ingredients to make a glaze.",
 ]
 
-# Optional: hints and tips for the recipe
 hints = [
     "Buy the pineapple in advance, to make sure it's ripe.",
 ]
-
-[images]
-thumbnail = "thumbnail.jpg"
-banner = "banner.jpg"

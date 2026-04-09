@@ -1,10 +1,13 @@
 title = "Pão de Queijo"
 category = "Starters"
-blurb = "These iconic Brazilian cheese puffs are crisp on the outside and delightfully chewy (almost mochi-like) on the inside. They are naturally gluten-free and dangerously addictive!"
 tags = ["Brazilian", "Gluten-Free", "Vegetarian"]
+dev = false
+site = {nav = true, featured = true}
+images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = ["gallery_1.jpg", "gallery_2.jpg", "gallery_3.jpg", "gallery_4.jpg"]}
+pdf = {layout = "half-image", columns = 2}
 
-# These must come BEFORE any [header] or they will be "orphaned" 
-# inside the last header mentioned.
+blurb = "These iconic Brazilian cheese puffs are crisp on the outside and delightfully chewy (almost mochi-like) on the inside. They are naturally gluten-free and dangerously addictive!"
+
 ingredients = [
     "500g Tapioca Starch (250g Doce / 250g Azedo)",
     "250g Whole Milk (oat is fine)",
@@ -26,19 +29,5 @@ instructions = [
 
 hints = [
     "Texture Science: Scalding causes starch gelatinization, creating the elastic matrix that traps steam for the rise.",
-    "Starch Ratio: 100% Doce yields a dense roll; 100% Azedo creates a hollow puff."
+    "Starch Ratio: 100% Doce yields a dense roll; 100% Azedo creates a hollow puff.",
 ]
-
-[images]
-thumbnail = "thumbnail.jpg"
-banner = "banner.jpg"
-gallery = ["gallery_1.jpg", "gallery_2.jpg", "gallery_3.jpg", "gallery_4.jpg"]
-
-
-[site]
-featured = true
-nav = true
-
-[pdf]
-layout = "half-image"
-columns = 2

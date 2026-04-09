@@ -1,0 +1,21 @@
+title = "Fabada Asturiana"
+category = "Mains"
+tags = ["Spanish"]
+dev = true
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = ""
+
+ingredients = [
+    "",
+]
+
+instructions = [
+    "",
+]
+
+hints = [
+    "",
+]

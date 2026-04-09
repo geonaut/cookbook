@@ -10,6 +10,14 @@
 \RequirePackage{geometry}
 \RequirePackage{multicol}
 \RequirePackage{xifthen}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+
+% ── Brand colours ────────────────────────────────────────────────────────────
+% Swap these out for your final palette.
+\definecolor{CoverBg}     {HTML}{1C2B1A}  % dark forest green
+\definecolor{CoverAccent} {HTML}{C8A96E}  % warm gold
+\definecolor{CoverFg}     {HTML}{F5F0E8}  % off-white
 
 \geometry{top=2cm, bottom=2cm, left=2.5cm, right=2.5cm}
 \setstretch{1.1}
@@ -87,8 +95,30 @@
   \clearpage
   % Chapter title page
   \thispagestyle{empty}%
+  \addcontentsline{toc}{chapter}{#1}%
   \vspace*{\fill}%
-  {\centering\fontsize{36}{46}\selectfont\scshape #1\par}%
+  % ── decorative ornament placeholder ──────────────────────────
+  % Replace the tikzpicture below with \includegraphics{your-illustration}
+  % or any other content; the vspace above/below will centre it.
+  \begin{center}%
+    \begin{tikzpicture}
+      % Outer rule
+      \draw[color=CoverAccent, line width=0.6pt]
+        (-4,0) -- (4,0);
+      % Diamond centrepiece — placeholder for an illustration
+      \filldraw[color=CoverAccent, fill=CoverAccent!15, line width=0.6pt]
+        (0, 0.55) -- (0.55, 0) -- (0, -0.55) -- (-0.55, 0) -- cycle;
+    \end{tikzpicture}%
+    \par\vspace{8mm}%
+    {\fontsize{36}{46}\selectfont\scshape #1\par}%
+    \vspace{8mm}%
+    \begin{tikzpicture}
+      \draw[color=CoverAccent, line width=0.6pt]
+        (-4,0) -- (4,0);
+      \filldraw[color=CoverAccent, fill=CoverAccent!15, line width=0.6pt]
+        (0, 0.55) -- (0.55, 0) -- (0, -0.55) -- (-0.55, 0) -- cycle;
+    \end{tikzpicture}%
+  \end{center}%
   \vspace*{\fill}%
   \clearpage
   \pagestyle{fancy}%
@@ -99,8 +129,23 @@
 \newcommand{\chapterbreakplain}[1]{%
   \clearpage
   \thispagestyle{empty}%
+  \addcontentsline{toc}{chapter}{#1}%
   \vspace*{\fill}%
-  {\centering\fontsize{36}{46}\selectfont\scshape #1\par}%
+  \begin{center}%
+    \begin{tikzpicture}
+      \draw[color=CoverAccent, line width=0.6pt] (-4,0) -- (4,0);
+      \filldraw[color=CoverAccent, fill=CoverAccent!15, line width=0.6pt]
+        (0, 0.55) -- (0.55, 0) -- (0, -0.55) -- (-0.55, 0) -- cycle;
+    \end{tikzpicture}%
+    \par\vspace{8mm}%
+    {\fontsize{36}{46}\selectfont\scshape #1\par}%
+    \vspace{8mm}%
+    \begin{tikzpicture}
+      \draw[color=CoverAccent, line width=0.6pt] (-4,0) -- (4,0);
+      \filldraw[color=CoverAccent, fill=CoverAccent!15, line width=0.6pt]
+        (0, 0.55) -- (0.55, 0) -- (0, -0.55) -- (-0.55, 0) -- cycle;
+    \end{tikzpicture}%
+  \end{center}%
   \vspace*{\fill}%
   \clearpage
   \pagestyle{fancy}%
