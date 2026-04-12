@@ -1,1 +1,22 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+  body.home .top-app-bar__headline {
+    opacity: 0.2;
+  }
+  .top-app-bar__headline img {
+    height: 28px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    filter: brightness(0) invert(0.09); /* #191c1a ≈ on-background light */
+  }
+  .page-hero__banner-img {
+    filter: brightness(0) invert(0.09);
+  }
+  @media (prefers-color-scheme: dark) {
+    .top-app-bar__headline img,
+    .page-hero__banner-img {
+      filter: brightness(0) invert(0.89); /* #e2e5e0 ≈ on-background dark */
+    }
+  }
+</style>
