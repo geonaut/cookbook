@@ -95,6 +95,9 @@ website/static/images/
 website/.firebase/
 .firebaserc
 
+# Raw (unprocessed) recipe photos
+recipes/**/raw/
+
 # End of file
 pdf/src/main.aux
 

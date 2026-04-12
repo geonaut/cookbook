@@ -3,7 +3,7 @@ category = "Mains"
 tags = []
 dev = false
 site = {nav = false, featured = false}
-images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
+images = {thumbnail = "squash_thumb.jpg", banner = "squash_banner.jpg", gallery = []}
 pdf = {layout = ""}
 
 blurb = ""
@@ -26,3 +26,8 @@ instructions = [
 hints = [
     "Buy the pineapple in advance, to make sure it's ripe.",
 ]
+
+[photos]
+thumbnail = "photos/general/squash"
+banner = "photos/general/squash"
+gallery = []

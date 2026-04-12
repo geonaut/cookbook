@@ -3,8 +3,8 @@ category = "Mains"
 tags = ["Italian", "Pasta", "Weeknight", "Storecupboard"]
 dev = false
 site = {nav = false, featured = false}
-images = {thumbnail = "", banner = "", gallery = []}
-pdf = {layout = "half", columns = 2}
+images = {thumbnail = "tomato_thumb.jpg", banner = "tomato_banner.jpg", gallery = []}
+pdf = {layout = "half", columns = false}
 
 blurb = "Punchy, briny, and deeply savoury — this storecupboard pasta comes together in the time it takes to boil water. No fresh ingredients required."
 
@@ -35,3 +35,8 @@ hints = [
     "The sauce can be made ahead and refrigerated for up to 3 days.",
     "No anchovies? Double the capers and add a teaspoon of miso for depth.",
 ]
+
+[photos]
+thumbnail = "photos/general/tomato"
+banner = "photos/general/tomato"
+gallery = []

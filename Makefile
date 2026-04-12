@@ -3,7 +3,7 @@ PYTHON   ?= mise exec -- python3
 LATEXMK  ?= latexmk
 HUGO_DIR  = website
 
-.PHONY: all pdf pdf-dev site build serve clean sync-map
+.PHONY: all pdf pdf-dev site build serve clean sync-map photos
 
 ## Generate everything (production)
 all: pdf site
@@ -28,7 +28,11 @@ build: site
 
 ## Start Hugo dev server (includes draft content)
 serve: site
-	cd $(HUGO_DIR) && hugo server -D
+	cd $(HUGO_DIR) && hugo server -D --disableFastRender --ignoreCache
+
+## Process raw recipe photos → sized outputs, update images field in recipe.toml
+photos:
+	$(PYTHON) process_photos.py
 
 ## Sync foodie map data from KMZ export
 sync-map:

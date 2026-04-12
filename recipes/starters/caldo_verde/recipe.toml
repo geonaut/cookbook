@@ -3,7 +3,7 @@ category = "Starters"
 tags = ["Brazilian"]
 dev = false
 site = {nav = true, featured = false}
-images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
+images = {thumbnail = "asparagus_thumb.jpg", banner = "asparagus_banner.jpg", gallery = []}
 pdf = {layout = ""}
 
 blurb = ""
@@ -30,3 +30,8 @@ hints = [
     "The key is to get the number of potatoes right so the soup is thickened but not too heavy.",
     "Serve with chilli sauce.",
 ]
+
+[photos]
+thumbnail = "photos/general/asparagus"
+banner = "photos/general/asparagus"
+gallery = []

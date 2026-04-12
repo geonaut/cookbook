@@ -163,9 +163,10 @@ def recipe_inner(recipe: Dict, cfg: Dict) -> str:
     if recipe.get("blurb") and layout not in ("third",):
         lines.append(f"\\textit{{{escape_latex(recipe['blurb'])}}}\\\\[2pt]")
 
-    # Use explicit columns if set in [pdf]; otherwise auto-2-col for >4 ingredients
-    if "columns" in recipe.get("pdf", {}):
-        columns = cfg.get("columns", 1)
+    # Auto-balance: 2 columns for 5+ ingredients; override with columns = N in [pdf]
+    col_override = cfg.get("columns", False)
+    if col_override:
+        columns = col_override
     else:
         columns = 2 if len(recipe.get("ingredients", [])) > 4 else 1
     lines.append(ingredients_block(recipe, columns))
@@ -294,7 +295,7 @@ def recipe_pdf_config(recipe_data: Dict, group: Dict) -> Dict:
 
     defaults = {
         "layout":     group_layout,
-        "columns":    1,
+        "columns":    False,
         "show_image": True,
     }
     per_recipe = dict(recipe_data.get("pdf", {}))

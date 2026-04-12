@@ -4,7 +4,7 @@ tags = []
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}
-pdf = {layout = "", columns = 1, show_image = true}
+pdf = {layout = "", columns = false, show_image = true}
 
 blurb = ""
 
@@ -19,3 +19,8 @@ instructions = [
 hints = [
     "",
 ]
+
+[photos]
+thumbnail = ""
+banner = ""
+gallery = []

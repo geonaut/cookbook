@@ -3,7 +3,7 @@ category = "Sauces"
 tags = ["Brazilian"]
 dev = false
 site = {nav = false, featured = false}
-images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = ["gallery_1.jpg", "gallery_2.jpg", "gallery_3.jpg", "gallery_4.jpg"]}
+images = {thumbnail = "garlic_thumb.jpg", banner = "garlic_banner.jpg", gallery = []}
 pdf = {layout = ""}
 
 blurb = "This is a classic Argentinian sauce, but as it's popular with the ranchers of Rio Grande do Sul, I've considered it Brazilian. This should be intensely flavoured, and the volume can be turned up or down the various consituents according to taste. Personally, I like it moderately spicy, with only a little garlic. The key herb here is oregano, which gives it a distinctive flavour. Always use fresh oregano if you can find it. I am to make ~150ml at a time, and leave it to muddle for a while if you can."
@@ -30,3 +30,8 @@ hints = [
     "Avoid too much oil. Balance with more tomato if it's a little dry",
     "I like using mild salad vinegar - not malt or balsamic vinegar. Greek supermarkets often stock a good salad vinegar.",
 ]
+
+[photos]
+thumbnail = "photos/general/garlic"
+banner = "photos/general/garlic"
+gallery = []

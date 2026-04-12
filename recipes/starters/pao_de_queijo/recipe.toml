@@ -3,8 +3,8 @@ category = "Starters"
 tags = ["Brazilian", "Gluten-Free", "Vegetarian"]
 dev = false
 site = {nav = true, featured = true}
-images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = ["gallery_1.jpg", "gallery_2.jpg", "gallery_3.jpg", "gallery_4.jpg"]}
-pdf = {layout = "half-image", columns = 2}
+images = {thumbnail = "thumbnail_thumb.jpg", banner = "banner_banner.jpg", gallery = ["gallery_1_gallery.jpg", "gallery_2_gallery.jpg", "gallery_3_gallery.jpg", "gallery_4_gallery.jpg"]}
+pdf = {layout = "half-image", columns = false}
 
 blurb = "These iconic Brazilian cheese puffs are crisp on the outside and delightfully chewy (almost mochi-like) on the inside. They are naturally gluten-free and dangerously addictive!"
 
@@ -31,3 +31,8 @@ hints = [
     "Scalding causes starch gelatinization, creating the elastic matrix that traps steam for the rise.",
     "Starch Ratio: 100% Doce yields a dense roll; 100% Azedo creates a hollow puff.",
 ]
+
+[photos]
+thumbnail = "thumbnail"
+banner = "banner"
+gallery = ["gallery_1", "gallery_2", "gallery_3", "gallery_4"]

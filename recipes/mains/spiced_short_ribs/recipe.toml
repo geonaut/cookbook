@@ -3,8 +3,8 @@ category = "Mains"
 tags = ["Beef", "Slow Cook", "Weekend", "Special Occasion"]
 dev = false
 site = {nav = false, featured = false}
-images = {thumbnail = "", banner = "", gallery = []}
-pdf = {layout = "half", columns = 2}
+images = {thumbnail = "mushrooms_thumb.jpg", banner = "mushrooms_banner.jpg", gallery = []}
+pdf = {layout = "half", columns = false}
 
 blurb = "Beef short ribs braised low and slow in a warming spiced gravy. A weekend project that rewards patience."
 
@@ -39,3 +39,8 @@ hints = [
     "Serve with creamy mashed potato or soft polenta to catch the sauce.",
     "Ask the butcher for English-cut ribs (short, thick sections) rather than flanken-cut.",
 ]
+
+[photos]
+thumbnail = "photos/general/mushrooms"
+banner = "photos/general/mushrooms"
+gallery = []

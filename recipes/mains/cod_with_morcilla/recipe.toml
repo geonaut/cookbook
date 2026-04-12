@@ -3,8 +3,8 @@ category = "Mains"
 tags = ["Portuguese", "Fish"]
 dev = false
 site = {nav = true, featured = true}
-images = {thumbnail = "thumbnail.jpg", banner = "banner.jpg", gallery = []}
-pdf = {layout = "", columns = 2}
+images = {thumbnail = "artichoke_thumb.jpg", banner = "artichoke_banner.jpg", gallery = []}
+pdf = {layout = "", columns = false}
 
 blurb = ""
 
@@ -35,3 +35,8 @@ hints = [
     "Don't overcook the cod — it should just flake apart. Check at 10 minutes.",
     "Chouriço works as a substitute if morcilla is hard to find, though the flavour is quite different.",
 ]
+
+[photos]
+thumbnail = "photos/general/artichoke"
+banner = "photos/general/artichoke"
+gallery = []

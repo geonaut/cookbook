@@ -3,7 +3,7 @@ category = "Sauces"
 tags = ["Brazilian", "Sauce", "Vegan"]
 dev = false
 site = {nav = false, featured = false}
-images = {thumbnail = "", banner = "", gallery = []}
+images = {thumbnail = "chillis_thumb.jpg", banner = "chillis_banner.jpg", gallery = []}
 pdf = {layout = ""}
 
 blurb = "A Brazilian-style molho vinagrete — more salsa than dressing. Goes with everything grilled."
@@ -29,3 +29,8 @@ hints = [
     "All the vegetables should be cut very finely — this is a sauce, not a salsa.",
     "Makes ahead well; keeps in the fridge for 2 days.",
 ]
+
+[photos]
+thumbnail = "photos/general/chillis"
+banner = "photos/general/chillis"
+gallery = []

@@ -3,10 +3,10 @@ category = "Sauces"
 tags = ["Sri Lankan", "Sauce", "Vegan", "Gluten-Free"]
 dev = false
 site = {nav = false, featured = false}
-images = {thumbnail = "", banner = "", gallery = []}
+images = {thumbnail = "IMG_4916_thumb.jpg", banner = "IMG_4916_banner.jpg", gallery = []}
 pdf = {layout = ""}
 
-blurb = "A Sri Lankan fresh coconut relish — spicy, tangy, and addictive. Served with nearly every meal in Sri Lanka."
+blurb = "A Sri Lankan fresh coconut relish — spicy, tangy, and addictive."
 
 ingredients = [
     "100g freshly grated coconut (or desiccated, rehydrated)",
@@ -27,3 +27,8 @@ hints = [
     "Loosen with a little coconut water if it seems dry.",
     "Desiccated coconut works but soak it in warm water for 10 minutes first and drain well.",
 ]
+
+[photos]
+thumbnail = "IMG_4916"
+banner = "IMG_4916"
+gallery = []

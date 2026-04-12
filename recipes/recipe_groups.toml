@@ -44,7 +44,7 @@ chapter_image_caption = "Pão de Queijo, fresh from the oven"
 [[groups.image_pages]]
 after = "pao_de_queijo"
 type = "split"
-images = ["recipes/starters/pao_de_queijo/gallery_1.jpg", "recipes/starters/pao_de_queijo/gallery_2.jpg"]
+images = ["recipes/starters/pao_de_queijo/gallery_1_gallery.jpg", "recipes/starters/pao_de_queijo/gallery_2_gallery.jpg"]
 captions = ["The dough, just after scalding", "Ready to roll"]
 
 [[groups]]
@@ -64,7 +64,7 @@ name = "Mains"
 recipes = [
     "cod_with_morcilla",
     "lamb_shank_curry",
-    "midweek_grilled_chicken copy",
+    "midweek_grilled_chicken",
     "spiced_short_ribs",
     "puttanesca",
     "shakshuka_with_feta",

@@ -1,0 +1,40 @@
+title = "Kofte with Tahini Sauce"
+category = "Mains"
+tags = ["Turkish", "weeknight"]
+dev = false
+site = {nav = false, featured = true}
+images = {thumbnail = "kofte_plate_thumb.jpg", banner = "kofte_plate_banner.jpg", gallery = ["kofte_plate_gallery.jpg", "kofte_cooked_gallery.jpg", "kofte_raw_gallery.jpg"]}
+pdf = {layout = "", columns = false, show_image = false}
+
+blurb = "This is a flexible dish, with a varied history. Living in North London, Kofte is usually Turkish and lamb-based, but I've also enjoyed making Ottolenghi's [Kofta b’siniyah](https://noseychef.com/2019/12/11/kofta-bsiniyah-ottolenghi/) which are more heavily spiced, and even a version with lemongrass. I generally want two types of meat in this dish and something to stop it being too dense. I find turkey keeps it light, and the veal is just fatty enough."
+
+ingredients = [
+    "~400g Turkey mince.",
+    "~400g Veal mince.",
+    "1 clove of garlic, finely chopped",
+    "1 small shallot, very finely chopped",
+    "100g breadcrumbs",
+    "1 tsp chilli flakes",
+    "Half a preserved lemon",
+    "herbs - flat-leaf parsley, corriander",
+    "salt & pepper",
+    "Sauce: 100g tahini, splash of olive oil, 50ml water, lemon juice, crushed garlic clove.",
+]
+
+instructions = [
+    "Put all the kofte ingredients in a bowl. Mix with your hands until homogenised",
+    "Make the kofte, keeping a consistent size",
+    "Bake at 180 for 20 minutes, or grill on a medium heat",
+    "Mix the sauce, and leave for the garlic to infuse. The consistency should like single cream.",
+]
+
+hints = [
+    "Smaller kofte cook quicker, but take longer to make.",
+    "I find the best shape to be a mini rugby-ball. About 3 tbsp of meat per kofte",
+    "You can also use pork and/or lamb. Once mince can be lean, but one should be fatty",
+]
+
+[photos]
+thumbnail = "kofte_plate"
+banner = "kofte_plate"
+gallery = ["kofte_plate", "kofte_cooked", "kofte_raw"]

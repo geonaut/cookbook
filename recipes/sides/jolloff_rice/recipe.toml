@@ -3,8 +3,8 @@ category = "Sides"
 tags = ["Nigerian", "Rice"]
 dev = false
 site = {nav = false, featured = false}
-images = {thumbnail = "", banner = "", gallery = []}
-pdf = {layout = "", columns = 2, show_image = false}
+images = {thumbnail = "chillis_thumb.jpg", banner = "chillis_banner.jpg", gallery = []}
+pdf = {layout = "", columns = false, show_image = false}
 
 blurb = ""
 
@@ -36,3 +36,8 @@ hints = [
     "Excess sauce base can be served on the side.",
     "Add oil or butter towards the end of cooking, to prevent the rice becoming dry",
 ]
+
+[photos]
+thumbnail = "photos/general/chillis"
+banner = "photos/general/chillis"
+gallery = []
