@@ -32,3 +32,5 @@ github.com/geonaut/hugo-cookbook-theme v0.0.0-20260412204112-6a1253856b14 h1:m2Z
 github.com/geonaut/hugo-cookbook-theme v0.0.0-20260412204112-6a1253856b14/go.mod h1:stC9yMxKjpwromsxyeyaPqjTBe4L2ETEdngP0sTHVQ4=
 github.com/geonaut/hugo-cookbook-theme v0.0.0-20260412205705-4fcdc2b2711d h1:WGLY2w5uRTPvWA59p1PQBuAq8QhNEd6vpro8ZXoudtY=
 github.com/geonaut/hugo-cookbook-theme v0.0.0-20260412205705-4fcdc2b2711d/go.mod h1:stC9yMxKjpwromsxyeyaPqjTBe4L2ETEdngP0sTHVQ4=
+github.com/geonaut/hugo-cookbook-theme v0.0.0-20260416072135-7dee5c86881b h1:yq3SQejZUyWtMuCeS4KYgj/LWbX8Hjj9FfUDVf+7SU0=
+github.com/geonaut/hugo-cookbook-theme v0.0.0-20260416072135-7dee5c86881b/go.mod h1:stC9yMxKjpwromsxyeyaPqjTBe4L2ETEdngP0sTHVQ4=

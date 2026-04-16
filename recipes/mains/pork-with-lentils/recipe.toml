@@ -1,0 +1,39 @@
+title = "Pork with Lentils"
+category = "Mains"
+nationality = "French"
+tags = []
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = "A hearty French bistro classic — braised pork with Puy lentils. The lentils absorb the cooking juices and become deeply savoury, and the whole thing improves overnight."
+
+ingredients = [
+    "600g pork shoulder or loin, cut into chunks",
+    "250g Puy lentils",
+    "1 onion, finely diced",
+    "2 carrots, diced",
+    "2 celery stalks, diced",
+    "3 garlic cloves, crushed",
+    "200ml white wine",
+    "500ml chicken or pork stock",
+    "1 bay leaf",
+    "Few sprigs of thyme",
+    "Dijon mustard, to serve",
+]
+
+instructions = [
+    "Season the pork generously. Brown in batches in a heavy casserole over high heat, then set aside.",
+    "In the same pan, soften the onion, carrot, and celery over medium heat for 5–8 minutes.",
+    "Add the garlic and cook for a further minute.",
+    "Deglaze with the white wine and reduce by half.",
+    "Return the pork to the pan. Add the lentils, stock, bay leaf, and thyme.",
+    "Bring to a simmer, cover, and cook on a low heat for 45–55 minutes, until the lentils are tender and the pork is cooked through.",
+    "Adjust seasoning and serve with a spoonful of Dijon on the side.",
+]
+
+hints = [
+    "Puy lentils hold their shape best here — avoid red lentils, which will turn to mush.",
+    "A splash of red wine vinegar stirred in at the end brightens the whole dish.",
+]
