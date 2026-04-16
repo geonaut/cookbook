@@ -1,6 +1,7 @@
 title = "Pol Sambol"
 category = "Sauces"
-tags = ["Sri Lankan", "Sauce", "Vegan", "Gluten-Free"]
+nationality = "Sri Lankan"
+tags = ["Sauce", "Vegan", "Gluten-Free"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "IMG_4916_thumb.jpg", banner = "IMG_4916_banner.jpg", gallery = []}

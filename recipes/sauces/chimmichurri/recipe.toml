@@ -1,6 +1,7 @@
 title = "Chimichurri"
 category = "Sauces"
-tags = ["Brazilian"]
+nationality = "Brazilian"
+tags = []
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "garlic_thumb.jpg", banner = "garlic_banner.jpg", gallery = []}

@@ -1,6 +1,7 @@
 title = "Shakshuka with Feta"
 category = "Mains"
-tags = ["Middle Eastern", "Vegetarian", "Weeknight", "Eggs"]
+nationality = "Middle Eastern"
+tags = ["Vegetarian", "Weeknight", "Eggs"]
 dev = false
 site = {nav = true, featured = true}
 images = {thumbnail = "tomato_thumb.jpg", banner = "tomato_banner.jpg", gallery = []}

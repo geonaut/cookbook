@@ -1,6 +1,7 @@
 title = "Feijão"
 category = "Sides"
-tags = ["Brazilian"]
+nationality = "Brazilian"
+tags = []
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "radiccio_thumb.jpg", banner = "radiccio_banner.jpg", gallery = []}

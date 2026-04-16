@@ -1,6 +1,7 @@
 title = "Fabada Asturiana"
 category = "Mains"
-tags = ["Spanish"]
+nationality = "Spanish"
+tags = []
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

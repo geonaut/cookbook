@@ -1,5 +1,6 @@
 title = "Braised Brisket"
 category = "Mains"
+nationality = "Israel"
 tags = []
 dev = true
 site = {nav = false, featured = false}

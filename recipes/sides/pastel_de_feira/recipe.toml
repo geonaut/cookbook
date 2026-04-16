@@ -1,6 +1,7 @@
 title = "Pastel de Feira"
 category = "Sides"
-tags = ["Brazilian"]
+nationality = "Brazilian"
+tags = []
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

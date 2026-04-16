@@ -1,6 +1,7 @@
 title = "Greek Salad"
 category = "Salads"
-tags = ["Greek"]
+nationality = "Greek"
+tags = []
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

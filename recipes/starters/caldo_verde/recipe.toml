@@ -1,6 +1,7 @@
 title = "Caldo Verde"
 category = "Starters"
-tags = ["Brazilian"]
+nationality = "Brazilian"
+tags = []
 dev = false
 site = {nav = true, featured = false}
 images = {thumbnail = "asparagus_thumb.jpg", banner = "asparagus_banner.jpg", gallery = []}

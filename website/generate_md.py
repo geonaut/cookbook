@@ -86,8 +86,7 @@ def generate_markdown(recipe: Dict[str, Any], group_name: str) -> str:
     category = recipe.get("category", group_name)
     lines.append(f'categories: ["{category}"]')
     lines.append(f'tags: {json.dumps(recipe.get("tags", []))}')
-    if recipe.get("nationality"):
-        lines.append(f'nationality: "{recipe["nationality"]}"')
+    lines.append(f'nationality: "{recipe.get("nationality", "")}"')
 
     img_data = recipe.get("images", {})
     lines.append(f'banner: "{img_data.get("banner", "")}"')

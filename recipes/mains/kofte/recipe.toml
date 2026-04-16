@@ -1,6 +1,7 @@
 title = "Kofte with Tahini Sauce"
 category = "Mains"
-tags = ["Turkish", "weeknight"]
+nationality = "Turkish"
+tags = ["weeknight"]
 dev = false
 site = {nav = false, featured = true}
 images = {thumbnail = "kofte_plate_thumb.jpg", banner = "kofte_plate_banner.jpg", gallery = ["kofte_plate_gallery.jpg", "kofte_cooked_gallery.jpg", "kofte_raw_gallery.jpg"]}

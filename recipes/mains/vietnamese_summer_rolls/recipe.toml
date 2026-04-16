@@ -1,6 +1,7 @@
 title = "Vietnamese Summer Rolls"
 category = "Mains"
-tags = ["Vietnamese"]
+nationality = "Vietnamese"
+tags = []
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

@@ -1,4 +1,110 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+<style>
+  #site-lock {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #site-lock.unlocked { display: none; }
+  .lock-modal {
+    background: var(--md-sys-color-surface, #fff);
+    color: var(--md-sys-color-on-surface, #191c1a);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    max-width: 340px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  }
+  .lock-modal h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+  }
+  .lock-modal p {
+    margin: 0 0 1.5rem;
+    opacity: 0.6;
+    font-size: 0.9rem;
+  }
+  .lock-modal input[type="password"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--md-sys-color-outline, #888);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--md-sys-color-surface-container, #eee);
+    color: inherit;
+    margin-bottom: 0.75rem;
+    outline: none;
+  }
+  .lock-modal input[type="password"]:focus {
+    border-color: var(--md-sys-color-primary, #2d6a4f);
+  }
+  .lock-modal button {
+    width: 100%;
+    padding: 0.65rem;
+    background: var(--md-sys-color-primary, #2d6a4f);
+    color: var(--md-sys-color-on-primary, #fff);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .lock-modal button:hover { opacity: 0.9; }
+  .lock-error {
+    margin-top: 0.75rem;
+    color: var(--md-sys-color-error, #ba1a1a);
+    font-size: 0.85rem;
+    min-height: 1.2em;
+  }
+</style>
+
+<div id="site-lock">
+  <div class="lock-modal">
+    <h2>Geonaut's Cookbook</h2>
+    <p>Coming soon</p>
+    <input type="password" id="lock-input" placeholder="Password" autocomplete="current-password">
+    <button id="lock-btn">Enter</button>
+    <p class="lock-error" id="lock-error"></p>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var PASS_HASH = '5a3cb9c0f9fc910fd0db607cbfe12315abc1677b15c3ccbaa88e944fec19455e';
+    var overlay = document.getElementById('site-lock');
+    var input   = document.getElementById('lock-input');
+    var btn     = document.getElementById('lock-btn');
+    var err     = document.getElementById('lock-error');
+
+    if (sessionStorage.getItem('site-unlocked') === '1') {
+      overlay.classList.add('unlocked');
+    }
+
+    async function attempt() {
+      var hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value));
+      var hex = Array.from(new Uint8Array(hash)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+      if (hex === PASS_HASH) {
+        sessionStorage.setItem('site-unlocked', '1');
+        overlay.classList.add('unlocked');
+      } else {
+        err.textContent = 'Incorrect password';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') attempt(); });
+  }());
+</script>
 <link rel="stylesheet" href="/css/site.css">
 <style>
   body.home .top-app-bar__headline {

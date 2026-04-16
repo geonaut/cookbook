@@ -1,6 +1,7 @@
 title = "Ratatouille"
 category = "Mains"
-tags = ["French", "Vegetarian"]
+nationality = "French"
+tags = ["Vegetarian"]
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

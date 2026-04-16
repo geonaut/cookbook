@@ -1,6 +1,7 @@
 title = "Gremolata"
 category = "Sauces"
-tags = ["Italian"]
+nationality = "Italian"
+tags = []
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

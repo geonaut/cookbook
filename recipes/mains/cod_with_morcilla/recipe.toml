@@ -1,6 +1,7 @@
 title = "Cod with Morcilla"
 category = "Mains"
-tags = ["Portuguese", "Fish"]
+nationality = "Portuguese"
+tags = ["Fish"]
 dev = false
 site = {nav = true, featured = true}
 images = {thumbnail = "artichoke_thumb.jpg", banner = "artichoke_banner.jpg", gallery = []}

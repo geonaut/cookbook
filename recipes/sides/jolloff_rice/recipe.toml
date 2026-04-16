@@ -1,6 +1,7 @@
 title = "Jollof Rice"
 category = "Sides"
-tags = ["Nigerian", "Rice"]
+nationality = "Nigerian"
+tags = ["Rice"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "chillis_thumb.jpg", banner = "chillis_banner.jpg", gallery = []}

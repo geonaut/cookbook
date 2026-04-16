@@ -1,6 +1,7 @@
 title = "Palak Paneer"
 category = "Mains"
-tags = ["Indian", "Vegetarian"]
+nationality = "Indian"
+tags = ["Vegetarian"]
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

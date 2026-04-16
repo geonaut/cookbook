@@ -1,6 +1,7 @@
 title = "Jerk Chicken"
 category = "Mains"
-tags = ["Caribbean"]
+nationality = "Caribbean"
+tags = []
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}

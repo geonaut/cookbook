@@ -1,6 +1,7 @@
 title = "Spicy Vinaigrette"
 category = "Sauces"
-tags = ["Brazilian", "Sauce", "Vegan"]
+nationality = "Brazilian"
+tags = ["Sauce", "Vegan"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "chillis_thumb.jpg", banner = "chillis_banner.jpg", gallery = []}

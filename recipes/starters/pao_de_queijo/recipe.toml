@@ -1,6 +1,7 @@
 title = "Pão de Queijo"
 category = "Starters"
-tags = ["Brazilian", "Gluten-Free", "Vegetarian"]
+nationality = "Brazilian"
+tags = ["Gluten-Free", "Vegetarian"]
 dev = false
 site = {nav = true, featured = true}
 images = {thumbnail = "thumbnail_thumb.jpg", banner = "banner_banner.jpg", gallery = ["gallery_1_gallery.jpg", "gallery_2_gallery.jpg", "gallery_3_gallery.jpg", "gallery_4_gallery.jpg"]}

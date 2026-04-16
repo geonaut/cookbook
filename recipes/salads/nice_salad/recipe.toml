@@ -1,6 +1,7 @@
 title = "Salade Niçoise"
 category = "Salads"
-tags = ["French", "Salad", "Fish", "Summer"]
+nationality = "French"
+tags = ["Salad", "Fish", "Summer"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "original_salad_thumb.jpg", banner = "original_salad_banner.jpg", gallery = ["original_salad_gallery.jpg", "first_attempt_gallery.jpg", "IMG_1512_gallery.jpg", "original_burrata_gallery.jpg"]}
