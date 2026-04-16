@@ -78,7 +78,7 @@
 
 <script>
   (function () {
-    var PASS_HASH = '5a3cb9c0f9fc910fd0db607cbfe12315abc1677b15c3ccbaa88e944fec19455e';
+    var PASS = atob('YXViZXJnaW5l');
     var overlay = document.getElementById('site-lock');
     var input   = document.getElementById('lock-input');
     var btn     = document.getElementById('lock-btn');
@@ -88,10 +88,8 @@
       overlay.classList.add('unlocked');
     }
 
-    async function attempt() {
-      var hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input.value));
-      var hex = Array.from(new Uint8Array(hash)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
-      if (hex === PASS_HASH) {
+    function attempt() {
+      if (input.value === PASS) {
         sessionStorage.setItem('site-unlocked', '1');
         overlay.classList.add('unlocked');
       } else {
