@@ -1,7 +1,7 @@
 title = "Puttanesca"
 category = "Mains"
 nationality = "Italian"
-tags = ["Pasta", "Weeknight", "Storecupboard"]
+tags = ["Pasta", "Weeknight"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "tomato_thumb.jpg", banner = "tomato_banner.jpg", gallery = []}

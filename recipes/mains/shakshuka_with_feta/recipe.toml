@@ -1,43 +1,42 @@
 title = "Shakshuka with Feta"
 category = "Mains"
 nationality = "Middle Eastern"
-tags = ["Vegetarian", "Weeknight", "Eggs"]
+tags = ["Breakfast"]
 dev = false
 site = {nav = true, featured = true}
 images = {thumbnail = "tomato_thumb.jpg", banner = "tomato_banner.jpg", gallery = []}
 pdf = {layout = "", columns = false}
 
-blurb = "Eggs poached directly in a spiced tomato and pepper sauce, finished with creamy feta. Works for breakfast, lunch, or a quick weeknight dinner."
+blurb = "This is a great dish, and works for breakfast, lunch or dinner. I like to use the pepper paste and make sure that the bitterness of the peppers balances the sweetness of the tomatoes."
 
 ingredients = [
-    "6 eggs",
-    "100g feta, crumbled",
+    "6-8 eggs",
+    "100g feta, cubed",
     "2 x 400g tins chopped tomatoes",
     "2 red peppers, deseeded and diced",
     "1 onion, finely diced",
     "4 cloves garlic, sliced",
-    "1 tsp cumin, ground",
-    "1 tsp smoked paprika",
-    "1/2 tsp cayenne",
-    "1 tsp sugar",
+    "1 tbsp of adjvar (Turkish pepper paste)"
+    "1 tbsp of good-quality harissa",
     "Olive oil",
     "Salt & black pepper",
-    "Fresh flatleaf parsley to finish",
+    "Fresh corriander parsley to finish",
 ]
 
 instructions = [
-    "Heat olive oil in a wide, lidded frying pan over medium heat. Fry the onion and peppers for 8–10 minutes until soft.",
-    "Add the garlic, cumin, paprika, and cayenne. Stir for 1 minute.",
-    "Add the tomatoes and sugar. Season well. Simmer uncovered for 15 minutes, stirring occasionally, until the sauce thickens.",
-    "Make 6 wells in the sauce and crack an egg into each one. Scatter the feta over the sauce between the eggs.",
+    "Heat olive oil in a wide, lidded frying pan over medium heat. Fry the onion, garlic and peppers for 8–10 minutes until soft.",
+    "Add the harissa and pepper paste. Stir for 1 minute.",
+    "Add the tomatoes. Season well. Simmer uncovered for 15 minutes, stirring occasionally, until the sauce thickens.",
+    "Add the cubed feta, pushing it below the surface of the sauce."
+    "Make wells in the sauce and crack an egg into each one.",
     "Cover with a lid and cook on low heat for 6–8 minutes, until the whites are set but yolks are still runny.",
     "Scatter with parsley and serve immediately, straight from the pan with flatbreads.",
 ]
 
 hints = [
-    "Watch the eggs carefully — they go from runny to overcooked quickly.",
-    "A pinch of cinnamon in the sauce adds a subtle warmth that works well.",
-    "Leftovers reheat poorly. Make only what you'll eat.",
+    "I use the back of a ladle, cracking the egg into the ladle, and rotating to let the egg slide into the depression",
+    "Leave the feta in good-sized cubes, so it can stand-up to cooking.",
+    "The sauce is fine the next day, but the eggs can be a little rubbery",
 ]
 
 [photos]

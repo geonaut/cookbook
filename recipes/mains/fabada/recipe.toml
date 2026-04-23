@@ -1,22 +1,37 @@
 title = "Fabada Asturiana"
 category = "Mains"
 nationality = "Spanish"
-tags = []
-dev = true
+tags = ["Midweek"]
+dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}
 pdf = {layout = ""}
 
-blurb = ""
+blurb = "We don't do beans very well in the UK. Baked beans seem to have a stranglehold. There are a lot of good Spanish and Portuguese bean dishes, not to mention French cassoulet. This dish is closest to a Fabada Asturiana from Northern Spain. I like to use large white beans for this one. Tinned canellini beans are ok, but starting with good quality dried beans is best. This recipe is fairly similar to the cod with morcilla recipe, although it's a bit less labour intensive, and relies more on paprika"
 
 ingredients = [
-    "",
+    "500g dried white beans",
+    "1 chorizo ring",
+    "800g Pork shoulder",
+    "1 onion",
+    "1 small bulb of garlic or ~5-6 large cloves",
+    "Bay leaves",
+    "Smoked pancetta",
+    "1 tsp smoked paprika",
+    "Soffrito, or vegetable stock.",
+    "Flat-leaf parsley",
+    "Salt & pepper",
 ]
 
 instructions = [
-    "",
+    "Cook the beans plus bay leaves, until the beans are 3/4 cooked. The cooking time will depend on the method and bean, but I would aim for 30 minutes using pre-soaked beans and a pressure cooker",
+    "In a separate pan, fry-off the pancetta, onion and garlic and add to the beans",
+    "Next fry off small pieces of chorizo, and add to the beans."
+    "Finally brown the pork shoulder, and deglaze the pan with the stock, or bean liquor",
+    "With all of the ingredients in the pan, minus the parsley, cook for another 15 minutes. Longer if you like the pork more tender",
+    "Once cooked, add the chopped parsely & serve",
 ]
 
 hints = [
-    "",
+    "This dish can be fairly economical",
 ]

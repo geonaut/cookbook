@@ -7,16 +7,33 @@ site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}
 pdf = {layout = ""}
 
-blurb = ""
+blurb = "A French classic that is easy to get wrong. This dish requires sympathetic handling of the vegetables. Felicity Cloake has a great article in the Guardian that compares the various approaches, but they all agree that overcooked vegetables will result in an anonymous mush. I have a broad pan and I just let the vegetables sweat in a small amount of water for 30 minutes on the lowest heat. Use the best tomatoes you can get your hands on. I used to use a decent tomato paste as well - my favourite was called La Bomba, and had contained red-wine. Herbs also add to this dish, but done well, it needs very little beyond the basic ingredients."
 
 ingredients = [
-    "",
+    "2 aubergines",
+    "2 red peppers",
+    "2 courgettes",
+    "1 red onion",
+    "1 jar of passata",
+    "Tomato paste",
+    "2-3 cloves of garlic (optional)",
+    "Flat-leaf parsley",
+    "Thyme",
+    "A squeeze of lemon juice",
+    "Olive oil",
+    "Salt & pepper",
 ]
 
 instructions = [
-    "",
+    "If using garlic, fry it off in a little oil"
+    "Chop the rest of the vegetables, and sweat them on the lowest heat for 35 minutes. Don't overcook.",
+    "Add the passata and tomato paste and agitate, let it warm through, but don't boil",
+    "Add the herbs, olive oil and lemon juice",
+    "Serve immediately",
 ]
 
 hints = [
-    "",
+    "Chopping the vegetables too finely will result in mush. Too coarsely, and it will be awkward to eat. 1 cm seems to be the sweet spot",
+    "Minimal stirring will ensure the colours of the invididual vegetables stay bright",
+    "This dish is great to showcase your best olive oil. Add it at the end, to enjoy the aroma.",
 ]

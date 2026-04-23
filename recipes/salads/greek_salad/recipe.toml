@@ -7,14 +7,22 @@ site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}
 pdf = {layout = ""}
 
-blurb = ""
+blurb = "There is an art to a good Greek salad, and a lot of subtle variations. As with all salads, start with the best ingredients you can find."
 
 ingredients = [
-    "",
+    "Ripe, aromatic tomatoes",
+    "Good-quality aged feta",
+    "Good-quality olive oil",
+    "Green pepper",
+    "A whole cucumber, partially peeled and diced",
+    "1/2 a finely diced red onion",
+    "Black olives",
+    "Dill",
+    "Lemon juice",m
 ]
 
 instructions = [
-    "",
+    "Add the tomatoes, cucumber, green pepper and onion to a large bowl. Mix well with 1/2 the olive oil and ",
 ]
 
 hints = [

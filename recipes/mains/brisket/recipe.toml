@@ -2,12 +2,12 @@ title = "Braised Brisket"
 category = "Mains"
 nationality = "Israel"
 tags = []
-dev = true
+dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}
 pdf = {layout = ""}
 
-blurb = "A satisfying winter dish, best cooked low and slow. This is a Jewish-style brisket, rather than Texas smoked brisket. I've found that not all brisket is equal, and ideally you should source a centre-cut flat brisket, with minimal hard fat. Supermarket brisket is often risky, because the shrink-wrapping forces the brisket into a lump, which unravels when you open it. As always, a decent butcher is the safest bet."
+blurb = "A satisfying winter dish, best cooked low and slow. This is a Jewish-style brisket, rather than Texas smoked brisket. I've found that not all brisket is equal, and ideally you should source a centre-cut flat brisket, with minimal hard fat. Supermarket brisket is often a risky purchase, because the shrink-wrapping forces the brisket into a lump, which unravels when you open it. As always, a decent butcher is the safest bet for a good cut, although likely pricier."
 
 ingredients = [
     "1.5kg centre-cut flat brisket",

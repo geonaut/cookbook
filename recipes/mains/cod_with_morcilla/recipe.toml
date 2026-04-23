@@ -7,7 +7,7 @@ site = {nav = true, featured = true}
 images = {thumbnail = "artichoke_thumb.jpg", banner = "artichoke_banner.jpg", gallery = []}
 pdf = {layout = "", columns = false}
 
-blurb = ""
+blurb = "I like this dish as the lightness of the cod complements the richness of the morcilla, while the chickpeas bulk it out. Cod can be expensive, so haddock can substitute, although it has a tendency to disintegrate in the pan. There's a wide range of sausage from Spain and Portugal. I tend to buy Portuguese morcilla, as it's readily available in Brazilian/Portuguese supermarkets. There is also chouriço, which looks similar, but has more paprika or even red wine in some. varieties."
 
 ingredients = [
     "4 thick cod fillets (skin on)",
@@ -34,7 +34,7 @@ instructions = [
 
 hints = [
     "Don't overcook the cod — it should just flake apart. Check at 10 minutes.",
-    "Chouriço works as a substitute if morcilla is hard to find, though the flavour is quite different.",
+    "Chouriço / chorizo works as a substitute if morcilla is hard to find, though the flavour is quite different.",
 ]
 
 [photos]

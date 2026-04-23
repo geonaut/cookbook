@@ -18,6 +18,7 @@
 *.blg
 *.run.xml
 *.xdv
+.claude
 
 build/
 

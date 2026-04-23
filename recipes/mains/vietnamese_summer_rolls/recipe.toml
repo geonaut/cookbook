@@ -1,22 +1,41 @@
 title = "Vietnamese Summer Rolls"
 category = "Mains"
 nationality = "Vietnamese"
-tags = []
+tags = ["quick"]
 dev = true
 site = {nav = false, featured = false}
 images = {thumbnail = "", banner = "", gallery = []}
 pdf = {layout = ""}
 
-blurb = ""
+blurb = "This recipe is likely Anglicised, and having never been to Vietnam, I'm not sure I would recognise an authentic version. I'm reasonably certain that chilli-sauce and Thai basil would feature in a genuine recipe. I use quite a lot of different protiens in this dish, to make it a good-sized main course."
 
 ingredients = [
-    "",
+    "Rice paper",
+    "Rice noodles - thin/vermicelli",
+    "Chinese leaf, cross-cut into thin strips",
+    "Avocado",
+    "Bean sprouts",
+    "Spring onions",
+    "Peanut butter",
+    "Prawns or chicken (e.g. midweek chicken)",
+    "Thai basil",
+    "Chilli-sauce (1 tsp sweet chilli sauce, 1 finely chopped red chilli, splash of nam pla and water)",
+    "Extra chilli, cut into thin strips",
 ]
 
 instructions = [
-    "",
+    "Prepare the protein, as required",
+    "Cut the fresh vegetables - avocado, chinese leaf,"
+    "Prepare chilli sauce",
+    "Soak the rice noodles in boiling water for a 2 minutes. Don't overcook, or let them sit for a long time."
+    "Get all the other ingredients on the table, ready to go."
+    "Warm a broad pan of water - hot, but not boiling. Bring it to the table and place in the centre."
+    "Once ready to eat, dunk the rice paper in the water, and quickly extract, and lay on a plate. It will continue to soften as it cools.",
+    "Compose your summer roll, similar to a fajita or burrito. The rice paper should be tacky, and seal all round, like a little cocoon.",
 ]
 
 hints = [
-    "",
+    "You can also add in other salad vegetables that you might have left over in the fridge e.g. spring onions or red peppers.",
+    "If you manage to make a good seal, the runny chilli sauce won't escape from the bottom of the summer roll",
+    "Larger rice paper is best - less work per summer roll, and more margin for error when rolling."
 ]
