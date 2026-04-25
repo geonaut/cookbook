@@ -153,11 +153,12 @@ def generate_md(include_dev: bool = False):
 
         recipes = ordered_recipes(group, include_dev)
 
-        # Always write the section _index.md
+        # Always write the section _index.md (weight preserves recipe_groups.toml order)
         section_dir = os.path.join(HUGO_CONTENT_DIR, folder)
         os.makedirs(section_dir, exist_ok=True)
         with open(os.path.join(section_dir, "_index.md"), "w") as f:
-            f.write(f'---\ntitle: "{group_name}"\n---\n')
+            weight = groups.index(group) + 1
+            f.write(f'---\ntitle: "{group_name}"\nweight: {weight}\n---\n')
 
         for recipe_id, recipe_data in recipes:
             recipe_bundle_dir = os.path.join(section_dir, recipe_id)
