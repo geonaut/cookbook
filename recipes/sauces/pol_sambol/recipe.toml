@@ -5,7 +5,7 @@ tags = ["Sauce", "Vegan", "Gluten-Free"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "IMG_4916_thumb.jpg", banner = "IMG_4916_banner.jpg", gallery = []}
-pdf = {layout = ""}
+pdf = {layout = "half"}
 
 blurb = "A Sri Lankan fresh coconut relish — spicy, tangy, and addictive."
 

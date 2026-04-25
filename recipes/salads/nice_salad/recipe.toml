@@ -5,12 +5,7 @@ tags = ["Salad", "Fish", "Summer"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "original_salad_thumb.jpg", banner = "original_salad_banner.jpg", gallery = ["original_salad_gallery.jpg", "first_attempt_gallery.jpg", "IMG_1512_gallery.jpg", "original_burrata_gallery.jpg"]}
-pdf = {layout = "half", columns = false}
-
-[photos]
-thumbnail = "original_salad"
-banner = "original_salad"
-gallery = ["original_salad", "first_attempt", "IMG_1512", "original_burrata"]
+pdf = {layout = "full", columns = false}
 
 blurb = "The definitive composed salad. Tuna, eggs, olives, and green beans on a bed of dressed leaves — substantial enough to be a main course."
 
@@ -43,3 +38,9 @@ hints = [
     "Use tuna in olive oil, not brine. The quality of the tuna matters here.",
     "The dressing also works as a general-purpose vinaigrette.",
 ]
+
+[photos]
+thumbnail = "original_salad"
+banner = "original_salad"
+gallery = ["original_salad", "first_attempt", "IMG_1512", "original_burrata"]
+

@@ -5,7 +5,7 @@ tags = ["Beef", "Slow Cook", "Weekend", "Special Occasion"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "mushrooms_thumb.jpg", banner = "mushrooms_banner.jpg", gallery = []}
-pdf = {layout = "half", columns = false}
+pdf = {layout = "full", columns = false}
 
 blurb = "Beef short ribs braised low and slow in a warming spiced gravy. A weekend project that rewards patience."
 

@@ -5,7 +5,7 @@ tags = ["Pasta", "Weeknight"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "tomato_thumb.jpg", banner = "tomato_banner.jpg", gallery = []}
-pdf = {layout = "half", columns = false}
+pdf = {layout = "full", columns = false}
 
 blurb = "Punchy, briny, and deeply savoury — this storecupboard pasta comes together in the time it takes to boil water. No fresh ingredients required."
 

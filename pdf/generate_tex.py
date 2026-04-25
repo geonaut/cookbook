@@ -181,8 +181,10 @@ def recipe_inner(recipe: Dict, cfg: Dict) -> str:
 
 # --- Layout wrappers ---
 
-def wrap_layout(inner: str, layout: str, image_path: str = "") -> str:
+def wrap_layout(inner: str, layout: str, image_path: str = "", no_images: bool = False) -> str:
     """Wrap recipe inner content in the appropriate fixed-height LaTeX block."""
+    if no_images and layout == "half-image":
+        layout = "half"
     if layout == "full":
         return (
             "\\begin{minipage}[t][\\fullpageheight][t]{\\textwidth}\n"
@@ -310,6 +312,7 @@ def recipe_pdf_config(recipe_data: Dict, group: Dict) -> Dict:
 def generate_group_latex(
     group: Dict,
     include_dev: bool,
+    no_images: bool = False,
 ) -> List[str]:
     """
     Return a list of LaTeX strings for this group (chapter break + recipes +
@@ -323,7 +326,7 @@ def generate_group_latex(
     # ── Chapter break ────────────────────────────────────────────────────────
     chapter_img     = group.get("chapter_image", "")
     chapter_caption = group.get("chapter_image_caption", "")
-    if chapter_img:
+    if chapter_img and not no_images:
         lines.append(
             f"\\chapterbreak{{{escape_latex(group_title)}}}"
             f"{{{chapter_img}}}{{{escape_latex(chapter_caption)}}}"
@@ -340,8 +343,9 @@ def generate_group_latex(
         image_page_map.setdefault(key, []).append(ip)
 
     # ── Emit image pages scheduled for __start__ ──────────────────────────────
-    for ip in image_page_map.get("__start__", []):
-        lines.append(generate_image_page(ip))
+    if not no_images:
+        for ip in image_page_map.get("__start__", []):
+            lines.append(generate_image_page(ip))
 
     # ── Recipes + interleaved image pages ─────────────────────────────────────
     recipes = ordered_recipes(group, include_dev)
@@ -369,9 +373,9 @@ def generate_group_latex(
             lines.append(r"\recipesep")
 
         # Generate and wrap recipe
-        img_path = recipe_image_path(recipe_data, group_name, recipe_id)
+        img_path = "" if no_images else recipe_image_path(recipe_data, group_name, recipe_id)
         inner    = recipe_inner(recipe_data, cfg)
-        lines.append(wrap_layout(inner, layout, img_path))
+        lines.append(wrap_layout(inner, layout, img_path, no_images))
 
         # Update page accounting
         if layout in SELF_CONTAINED:
@@ -383,26 +387,28 @@ def generate_group_latex(
                 space_used = 0.0
 
         # ── Image pages after this recipe ─────────────────────────────────────
-        for ip in image_page_map.get(recipe_id, []):
-            if space_used > 0.01:
-                lines.append(r"\clearpage")
-                space_used = 0.0
-            lines.append(generate_image_page(ip))
+        if not no_images:
+            for ip in image_page_map.get(recipe_id, []):
+                if space_used > 0.01:
+                    lines.append(r"\clearpage")
+                    space_used = 0.0
+                lines.append(generate_image_page(ip))
 
     # Flush any partial page at end of group
     if space_used > 0.01:
         lines.append(r"\clearpage")
 
     # ── Image pages scheduled for __end__ ─────────────────────────────────────
-    for ip in image_page_map.get("__end__", []):
-        lines.append(generate_image_page(ip))
+    if not no_images:
+        for ip in image_page_map.get("__end__", []):
+            lines.append(generate_image_page(ip))
 
     return lines
 
 
 # --- Main ---
 
-def generate_tex(include_dev: bool = False):
+def generate_tex(include_dev: bool = False, no_images: bool = False):
     if not os.path.exists(GROUPS_PATH):
         print(f"❌ recipe_groups.toml not found at {GROUPS_PATH}")
         return
@@ -423,7 +429,7 @@ def generate_tex(include_dev: bool = False):
         if not recipes:
             continue
 
-        group_lines = generate_group_latex(group, include_dev)
+        group_lines = generate_group_latex(group, include_dev, no_images)
         all_lines.extend(group_lines)
 
         label = " [DEV]" if include_dev else ""
@@ -438,5 +444,6 @@ def generate_tex(include_dev: bool = False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Compile recipe TOMLs to LaTeX.")
     parser.add_argument("--dev", action="store_true", help="Include dev recipes.")
+    parser.add_argument("--no-images", action="store_true", help="Omit all images (implied by --dev).")
     args = parser.parse_args()
-    generate_tex(include_dev=args.dev)
+    generate_tex(include_dev=args.dev, no_images=args.no_images or args.dev)

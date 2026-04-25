@@ -5,7 +5,7 @@ tags = ["Sauce", "Vegan"]
 dev = false
 site = {nav = false, featured = false}
 images = {thumbnail = "chillis_thumb.jpg", banner = "chillis_banner.jpg", gallery = []}
-pdf = {layout = ""}
+pdf = {layout = "half"}
 
 blurb = "A Brazilian-style molho vinagrete — more salsa than dressing. Goes with everything grilled."
 
