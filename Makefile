@@ -7,6 +7,7 @@ HUGO_DIR  = website
 
 ## Generate everything (production)
 all: pdf site
+	cp pdf/build/cookbook.pdf $(HUGO_DIR)/static/cookbook.pdf
 
 ## Compile production PDF (skips dev=true recipes)
 pdf:
