@@ -102,11 +102,14 @@ def get_chapter_directory(group_name: str) -> str:
 # --- Content block generators ---
 
 def ingredients_block(recipe: Dict, columns: int) -> str:
+    items = [i for i in recipe.get("ingredients", []) if i and i.strip()]
+    if not items:
+        return ""
     lines = [r"\subsection*{Ingredients}"]
     if columns > 1:
         lines.append(f"\\begin{{multicols}}{{{columns}}}")
     lines.append(r"\begin{ingredients}")
-    for ing in recipe.get("ingredients", []):
+    for ing in items:
         lines.append(f"    \\item {escape_latex(ing)}")
     lines.append(r"\end{ingredients}")
     if columns > 1:
@@ -115,8 +118,11 @@ def ingredients_block(recipe: Dict, columns: int) -> str:
 
 
 def method_block(recipe: Dict) -> str:
+    steps = [s for s in recipe.get("instructions", []) if s and s.strip()]
+    if not steps:
+        return ""
     lines = [r"\subsection*{Instructions}", r"\begin{enumerate}"]
-    for step in recipe.get("instructions", []):
+    for step in steps:
         lines.append(f"    \\item {escape_latex(step)}")
     lines.append(r"\end{enumerate}")
     return "\n".join(lines)
@@ -126,6 +132,7 @@ def hints_block(recipe: Dict) -> str:
     hints = recipe.get("hints", [])
     if isinstance(hints, dict):
         hints = hints.get("items", [])
+    hints = [h for h in hints if h and h.strip()]
     if not hints:
         return ""
     lines = [r"\subsection*{Hints \& Tips}", r"\begin{itemize}"]

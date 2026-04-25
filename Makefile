@@ -13,7 +13,7 @@ pdf:
 	$(PYTHON) pdf/generate_tex.py
 	$(LATEXMK) -pdf -xelatex -outdir=pdf/build -jobname=cookbook pdf/src/main.tex
 
-## Compile dev PDF (includes dev=true recipes, outputs cookbook_dev.pdf)
+## Compile dev PDF (all recipes including dev=true, no images — use for printing/editing)
 pdf-dev:
 	$(PYTHON) pdf/generate_tex.py --dev
 	$(LATEXMK) -pdf -xelatex -outdir=pdf/build -jobname=cookbook_dev pdf/src/main_dev.tex
