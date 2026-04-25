@@ -1,0 +1,44 @@
+title = "Goan Fish Curry"
+category = "Mains"
+nationality = "Indian"
+tags = ["Fish", "Curry", "Coconut"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = "A bright, tangy coconut curry from the coast of Goa. The combination of tamarind, Kashmiri chillies, and coconut milk gives it a distinctive red colour and a flavour that is sour, fragrant, and deeply savoury — quite different from North Indian curries."
+
+ingredients = [
+    "600g firm white fish (cod, haddock, or monkfish), cut into chunks",
+    "400ml coconut milk",
+    "1 tbsp tamarind paste",
+    "1 onion, finely sliced",
+    "4 garlic cloves",
+    "1 inch fresh ginger",
+    "4–6 dried Kashmiri chillies (or 2 tsp Kashmiri chilli powder)",
+    "1 tsp cumin seeds",
+    "1 tsp coriander seeds",
+    "½ tsp turmeric",
+    "1 tsp black mustard seeds",
+    "10–12 curry leaves",
+    "Salt",
+    "Oil",
+]
+
+instructions = [
+    "Dry-toast the Kashmiri chillies, cumin, and coriander seeds briefly in a dry pan, then grind to a powder.",
+    "Blend the garlic, ginger, and ground spices with a splash of water to make a paste.",
+    "Heat oil in a wide pan. Fry the mustard seeds until they pop, then add the curry leaves.",
+    "Add the sliced onion and cook until soft and golden, around 10 minutes.",
+    "Add the spice paste and turmeric and fry for 2 minutes until fragrant.",
+    "Pour in the coconut milk and tamarind paste. Stir well and simmer for 5 minutes.",
+    "Add the fish, season with salt, and cook gently for 8–10 minutes until just cooked through.",
+    "Taste for seasoning — it should be tangy, rich, and a little hot. Serve with rice.",
+]
+
+hints = [
+    "Kashmiri chillies give colour and mild heat without overwhelming the dish — don't substitute regular dried chillies.",
+    "Monkfish holds together best in a curry, but cod works well and is easier to find.",
+    "A little jaggery or brown sugar can balance the tamarind if the sauce is too sharp.",
+]

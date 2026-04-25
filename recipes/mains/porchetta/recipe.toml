@@ -1,0 +1,24 @@
+title = "Porchetta"
+category = "Mains"
+nationality = "Italian"
+tags = ["Pork", "Weekend", "Special Occasion"]
+dev = false
+site = {nav = false, featured = false}
+images = {thumbnail = "", banner = "", gallery = []}
+pdf = {layout = ""}
+
+blurb = "A classic Italian dish - easy to make, if you have a good butcher. The best ones will carve out the ribs for you. Others take the shortcut of pulling all the ribs out in one go. I also get the butcher to butterfly the loin, to give a little bit more surface area for the marinade."
+
+ingredients = [
+    "Spices: fennel, chilli flakes",
+    "Herbs: sage, flat-leaf parsley, rosemary",
+    "Lemon zest",
+]
+
+instructions = [
+    "Low & slow - 150°C, with a blast at the end to crisp-up the crackling",
+]
+
+hints = [
+    "Use a spice grinder on the fennel, toasting it first to make it a little brittle",
+]
